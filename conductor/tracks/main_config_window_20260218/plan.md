@@ -1,9 +1,10 @@
 # Implementation Plan: Develop Main Window (Configurations)
 
 ## Phase 1: Configuration View Foundation
-- [x] Task 1.1: Add `iconName` property to `Habit` model `2ae3aaf`
-- [ ] Task 1.2: Create `ConfigurationViewModel` with `@Observable`
-- [ ] Task 1.3: Create `ConfigurationView` (single-pane layout)
+
+- [x] Task 1.1: Add `iconName` property to `Habit` model (2ae3aaf)
+- [x] Task 1.2: Create `ConfigurationViewModel` with `@Observable` (a72ed1e)
+- [~] Task 1.3: Create `ConfigurationView` (single-pane layout)
 - [ ] Task 1.4: Wire `ConfigurationView` as app entry point & remove `ContentView`
 - [ ] Task 1.5: Add placeholder views for Widgets and Habit Streak
 - [ ] Task 1.6: Implement global navigation (Toolbar / App Menu)
@@ -11,6 +12,7 @@
 - [ ] Task 1.8: Phase Completion — Manual Verification & Checkpoint
 
 ## Phase 2: Habit List Display & Styling
+
 - [ ] Task 2.1: Create `HabitSlotRow` and display habits from SwiftData
 - [ ] Task 2.2: Apply "Stealth Ceramic" chassis styling
 - [ ] Task 2.3: Apply "Liquid Glass" styling to interactive elements
@@ -18,6 +20,7 @@
 - [ ] Task 2.5: Phase Completion — Manual Verification & Checkpoint
 
 ## Phase 3: Add/Edit Habit Workflow
+
 - [ ] Task 3.1: Create `AddSlotSheet` modal
 - [ ] Task 3.2: Implement schedule selection (Daily / Weekly / Specific Days)
 - [ ] Task 3.3: Integrate Add/Remove with `HabitStore`
@@ -26,6 +29,7 @@
 - [ ] Task 3.6: Phase Completion — Manual Verification & Checkpoint
 
 ## Phase 4: Global Settings & Final Refinement
+
 - [ ] Task 4.1: Create `SettingsSection` (inline toggles)
 - [ ] Task 4.2: Create `ActionBar` (Cancel + Save Changes)
 - [ ] Task 4.3: Create `AddSlotButton` (dashed border)
