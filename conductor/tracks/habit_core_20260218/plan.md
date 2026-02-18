@@ -1,7 +1,7 @@
 # Implementation Plan: Implement Core Habit Model and Persistence with SwiftData
 
 ## Phase 1: Foundation & Data Model
-- [ ] Task: Define the `Habit` model with SwiftData attributes.
+- [x] Task: Define the `Habit` model with SwiftData attributes. (181bd0d)
 - [ ] Task: Configure the `ModelContainer` in `ductivaApp.swift`.
 - [ ] Task: Conductor - User Manual Verification 'Foundation & Data Model' (Protocol in workflow.md)
 
