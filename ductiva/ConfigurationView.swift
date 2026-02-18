@@ -131,32 +131,10 @@ struct ConfigurationView: View {
     // MARK: - Action Bar
 
     private var actionBar: some View {
-        HStack(spacing: 16) {
-            Spacer()
-            Button("CANCEL") {
-                // Will be wired in Phase 4
-            }
-            .buttonStyle(.plain)
-            .foregroundStyle(StealthCeramicTheme.secondaryTextColor)
-            .tracking(StealthCeramicTheme.counterTracking)
-            .font(.system(size: 11, weight: .medium))
-
-            Button {
-                // Will be wired in Phase 4
-            } label: {
-                Text("SAVE CHANGES")
-                    .font(.system(size: 11, weight: .semibold))
-                    .tracking(StealthCeramicTheme.counterTracking)
-                    .foregroundStyle(StealthCeramicTheme.solidButtonForeground)
-                    .padding(.horizontal, 18)
-                    .padding(.vertical, 9)
-                    .background {
-                        RoundedRectangle(cornerRadius: 6, style: .continuous)
-                            .fill(StealthCeramicTheme.solidButtonBackground)
-                    }
-            }
-            .buttonStyle(.plain)
-        }
+        ActionBar(
+            onCancel: { viewModel.discardChanges() },
+            onSave: { viewModel.saveChanges() }
+        )
     }
 }
 

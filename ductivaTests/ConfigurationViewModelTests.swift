@@ -237,6 +237,63 @@ final class ConfigurationViewModelTests: XCTestCase {
         XCTAssertFalse(viewModel.canAddSlot)
     }
 
+    // MARK: - Task 4.2: Save/Discard settings
+
+    func testSaveChangesPersistsSettings() throws {
+        let (viewModel, _) = try makeViewModel()
+        let defaults = UserDefaults.standard
+
+        // Change settings
+        viewModel.launchAtLogin = true
+        viewModel.showInMenuBar = false
+
+        viewModel.saveChanges()
+
+        XCTAssertTrue(defaults.bool(forKey: "launchAtLogin"))
+        XCTAssertFalse(defaults.bool(forKey: "showInMenuBar"))
+
+        // Clean up
+        defaults.removeObject(forKey: "launchAtLogin")
+        defaults.removeObject(forKey: "showInMenuBar")
+    }
+
+    func testDiscardChangesRevertsSettings() throws {
+        let (viewModel, _) = try makeViewModel()
+        let defaults = UserDefaults.standard
+
+        // Save known state
+        defaults.set(false, forKey: "launchAtLogin")
+        defaults.set(true, forKey: "showInMenuBar")
+
+        // Modify in-memory
+        viewModel.launchAtLogin = true
+        viewModel.showInMenuBar = false
+
+        // Discard should revert to persisted values
+        viewModel.discardChanges()
+
+        XCTAssertFalse(viewModel.launchAtLogin)
+        XCTAssertTrue(viewModel.showInMenuBar)
+
+        // Clean up
+        defaults.removeObject(forKey: "launchAtLogin")
+        defaults.removeObject(forKey: "showInMenuBar")
+    }
+
+    func testDiscardChangesAlsoReloadsHabits() throws {
+        let (viewModel, store) = try makeViewModel()
+        _ = try store.createHabit(name: "Read", schedule: .daily)
+        viewModel.loadHabits()
+        XCTAssertEqual(viewModel.habits.count, 1)
+
+        // Add another habit to the store directly
+        _ = try store.createHabit(name: "Code", schedule: .weekly)
+
+        // Discard should reload from store
+        viewModel.discardChanges()
+        XCTAssertEqual(viewModel.habits.count, 2)
+    }
+
     func testRemoveAllHabits() throws {
         let (viewModel, _) = try makeViewModel()
         viewModel.addHabit(name: "Habit 1", iconName: "target", schedule: .daily)

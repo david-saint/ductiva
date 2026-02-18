@@ -42,6 +42,19 @@ final class ConfigurationViewModel {
         }
     }
 
+    /// Persists current settings (launchAtLogin, showInMenuBar) to UserDefaults.
+    func saveChanges() {
+        UserDefaults.standard.set(launchAtLogin, forKey: "launchAtLogin")
+        UserDefaults.standard.set(showInMenuBar, forKey: "showInMenuBar")
+    }
+
+    /// Reverts in-memory settings to their persisted UserDefaults values and reloads habits.
+    func discardChanges() {
+        launchAtLogin = UserDefaults.standard.bool(forKey: "launchAtLogin")
+        showInMenuBar = UserDefaults.standard.object(forKey: "showInMenuBar") as? Bool ?? true
+        loadHabits()
+    }
+
     /// Removes a habit slot. Deletes via HabitStore and reloads.
     func removeHabit(_ habit: Habit) {
         do {
