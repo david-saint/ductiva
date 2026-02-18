@@ -1,0 +1,13 @@
+Task: Implement basic CRUD operations for habits
+
+Summary:
+- Added a dedicated HabitStore abstraction over SwiftData ModelContext.
+- Implemented create, fetch, update, and delete operations for Habit entities.
+- Added CRUD-focused unit tests to validate persistence behavior through the store API.
+
+Files:
+- ductiva/HabitStore.swift (created)
+- ductivaTests/HabitStoreCRUDTests.swift (created)
+
+Why:
+- Centralizes Habit persistence logic behind a small, testable boundary so Phase 3 UI integration can depend on a stable data API.
