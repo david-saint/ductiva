@@ -1,0 +1,18 @@
+Task 4.2: Create ActionBar (Cancel + Save Changes)
+
+Summary: Extracted inline action bar from ConfigurationView into a standalone
+ActionBar view with onCancel/onSave closure callbacks. Added saveChanges() and
+discardChanges() methods to ConfigurationViewModel. Cancel reverts settings to
+persisted UserDefaults values and reloads habits. Save persists current settings.
+
+Created files:
+- ductiva/ActionBar.swift — Standalone action bar view
+- ductivaTests/ActionBarTests.swift — 5 tests (smoke, callbacks, labels)
+
+Modified files:
+- ductiva/ConfigurationView.swift — Replaced inline action bar with ActionBar
+- ductiva/ConfigurationViewModel.swift — Added saveChanges(), discardChanges()
+- ductivaTests/ConfigurationViewModelTests.swift — Added 3 tests for save/discard
+
+Why: Completes Phase 4 requirement to wire Cancel/Save functionality and
+extract into a reusable, testable component.
