@@ -89,4 +89,72 @@ final class ConfigurationViewModelTests: XCTestCase {
         XCTAssertTrue(viewModel.habits.isEmpty)
         XCTAssertEqual(viewModel.activeSlotCount, 0)
     }
+
+    // MARK: - Task 2.4: List rendering & edge cases
+
+    func testSlotCounterTextAtMaxSlots() throws {
+        let (viewModel, store) = try makeViewModel()
+        for i in 1...4 {
+            _ = try store.createHabit(name: "Habit \(i)", schedule: .daily)
+        }
+        viewModel.loadHabits()
+
+        XCTAssertEqual(viewModel.slotCounterText, "4/4 SLOTS ACTIVE")
+    }
+
+    func testActiveSlotCountMatchesHabitCount() throws {
+        let (viewModel, store) = try makeViewModel()
+        _ = try store.createHabit(name: "Read", schedule: .daily)
+        viewModel.loadHabits()
+
+        XCTAssertEqual(viewModel.activeSlotCount, 1)
+        XCTAssertEqual(viewModel.habits.count, viewModel.activeSlotCount)
+    }
+
+    func testCanAddSlotWithThreeHabits() throws {
+        let (viewModel, store) = try makeViewModel()
+        for i in 1...3 {
+            _ = try store.createHabit(name: "Habit \(i)", schedule: .daily)
+        }
+        viewModel.loadHabits()
+
+        XCTAssertTrue(viewModel.canAddSlot)
+        XCTAssertEqual(viewModel.activeSlotCount, 3)
+    }
+
+    func testLoadHabitsPreservesIconNames() throws {
+        let (viewModel, store) = try makeViewModel()
+        _ = try store.createHabit(name: "Deep Work", iconName: "display", schedule: .daily)
+        _ = try store.createHabit(name: "Strength Training", iconName: "dumbbell", schedule: .weekly)
+        viewModel.loadHabits()
+
+        let icons = viewModel.habits.map(\.iconName)
+        XCTAssertTrue(icons.contains("display"))
+        XCTAssertTrue(icons.contains("dumbbell"))
+    }
+
+    func testScheduleDescriptionForDaily() {
+        let description = ConfigurationViewModel.scheduleDescription(for: .daily)
+        XCTAssertEqual(description, "Daily")
+    }
+
+    func testScheduleDescriptionForWeekly() {
+        let description = ConfigurationViewModel.scheduleDescription(for: .weekly)
+        XCTAssertEqual(description, "Weekly")
+    }
+
+    func testScheduleDescriptionForEmptySpecificDays() {
+        let description = ConfigurationViewModel.scheduleDescription(for: .specificDays([]))
+        XCTAssertEqual(description, "Specific Days")
+    }
+
+    func testWeekdayAbbreviations() {
+        XCTAssertEqual(ConfigurationViewModel.weekdayAbbreviation(for: .sunday), "Sun")
+        XCTAssertEqual(ConfigurationViewModel.weekdayAbbreviation(for: .monday), "Mon")
+        XCTAssertEqual(ConfigurationViewModel.weekdayAbbreviation(for: .tuesday), "Tue")
+        XCTAssertEqual(ConfigurationViewModel.weekdayAbbreviation(for: .wednesday), "Wed")
+        XCTAssertEqual(ConfigurationViewModel.weekdayAbbreviation(for: .thursday), "Thu")
+        XCTAssertEqual(ConfigurationViewModel.weekdayAbbreviation(for: .friday), "Fri")
+        XCTAssertEqual(ConfigurationViewModel.weekdayAbbreviation(for: .saturday), "Sat")
+    }
 }

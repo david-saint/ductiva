@@ -25,14 +25,29 @@ final class HabitSlotRowTests: XCTestCase {
     // MARK: - Task 2.3: Hover state
 
     func testHabitSlotRowUsesThemeCornerRadius() {
-        // Verifies the row references StealthCeramicTheme.surfaceCornerRadius
-        // which is used for the hover glass effect shape
         XCTAssertGreaterThanOrEqual(StealthCeramicTheme.surfaceCornerRadius, 12)
     }
 
     func testHabitSlotRowGlassStrokeColorIsDefined() {
-        // Verifies the glass stroke color used on hover is accessible
         let color = StealthCeramicTheme.glassStrokeColor
         XCTAssertNotNil(color)
+    }
+
+    // MARK: - Task 2.4: Body rendering
+
+    func testHabitSlotRowBodyRenders() {
+        let habit = Habit(name: "Read", iconName: "book", schedule: .daily)
+        let row = HabitSlotRow(habit: habit)
+        let body = row.body
+        XCTAssertNotNil(body)
+    }
+
+    func testHabitSlotRowWithVariousIcons() {
+        let icons = ["display", "dumbbell", "chevron.left.forwardslash.chevron.right", "book", "brain.head.profile", "heart", "target", "pencil"]
+        for icon in icons {
+            let habit = Habit(name: "Test", iconName: icon, schedule: .daily)
+            let row = HabitSlotRow(habit: habit)
+            XCTAssertEqual(row.habit.iconName, icon)
+        }
     }
 }
