@@ -24,6 +24,9 @@ struct AddSlotSheet: View {
     /// The selected schedule type.
     @State var selectedScheduleType: ScheduleType = .daily
 
+    /// The selected specific days (only used when `selectedScheduleType == .specificDays`).
+    @State var selectedDays: Set<HabitWeekday> = []
+
     /// Callback when the user saves.
     /// Parameters: name, iconName, schedule.
     var onSave: (String, String, HabitSchedule) -> Void
@@ -33,6 +36,15 @@ struct AddSlotSheet: View {
     /// Validates whether a habit name is acceptable (non-empty, non-whitespace).
     static func validateName(_ name: String) -> Bool {
         !name.trimmingCharacters(in: .whitespaces).isEmpty
+    }
+
+    /// Toggles a weekday in/out of a selection set.
+    static func toggleDay(_ day: HabitWeekday, in days: inout Set<HabitWeekday>) {
+        if days.contains(day) {
+            days.remove(day)
+        } else {
+            days.insert(day)
+        }
     }
 
     /// Whether the current form input is valid for saving.
@@ -141,7 +153,47 @@ struct AddSlotSheet: View {
             }
             .pickerStyle(.segmented)
             .labelsHidden()
+
+            if selectedScheduleType == .specificDays {
+                dayToggleButtons
+            }
         }
+    }
+
+    /// Abbreviation labels for each weekday in display order (Sun–Sat).
+    private static let weekdayLabels: [(day: HabitWeekday, label: String)] = [
+        (.sunday, "S"), (.monday, "M"), (.tuesday, "T"),
+        (.wednesday, "W"), (.thursday, "T"), (.friday, "F"), (.saturday, "S"),
+    ]
+
+    private var dayToggleButtons: some View {
+        HStack(spacing: 6) {
+            ForEach(Self.weekdayLabels, id: \.day) { item in
+                let isSelected = selectedDays.contains(item.day)
+                Button {
+                    Self.toggleDay(item.day, in: &selectedDays)
+                } label: {
+                    Text(item.label)
+                        .font(.system(size: 11, weight: .medium))
+                        .foregroundStyle(
+                            isSelected
+                                ? StealthCeramicTheme.primaryTextColor
+                                : StealthCeramicTheme.secondaryTextColor
+                        )
+                        .frame(width: 32, height: 32)
+                        .background {
+                            Circle()
+                                .fill(
+                                    isSelected
+                                        ? StealthCeramicTheme.surfaceHoverColor
+                                        : StealthCeramicTheme.surfaceColor
+                                )
+                        }
+                }
+                .buttonStyle(.plain)
+            }
+        }
+        .padding(.top, 4)
     }
 
     // MARK: - Action Bar
@@ -159,7 +211,9 @@ struct AddSlotSheet: View {
 
             Button {
                 guard isValid else { return }
-                let schedule = selectedScheduleType.toHabitSchedule()
+                let schedule = selectedScheduleType.toHabitSchedule(
+                    selectedDays: Array(selectedDays).sorted { $0.rawValue < $1.rawValue }
+                )
                 onSave(name.trimmingCharacters(in: .whitespaces), selectedIcon, schedule)
                 dismiss()
             } label: {

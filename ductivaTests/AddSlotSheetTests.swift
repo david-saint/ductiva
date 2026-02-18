@@ -72,4 +72,59 @@ final class AddSlotSheetTests: XCTestCase {
         let schedule = ScheduleType.specificDays.toHabitSchedule()
         XCTAssertEqual(schedule, .specificDays([]))
     }
+
+    // MARK: - Task 3.2: Specific days conversion
+
+    func testSpecificDaysConversion() {
+        let selectedDays: [HabitWeekday] = [.monday, .wednesday, .friday]
+        let schedule = ScheduleType.specificDays.toHabitSchedule(selectedDays: selectedDays)
+        XCTAssertEqual(schedule, .specificDays([.monday, .wednesday, .friday]))
+    }
+
+    func testSpecificDaysConversionWithAllDays() {
+        let allDays = HabitWeekday.allCases
+        let schedule = ScheduleType.specificDays.toHabitSchedule(selectedDays: allDays)
+        XCTAssertEqual(schedule, .specificDays(allDays))
+    }
+
+    func testSpecificDaysConversionWithSingleDay() {
+        let schedule = ScheduleType.specificDays.toHabitSchedule(selectedDays: [.saturday])
+        XCTAssertEqual(schedule, .specificDays([.saturday]))
+    }
+
+    func testDailyScheduleIgnoresSelectedDays() {
+        let schedule = ScheduleType.daily.toHabitSchedule(selectedDays: [.monday])
+        XCTAssertEqual(schedule, .daily)
+    }
+
+    func testWeeklyScheduleIgnoresSelectedDays() {
+        let schedule = ScheduleType.weekly.toHabitSchedule(selectedDays: [.tuesday])
+        XCTAssertEqual(schedule, .weekly)
+    }
+
+    func testHabitWeekdayAllCasesHasSevenDays() {
+        XCTAssertEqual(HabitWeekday.allCases.count, 7)
+    }
+
+    func testDayToggleHelperTogglesOn() {
+        var selectedDays: Set<HabitWeekday> = []
+        AddSlotSheet.toggleDay(.monday, in: &selectedDays)
+        XCTAssertTrue(selectedDays.contains(.monday))
+    }
+
+    func testDayToggleHelperTogglesOff() {
+        var selectedDays: Set<HabitWeekday> = [.monday, .wednesday]
+        AddSlotSheet.toggleDay(.monday, in: &selectedDays)
+        XCTAssertFalse(selectedDays.contains(.monday))
+        XCTAssertTrue(selectedDays.contains(.wednesday))
+    }
+
+    func testDayToggleHelperMultipleToggles() {
+        var selectedDays: Set<HabitWeekday> = []
+        AddSlotSheet.toggleDay(.monday, in: &selectedDays)
+        AddSlotSheet.toggleDay(.friday, in: &selectedDays)
+        AddSlotSheet.toggleDay(.monday, in: &selectedDays)
+        XCTAssertFalse(selectedDays.contains(.monday))
+        XCTAssertTrue(selectedDays.contains(.friday))
+    }
 }
