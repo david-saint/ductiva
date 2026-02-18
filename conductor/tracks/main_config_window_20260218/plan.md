@@ -15,7 +15,7 @@
 
 - [x] Task 2.1: Create `HabitSlotRow` and display habits from SwiftData (4c81849)
 - [x] Task 2.2: Apply "Stealth Ceramic" chassis styling (0c37562)
-- [ ] Task 2.3: Apply "Liquid Glass" styling to interactive elements
+- [x] Task 2.3: Apply "Liquid Glass" styling to interactive elements (40e1953)
 - [ ] Task 2.4: Unit tests for list rendering & empty state
 - [ ] Task 2.5: Phase Completion — Manual Verification & Checkpoint
 
