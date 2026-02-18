@@ -1,0 +1,14 @@
+Task: Define the Habit model with SwiftData attributes
+
+Summary:
+- Added the core SwiftData Habit domain model with persisted fields for name, createdAt, schedule, and completions.
+- Added typed schedule representations (daily, weekly, specific days) and weekday support.
+- Added a unit test target and initial model test that verifies Habit initialization behavior.
+
+Files changed:
+- ductiva/Habit.swift
+- ductivaTests/HabitModelTests.swift
+- ductiva.xcodeproj/project.pbxproj
+
+Why:
+- This establishes the foundational persisted habit entity required by the track and enables TDD for subsequent persistence and UI tasks.
