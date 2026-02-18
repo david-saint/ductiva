@@ -19,14 +19,14 @@
 - [x] Task 2.4: Unit tests for list rendering & empty state (3467a62)
 - [x] Task 2.5: Phase Completion — Manual Verification & Checkpoint (e498f1e)
 
-## Phase 3: Add/Edit Habit Workflow
+## Phase 3: Add/Edit Habit Workflow [checkpoint: 417215b]
 
 - [x] Task 3.1: Create `AddSlotSheet` modal (57071b1)
 - [x] Task 3.2: Implement schedule selection (Daily / Weekly / Specific Days) (f56cf6d)
 - [x] Task 3.3: Integrate Add/Remove with `HabitStore` (e8ffe00)
 - [x] Task 3.4: Add contextual navigation from habit rows to detail (0fa3dde)
 - [x] Task 3.5: Verify Phase 3 test coverage (aaf1894)
-- [~] Task 3.6: Phase Completion — Manual Verification & Checkpoint
+- [x] Task 3.6: Phase Completion — Manual Verification & Checkpoint (417215b)
 
 ## Phase 4: Global Settings & Final Refinement
 
