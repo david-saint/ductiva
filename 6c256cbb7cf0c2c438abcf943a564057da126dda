@@ -1,0 +1,3 @@
+Tasks 1.5+1.6: Placeholder views and navigation
+New: WidgetsPlaceholderView.swift, HabitStreakPlaceholderView.swift, PlaceholderViewTests.swift, NavigationTests.swift
+Modified: ConfigurationView.swift (sheet navigation), ductivaApp.swift (CommandGroup)
