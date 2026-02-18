@@ -1,0 +1,9 @@
+Task 3.1: Create AddSlotSheet modal
+
+Summary: Created the AddSlotSheet view — a modal form for adding new habit slots. Includes a name text field with validation, an icon picker grid (8 SF Symbols), a segmented schedule picker (Daily/Weekly/Specific Days), and a Cancel/Add Slot action bar. Extracted ScheduleType enum for picker state management. Added static validateName() for testable validation logic.
+
+Files created:
+- ductiva/AddSlotSheet.swift — Modal sheet view + ScheduleType enum
+- ductivaTests/AddSlotSheetTests.swift — 13 tests covering validation, icons, schedule types
+
+Why: Phase 3 requires a UI for adding new habit slots. This is the foundation form that will be wired to HabitStore in Task 3.3.
