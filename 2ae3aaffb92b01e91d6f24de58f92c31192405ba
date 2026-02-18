@@ -1,0 +1,13 @@
+Task 1.1: Add iconName property to Habit model
+
+Summary: Added `var iconName: String` stored property to `Habit` @Model class
+with default value "target". Updated `Habit.init()` to accept iconName parameter.
+Updated `HabitStore.createHabit()` to pass through iconName.
+
+Files modified:
+- ductiva/Habit.swift (added iconName property + init parameter)
+- ductiva/HabitStore.swift (added iconName parameter to createHabit)
+- ductivaTests/HabitModelTests.swift (added testHabitInitializesWithDefaultIcon, testHabitInitializesWithCustomIcon)
+
+Why: The design reference shows SF Symbol icons beside each habit slot. The model
+needs to persist the selected icon name.
