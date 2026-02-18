@@ -26,15 +26,16 @@ struct HabitSlotRow: View {
     }
 
     private var rowContent: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: 16) {
             Image(systemName: habit.iconName)
+                .font(.system(size: 18))
                 .foregroundStyle(StealthCeramicTheme.secondaryTextColor)
-                .frame(width: 24)
+                .frame(width: 28)
             Text(habit.name)
                 .foregroundStyle(StealthCeramicTheme.primaryTextColor)
             Spacer()
         }
-        .padding(.vertical, 10)
-        .padding(.horizontal, 12)
+        .padding(.vertical, 12)
+        .padding(.horizontal, 16)
     }
 }

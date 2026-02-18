@@ -30,4 +30,28 @@ final class ConfigurationViewModel {
             habits = []
         }
     }
+
+    #if DEBUG
+    /// Seeds sample habits for testing. Only available in debug builds.
+    func seedSampleHabitsIfEmpty() {
+        loadHabits()
+        guard habits.isEmpty else { return }
+
+        let samples: [(name: String, icon: String, schedule: HabitSchedule)] = [
+            ("Deep Work", "display", .daily),
+            ("Strength Training", "dumbbell", .daily),
+            ("Side Project", "chevron.left.forwardslash.chevron.right", .weekly),
+        ]
+
+        for sample in samples {
+            _ = try? habitStore.createHabit(
+                name: sample.name,
+                iconName: sample.icon,
+                schedule: sample.schedule
+            )
+        }
+
+        loadHabits()
+    }
+    #endif
 }

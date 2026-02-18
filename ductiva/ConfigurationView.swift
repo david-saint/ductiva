@@ -19,16 +19,16 @@ struct ConfigurationView: View {
 
             VStack(alignment: .leading, spacing: 0) {
                 headerSection
-                Spacer().frame(height: 20)
+                Spacer().frame(height: 28)
                 slotListSection
-                Spacer().frame(height: 16)
+                Spacer().frame(height: 24)
                 settingsDivider
-                Spacer().frame(height: 12)
+                Spacer().frame(height: 20)
                 settingsSection
                 Spacer()
                 actionBar
             }
-            .padding(24)
+            .padding(28)
         }
         .sheet(item: $selectedHabit) { habit in
             HabitStreakPlaceholderView(habit: habit)
@@ -58,7 +58,7 @@ struct ConfigurationView: View {
     // MARK: - Slot List
 
     private var slotListSection: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: 4) {
             ForEach(viewModel.habits) { habit in
                 Button {
                     selectedHabit = habit
@@ -70,6 +70,7 @@ struct ConfigurationView: View {
 
             if viewModel.canAddSlot {
                 addSlotButton
+                    .padding(.top, 8)
             }
         }
     }
@@ -122,7 +123,7 @@ struct ConfigurationView: View {
     // MARK: - Action Bar
 
     private var actionBar: some View {
-        HStack {
+        HStack(spacing: 16) {
             Spacer()
             Button("CANCEL") {
                 // Will be wired in Phase 4
@@ -186,13 +187,17 @@ extension ConfigurationViewModel {
 }
 
 #Preview {
-    ConfigurationView(
-        viewModel: ConfigurationViewModel(
-            habitStore: HabitStore(
-                modelContext: try! ModelContext(
-                    ductivaApp.makeModelContainer(inMemoryOnly: true)
-                )
-            )
-        )
-    )
+    let container = try! ductivaApp.makeModelContainer(inMemoryOnly: true)
+    let context = ModelContext(container)
+    let store = HabitStore(modelContext: context)
+
+    // Seed preview data
+    _ = try! store.createHabit(name: "Deep Work", iconName: "display", schedule: .daily)
+    _ = try! store.createHabit(name: "Strength Training", iconName: "dumbbell", schedule: .daily)
+    _ = try! store.createHabit(name: "Side Project", iconName: "chevron.left.forwardslash.chevron.right", schedule: .weekly)
+
+    let viewModel = ConfigurationViewModel(habitStore: store)
+    viewModel.loadHabits()
+
+    return ConfigurationView(viewModel: viewModel)
 }

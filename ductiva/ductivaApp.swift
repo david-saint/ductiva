@@ -29,18 +29,31 @@ struct ductivaApp: App {
 
     @State private var showWidgets = false
 
+    @State private var viewModel: ConfigurationViewModel?
+
     var body: some Scene {
         WindowGroup {
-            ConfigurationView(
-                viewModel: ConfigurationViewModel(
-                    habitStore: HabitStore(
-                        modelContext: sharedModelContainer.mainContext
+            Group {
+                if let viewModel {
+                    ConfigurationView(viewModel: viewModel)
+                        .sheet(isPresented: $showWidgets) {
+                            WidgetsPlaceholderView()
+                                .frame(minWidth: 360, minHeight: 400)
+                        }
+                }
+            }
+            .onAppear {
+                if viewModel == nil {
+                    let vm = ConfigurationViewModel(
+                        habitStore: HabitStore(
+                            modelContext: sharedModelContainer.mainContext
+                        )
                     )
-                )
-            )
-            .sheet(isPresented: $showWidgets) {
-                WidgetsPlaceholderView()
-                    .frame(minWidth: 360, minHeight: 400)
+                    #if DEBUG
+                    vm.seedSampleHabitsIfEmpty()
+                    #endif
+                    viewModel = vm
+                }
             }
         }
         .modelContainer(sharedModelContainer)
