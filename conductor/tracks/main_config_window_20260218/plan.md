@@ -9,7 +9,7 @@
 - [x] Task 1.5: Add placeholder views for Widgets and Habit Streak (6c256cb)
 - [x] Task 1.6: Implement global navigation (Toolbar / App Menu) (6c256cb)
 - [x] Task 1.7: Verify Phase 1 test coverage >80% (f3b737e)
-- [~] Task 1.8: Phase Completion — Manual Verification & Checkpoint
+- [x] Task 1.8: Phase Completion — Manual Verification & Checkpoint
 
 ## Phase 2: Habit List Display & Styling
 
