@@ -1,0 +1,10 @@
+Task 3.4: Add contextual navigation from habit rows to detail
+
+Summary: Added optional onDelete callback to HabitSlotRow. When provided, a right-click context menu with a destructive 'Delete' option appears. Wired the delete action in ConfigurationView's ForEach to call viewModel.removeHabit(). Tap-to-open-sheet was already functional from Phase 2.
+
+Files modified:
+- ductiva/HabitSlotRow.swift — Added onDelete callback, .contextMenu with Delete button
+- ductiva/ConfigurationView.swift — Passed onDelete closure to HabitSlotRow in ForEach
+- ductivaTests/HabitSlotRowTests.swift — Added 3 tests: callback acceptance, nil default, body render with callback
+
+Why: Users need to delete habit slots from the configuration screen via right-click context menu.
