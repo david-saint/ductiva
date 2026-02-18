@@ -13,6 +13,15 @@ enum StealthCeramicTheme {
     static let primaryTextColor = Color.white.opacity(0.92)
     static let secondaryTextColor = Color.white.opacity(0.72)
     static let glassStrokeColor = Color.white.opacity(0.18)
+    static let dividerColor = Color.white.opacity(0.12)
+    static let dashedBorderColor = Color.white.opacity(0.28)
+
+    // MARK: - Typography
+
+    static let headerTracking: CGFloat = 4
+    static let counterTracking: CGFloat = 2
+
+    // MARK: - Materials
 
     static var glassMaterial: Material { .ultraThinMaterial }
 }

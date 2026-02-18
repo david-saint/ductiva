@@ -45,12 +45,12 @@ struct ConfigurationView: View {
         HStack {
             Text("CONFIGURATION")
                 .font(.title3.bold())
-                .tracking(4)
+                .tracking(StealthCeramicTheme.headerTracking)
                 .foregroundStyle(StealthCeramicTheme.primaryTextColor)
             Spacer()
             Text(viewModel.slotCounterText)
                 .font(.caption)
-                .tracking(2)
+                .tracking(StealthCeramicTheme.counterTracking)
                 .foregroundStyle(StealthCeramicTheme.secondaryTextColor)
         }
     }
@@ -80,14 +80,14 @@ struct ConfigurationView: View {
         } label: {
             Text("+ SLOT")
                 .font(.caption)
-                .tracking(2)
+                .tracking(StealthCeramicTheme.counterTracking)
                 .foregroundStyle(StealthCeramicTheme.secondaryTextColor)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 12)
                 .overlay {
                     RoundedRectangle(cornerRadius: StealthCeramicTheme.surfaceCornerRadius, style: .continuous)
                         .strokeBorder(style: StrokeStyle(lineWidth: 1, dash: [6, 4]))
-                        .foregroundStyle(StealthCeramicTheme.secondaryTextColor.opacity(0.4))
+                        .foregroundStyle(StealthCeramicTheme.dashedBorderColor)
                 }
         }
         .buttonStyle(.plain)
@@ -97,7 +97,7 @@ struct ConfigurationView: View {
 
     private var settingsDivider: some View {
         Rectangle()
-            .fill(StealthCeramicTheme.secondaryTextColor.opacity(0.2))
+            .fill(StealthCeramicTheme.dividerColor)
             .frame(height: 1)
     }
 
@@ -129,7 +129,7 @@ struct ConfigurationView: View {
             }
             .buttonStyle(.plain)
             .foregroundStyle(StealthCeramicTheme.secondaryTextColor)
-            .tracking(2)
+            .tracking(StealthCeramicTheme.counterTracking)
             .font(.caption)
 
             Button {
@@ -137,7 +137,7 @@ struct ConfigurationView: View {
             } label: {
                 Text("SAVE CHANGES")
                     .font(.caption)
-                    .tracking(2)
+                    .tracking(StealthCeramicTheme.counterTracking)
                     .foregroundStyle(StealthCeramicTheme.primaryTextColor)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 8)
