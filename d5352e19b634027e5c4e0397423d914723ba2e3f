@@ -1,0 +1,14 @@
+Task 4.3: Create AddSlotButton (dashed border)
+
+Summary: Extracted inline add-slot button from ConfigurationView into a
+standalone AddSlotButton view. Features dashed StrokeStyle border, hover state
+with smooth animation, and static constants for label and dash pattern.
+
+Created files:
+- ductiva/AddSlotButton.swift — Dashed-border add slot button
+- ductivaTests/AddSlotButtonTests.swift — 5 tests (smoke, callback, label, dash pattern)
+
+Modified files:
+- ductiva/ConfigurationView.swift — Replaced inline button with AddSlotButton
+
+Why: Improves view composition and testability per Phase 4 plan.
