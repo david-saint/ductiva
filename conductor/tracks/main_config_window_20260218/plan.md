@@ -31,7 +31,7 @@
 ## Phase 4: Global Settings & Final Refinement
 
 - [x] Task 4.1: Create `SettingsSection` (inline toggles) (aa95968)
-- [ ] Task 4.2: Create `ActionBar` (Cancel + Save Changes)
+- [x] Task 4.2: Create `ActionBar` (Cancel + Save Changes) (1db0275)
 - [ ] Task 4.3: Create `AddSlotButton` (dashed border)
 - [ ] Task 4.4: Refine animations and transitions
 - [ ] Task 4.5: Final visual audit against design
