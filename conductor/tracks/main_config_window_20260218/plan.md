@@ -11,13 +11,13 @@
 - [x] Task 1.7: Verify Phase 1 test coverage >80% (f3b737e)
 - [x] Task 1.8: Phase Completion — Manual Verification & Checkpoint
 
-## Phase 2: Habit List Display & Styling
+## Phase 2: Habit List Display & Styling [checkpoint: e498f1e]
 
 - [x] Task 2.1: Create `HabitSlotRow` and display habits from SwiftData (4c81849)
 - [x] Task 2.2: Apply "Stealth Ceramic" chassis styling (0c37562)
 - [x] Task 2.3: Apply "Liquid Glass" styling to interactive elements (40e1953)
 - [x] Task 2.4: Unit tests for list rendering & empty state (3467a62)
-- [~] Task 2.5: Phase Completion — Manual Verification & Checkpoint
+- [x] Task 2.5: Phase Completion — Manual Verification & Checkpoint (e498f1e)
 
 ## Phase 3: Add/Edit Habit Workflow
 
