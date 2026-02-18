@@ -1,0 +1,10 @@
+Task 3.3: Integrate Add/Remove with HabitStore
+
+Summary: Added addHabit() and removeHabit() methods to ConfigurationViewModel that delegate to HabitStore and reload the habits array. addHabit() enforces the 4-slot limit via canAddSlot guard. Wired the '+ SLOT' button in ConfigurationView to present AddSlotSheet via .sheet(isPresented:), passing the save callback through to viewModel.addHabit().
+
+Files modified:
+- ductiva/ConfigurationViewModel.swift — Added addHabit(), removeHabit() methods
+- ductiva/ConfigurationView.swift — Added showAddSlotSheet state, .sheet() for AddSlotSheet, wired button action
+- ductivaTests/ConfigurationViewModelTests.swift — Added 5 tests: addHabitPersists, removeHabitDeletes, addBlockedAtMaxSlots, addHabitUpdatesSlotCounter, removeHabitUpdatesCanAddSlot
+
+Why: Core CRUD workflow — users need to add/remove habit slots from the configuration screen.
