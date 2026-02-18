@@ -112,7 +112,8 @@ struct ConfigurationView: View {
     private var actionBar: some View {
         ActionBar(
             onCancel: { viewModel.discardChanges() },
-            onSave: { viewModel.saveChanges() }
+            onSave: { viewModel.saveChanges() },
+            isDisabled: !viewModel.hasUnsavedChanges
         )
     }
 }

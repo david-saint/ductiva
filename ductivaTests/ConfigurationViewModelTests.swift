@@ -314,6 +314,76 @@ final class ConfigurationViewModelTests: XCTestCase {
     }
     #endif
 
+    // MARK: - hasUnsavedChanges
+
+    func testHasUnsavedChangesIsFalseInitially() throws {
+        let (viewModel, _) = try makeViewModel()
+        XCTAssertFalse(viewModel.hasUnsavedChanges)
+    }
+
+    func testHasUnsavedChangesIsTrueAfterTogglingLaunchAtLogin() throws {
+        let (viewModel, _) = try makeViewModel()
+        let defaults = UserDefaults.standard
+        defaults.set(false, forKey: "launchAtLogin")
+
+        viewModel.launchAtLogin = true
+        XCTAssertTrue(viewModel.hasUnsavedChanges)
+
+        defaults.removeObject(forKey: "launchAtLogin")
+    }
+
+    func testHasUnsavedChangesIsTrueAfterTogglingShowInMenuBar() throws {
+        let (viewModel, _) = try makeViewModel()
+        let defaults = UserDefaults.standard
+        defaults.set(true, forKey: "showInMenuBar")
+
+        viewModel.showInMenuBar = false
+        XCTAssertTrue(viewModel.hasUnsavedChanges)
+
+        defaults.removeObject(forKey: "showInMenuBar")
+    }
+
+    func testHasUnsavedChangesIsFalseAfterSave() throws {
+        let (viewModel, _) = try makeViewModel()
+        viewModel.launchAtLogin = true
+        XCTAssertTrue(viewModel.hasUnsavedChanges)
+
+        viewModel.saveChanges()
+        XCTAssertFalse(viewModel.hasUnsavedChanges)
+
+        UserDefaults.standard.removeObject(forKey: "launchAtLogin")
+    }
+
+    func testHasUnsavedChangesIsFalseAfterDiscard() throws {
+        let (viewModel, _) = try makeViewModel()
+        let defaults = UserDefaults.standard
+        defaults.set(false, forKey: "launchAtLogin")
+        defaults.set(true, forKey: "showInMenuBar")
+
+        viewModel.launchAtLogin = true
+        XCTAssertTrue(viewModel.hasUnsavedChanges)
+
+        viewModel.discardChanges()
+        XCTAssertFalse(viewModel.hasUnsavedChanges)
+
+        defaults.removeObject(forKey: "launchAtLogin")
+        defaults.removeObject(forKey: "showInMenuBar")
+    }
+
+    func testHasUnsavedChangesIsFalseWhenToggledBackToPersistedValue() throws {
+        let (viewModel, _) = try makeViewModel()
+        let defaults = UserDefaults.standard
+        defaults.set(false, forKey: "launchAtLogin")
+
+        viewModel.launchAtLogin = true
+        XCTAssertTrue(viewModel.hasUnsavedChanges)
+
+        viewModel.launchAtLogin = false
+        XCTAssertFalse(viewModel.hasUnsavedChanges)
+
+        defaults.removeObject(forKey: "launchAtLogin")
+    }
+
     func testRemoveAllHabits() throws {
         let (viewModel, _) = try makeViewModel()
         viewModel.addHabit(name: "Habit 1", iconName: "target", schedule: .daily)

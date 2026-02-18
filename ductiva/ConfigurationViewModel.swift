@@ -13,6 +13,13 @@ final class ConfigurationViewModel {
     var canAddSlot: Bool { habits.count < Self.maxSlots }
     var slotCounterText: String { "\(activeSlotCount)/\(Self.maxSlots) SLOTS ACTIVE" }
 
+    /// Whether any settings differ from their persisted UserDefaults values.
+    var hasUnsavedChanges: Bool {
+        let persistedLaunch = UserDefaults.standard.bool(forKey: "launchAtLogin")
+        let persistedMenuBar = UserDefaults.standard.object(forKey: "showInMenuBar") as? Bool ?? true
+        return launchAtLogin != persistedLaunch || showInMenuBar != persistedMenuBar
+    }
+
     private let habitStore: HabitStore
 
     deinit {}

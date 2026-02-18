@@ -39,4 +39,22 @@ final class ActionBarTests: XCTestCase {
         XCTAssertEqual(ActionBar.cancelLabel, "CANCEL")
         XCTAssertEqual(ActionBar.saveLabel, "SAVE CHANGES")
     }
+
+    // MARK: - Disabled state
+
+    func testActionBarAcceptsIsDisabledParameter() {
+        let bar = ActionBar(onCancel: {}, onSave: {}, isDisabled: true)
+        XCTAssertTrue(bar.isDisabled)
+    }
+
+    func testActionBarIsDisabledDefaultsToFalse() {
+        let bar = ActionBar(onCancel: {}, onSave: {})
+        XCTAssertFalse(bar.isDisabled)
+    }
+
+    func testActionBarBodyRendersWhenDisabled() {
+        let bar = ActionBar(onCancel: {}, onSave: {}, isDisabled: true)
+        let body = bar.body
+        XCTAssertNotNil(body)
+    }
 }
