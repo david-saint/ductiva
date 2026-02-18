@@ -122,20 +122,10 @@ struct ConfigurationView: View {
     }
 
     private var settingsSection: some View {
-        VStack(spacing: 12) {
-            settingsRow(title: "Launch at Login", isOn: $viewModel.launchAtLogin)
-            settingsRow(title: "Show in Menu Bar", isOn: $viewModel.showInMenuBar)
-        }
-    }
-
-    private func settingsRow(title: String, isOn: Binding<Bool>) -> some View {
-        HStack {
-            Text(title)
-                .font(.system(size: 13))
-                .foregroundStyle(StealthCeramicTheme.primaryTextColor)
-            Spacer()
-            StealthToggle(isOn: isOn)
-        }
+        SettingsSection(
+            launchAtLogin: $viewModel.launchAtLogin,
+            showInMenuBar: $viewModel.showInMenuBar
+        )
     }
 
     // MARK: - Action Bar
