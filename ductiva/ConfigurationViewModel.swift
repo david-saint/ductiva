@@ -60,8 +60,6 @@ final class ConfigurationViewModel {
 
         let samples: [(name: String, icon: String, schedule: HabitSchedule)] = [
             ("Deep Work", "display", .daily),
-            ("Strength Training", "dumbbell", .daily),
-            ("Side Project", "chevron.left.forwardslash.chevron.right", .weekly),
         ]
 
         for sample in samples {

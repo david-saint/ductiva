@@ -118,7 +118,7 @@ struct AddSlotSheet: View {
                             .font(.system(size: 18))
                             .foregroundStyle(
                                 selectedIcon == icon
-                                    ? StealthCeramicTheme.primaryTextColor
+                                    ? StealthCeramicTheme.solidButtonForeground
                                     : StealthCeramicTheme.secondaryTextColor
                             )
                             .frame(width: 44, height: 44)
@@ -126,7 +126,7 @@ struct AddSlotSheet: View {
                                 RoundedRectangle(cornerRadius: 6, style: .continuous)
                                     .fill(
                                         selectedIcon == icon
-                                            ? StealthCeramicTheme.surfaceHoverColor
+                                            ? StealthCeramicTheme.solidButtonBackground
                                             : StealthCeramicTheme.surfaceColor
                                     )
                             }
@@ -155,6 +155,7 @@ struct AddSlotSheet: View {
             .pickerStyle(.segmented)
             .labelsHidden()
             .fixedSize()
+            .tint(StealthCeramicTheme.primaryTextColor)
 
             if selectedScheduleType == .specificDays {
                 dayToggleButtons
@@ -176,10 +177,10 @@ struct AddSlotSheet: View {
                     Self.toggleDay(item.day, in: &selectedDays)
                 } label: {
                     Text(item.label)
-                        .font(.system(size: 11, weight: .medium))
+                        .font(.system(size: 11, weight: isSelected ? .semibold : .medium))
                         .foregroundStyle(
                             isSelected
-                                ? StealthCeramicTheme.primaryTextColor
+                                ? StealthCeramicTheme.solidButtonForeground
                                 : StealthCeramicTheme.secondaryTextColor
                         )
                         .frame(width: 32, height: 32)
@@ -187,7 +188,7 @@ struct AddSlotSheet: View {
                             Circle()
                                 .fill(
                                     isSelected
-                                        ? StealthCeramicTheme.surfaceHoverColor
+                                        ? StealthCeramicTheme.solidButtonBackground
                                         : StealthCeramicTheme.surfaceColor
                                 )
                         }
