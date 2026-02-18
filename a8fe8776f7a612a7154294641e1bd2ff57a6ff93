@@ -1,0 +1,17 @@
+Phase Verification Report: Persistence Layer & Testing
+
+Automated Test Command:
+CI=true xcodebuild -project ductiva.xcodeproj -scheme ductiva -destination 'platform=macOS' -derivedDataPath /tmp/ductiva-derived CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO test
+
+Automated Test Result:
+- PASS
+- xcresult: /tmp/ductiva-derived/Logs/Test/Test-ductiva-2026.02.18_20-31-38-+0100.xcresult
+
+Manual Verification Steps Presented:
+1. Ensure the app can launch cleanly: open /tmp/ductiva-derived/Build/Products/Debug/ductiva.app
+2. Confirm the app opens without startup crashes (ModelContainer + Habit persistence wiring stability).
+3. Run: CI=true xcodebuild -project ductiva.xcodeproj -scheme ductiva -destination 'platform=macOS' -derivedDataPath /tmp/ductiva-derived CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO -only-testing:ductivaTests/HabitStoreCRUDTests -only-testing:ductivaTests/HabitStorePersistenceTests test
+4. Confirm ** TEST SUCCEEDED ** with HabitStoreCRUDTests and HabitStorePersistenceTests passing.
+
+User Confirmation:
+- yes
