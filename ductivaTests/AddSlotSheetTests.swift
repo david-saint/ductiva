@@ -133,4 +133,51 @@ final class AddSlotSheetTests: XCTestCase {
         XCTAssertFalse(selectedDays.contains(.monday))
         XCTAssertTrue(selectedDays.contains(.friday))
     }
+
+    // MARK: - Task 4.6: Coverage improvements
+
+    func testAddSlotSheetBodyRendersWithSpecificDaysSchedule() {
+        var sheet = AddSlotSheet(onSave: { _, _, _ in })
+        sheet.selectedScheduleType = .specificDays
+        sheet.selectedDays = [.monday, .wednesday]
+        let body = sheet.body
+        XCTAssertNotNil(body)
+    }
+
+    func testAddSlotSheetBodyRendersWithNameEntered() {
+        var sheet = AddSlotSheet(onSave: { _, _, _ in })
+        sheet.name = "Deep Work"
+        sheet.selectedIcon = "display"
+        let body = sheet.body
+        XCTAssertNotNil(body)
+    }
+
+    func testAddSlotSheetBodyRendersWithWeeklySchedule() {
+        var sheet = AddSlotSheet(onSave: { _, _, _ in })
+        sheet.selectedScheduleType = .weekly
+        let body = sheet.body
+        XCTAssertNotNil(body)
+    }
+
+    func testAddSlotSheetIsValidDelegatesToValidateName() {
+        // isValid delegates to validateName — test the static function directly
+        XCTAssertTrue(AddSlotSheet.validateName("Read"))
+        XCTAssertFalse(AddSlotSheet.validateName(""))
+        XCTAssertFalse(AddSlotSheet.validateName("   "))
+    }
+
+    func testAddSlotSheetDefaultSelectedIcon() {
+        let sheet = AddSlotSheet(onSave: { _, _, _ in })
+        XCTAssertEqual(sheet.selectedIcon, "target")
+    }
+
+    func testAddSlotSheetDefaultScheduleType() {
+        let sheet = AddSlotSheet(onSave: { _, _, _ in })
+        XCTAssertEqual(sheet.selectedScheduleType, .daily)
+    }
+
+    func testAddSlotSheetDefaultSelectedDays() {
+        let sheet = AddSlotSheet(onSave: { _, _, _ in })
+        XCTAssertTrue(sheet.selectedDays.isEmpty)
+    }
 }

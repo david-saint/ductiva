@@ -294,6 +294,26 @@ final class ConfigurationViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.habits.count, 2)
     }
 
+    // MARK: - Task 4.6: Coverage gap tests
+
+    #if DEBUG
+    func testSeedSampleHabitsIfEmptyPopulatesHabits() throws {
+        let (viewModel, _) = try makeViewModel()
+        viewModel.seedSampleHabitsIfEmpty()
+        XCTAssertFalse(viewModel.habits.isEmpty, "Should seed at least one sample habit")
+    }
+
+    func testSeedSampleHabitsIfEmptyDoesNotDuplicateWhenHabitsExist() throws {
+        let (viewModel, store) = try makeViewModel()
+        _ = try store.createHabit(name: "Existing", schedule: .daily)
+        viewModel.loadHabits()
+        let countBefore = viewModel.habits.count
+
+        viewModel.seedSampleHabitsIfEmpty()
+        XCTAssertEqual(viewModel.habits.count, countBefore, "Should not seed when habits already exist")
+    }
+    #endif
+
     func testRemoveAllHabits() throws {
         let (viewModel, _) = try makeViewModel()
         viewModel.addHabit(name: "Habit 1", iconName: "target", schedule: .daily)
