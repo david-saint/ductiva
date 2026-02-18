@@ -5,8 +5,8 @@
 - [x] Task 1.1: Add `iconName` property to `Habit` model (2ae3aaf)
 - [x] Task 1.2: Create `ConfigurationViewModel` with `@Observable` (a72ed1e)
 - [x] Task 1.3: Create `ConfigurationView` (single-pane layout) (522b721)
-- [~] Task 1.4: Wire `ConfigurationView` as app entry point & remove `ContentView`
-- [ ] Task 1.5: Add placeholder views for Widgets and Habit Streak
+- [x] Task 1.4: Wire `ConfigurationView` as app entry point & remove `ContentView` (517912e)
+- [~] Task 1.5: Add placeholder views for Widgets and Habit Streak
 - [ ] Task 1.6: Implement global navigation (Toolbar / App Menu)
 - [ ] Task 1.7: Verify Phase 1 test coverage >80%
 - [ ] Task 1.8: Phase Completion — Manual Verification & Checkpoint
