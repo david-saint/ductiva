@@ -1,0 +1,14 @@
+Task: Update the main view to display a simple list of habits from SwiftData
+
+Summary:
+- Replaced the default Item-driven ContentView with a Habit-driven SwiftData query and list.
+- Added a shared fetch descriptor for habits (newest first) and schedule description formatting for UI text.
+- Added an empty-state view and lightweight detail panel showing selected habit information.
+- Added focused unit tests validating fetch ordering and schedule text formatting used by ContentView.
+
+Files:
+- ductiva/ContentView.swift (modified)
+- ductivaTests/ContentViewHabitListTests.swift (created)
+
+Why:
+- Integrates the persistence layer into the main app surface so habit data is visible immediately, establishing the baseline UI for further product/aesthetic refinement in Phase 3.
