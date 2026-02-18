@@ -64,4 +64,29 @@ final class ConfigurationViewModelTests: XCTestCase {
 
         XCTAssertEqual(viewModel.slotCounterText, "2/4 SLOTS ACTIVE")
     }
+
+    // MARK: - Task 2.1 Tests
+
+    func testLoadHabitsPopulatesArray() throws {
+        let (viewModel, store) = try makeViewModel()
+        _ = try store.createHabit(name: "Deep Work", iconName: "display", schedule: .daily)
+        _ = try store.createHabit(name: "Strength Training", iconName: "dumbbell", schedule: .daily)
+        _ = try store.createHabit(name: "Side Project", iconName: "chevron.left.forwardslash.chevron.right", schedule: .weekly)
+
+        viewModel.loadHabits()
+
+        XCTAssertEqual(viewModel.habits.count, 3)
+        let names = viewModel.habits.map(\.name)
+        XCTAssertTrue(names.contains("Deep Work"))
+        XCTAssertTrue(names.contains("Strength Training"))
+        XCTAssertTrue(names.contains("Side Project"))
+    }
+
+    func testEmptyStoreReturnsEmpty() throws {
+        let (viewModel, _) = try makeViewModel()
+        viewModel.loadHabits()
+
+        XCTAssertTrue(viewModel.habits.isEmpty)
+        XCTAssertEqual(viewModel.activeSlotCount, 0)
+    }
 }

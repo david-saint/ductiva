@@ -63,7 +63,7 @@ struct ConfigurationView: View {
                 Button {
                     selectedHabit = habit
                 } label: {
-                    HabitSlotRowInternal(habit: habit)
+                    HabitSlotRow(habit: habit)
                 }
                 .buttonStyle(.plain)
             }
@@ -152,25 +152,6 @@ struct ConfigurationView: View {
             }
             .buttonStyle(.plain)
         }
-    }
-}
-
-// MARK: - Internal Slot Row (will be extracted in Phase 2)
-
-private struct HabitSlotRowInternal: View {
-    let habit: Habit
-
-    var body: some View {
-        HStack(spacing: 12) {
-            Image(systemName: habit.iconName)
-                .foregroundStyle(StealthCeramicTheme.secondaryTextColor)
-                .frame(width: 24)
-            Text(habit.name)
-                .foregroundStyle(StealthCeramicTheme.primaryTextColor)
-            Spacer()
-        }
-        .padding(.vertical, 10)
-        .padding(.horizontal, 12)
     }
 }
 
