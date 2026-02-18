@@ -21,7 +21,7 @@
 
 ## Phase 3: Add/Edit Habit Workflow
 
-- [ ] Task 3.1: Create `AddSlotSheet` modal
+- [x] Task 3.1: Create `AddSlotSheet` modal (57071b1)
 - [ ] Task 3.2: Implement schedule selection (Daily / Weekly / Specific Days)
 - [ ] Task 3.3: Integrate Add/Remove with `HabitStore`
 - [ ] Task 3.4: Add contextual navigation from habit rows to detail
