@@ -1,0 +1,14 @@
+Task: Write unit tests to verify persistence and retrieval
+
+Summary:
+- Added focused persistence/retrieval tests for HabitStore, including cross-context reads and retrieval ordering.
+- Updated Habit schedule persistence to use primitive stored fields behind a computed schedule API, preventing SwiftData runtime crashes for specific-day schedules.
+- Updated HabitStore fetching to return newest habits first, matching expected retrieval behavior.
+
+Files:
+- ductivaTests/HabitStorePersistenceTests.swift (created)
+- ductiva/Habit.swift (modified)
+- ductiva/HabitStore.swift (modified)
+
+Why:
+- Expands persistence confidence beyond CRUD basics and hardens schedule storage so persisted habits can be safely fetched across contexts.
