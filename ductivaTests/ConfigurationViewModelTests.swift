@@ -157,4 +157,60 @@ final class ConfigurationViewModelTests: XCTestCase {
         XCTAssertEqual(ConfigurationViewModel.weekdayAbbreviation(for: .friday), "Fri")
         XCTAssertEqual(ConfigurationViewModel.weekdayAbbreviation(for: .saturday), "Sat")
     }
+
+    // MARK: - Task 3.3: Add/Remove integration
+
+    func testAddHabitPersists() throws {
+        let (viewModel, _) = try makeViewModel()
+        viewModel.loadHabits()
+        XCTAssertTrue(viewModel.habits.isEmpty)
+
+        viewModel.addHabit(name: "Deep Work", iconName: "display", schedule: .daily)
+        XCTAssertEqual(viewModel.habits.count, 1)
+        XCTAssertEqual(viewModel.habits.first?.name, "Deep Work")
+        XCTAssertEqual(viewModel.habits.first?.iconName, "display")
+        XCTAssertEqual(viewModel.habits.first?.schedule, .daily)
+    }
+
+    func testRemoveHabitDeletes() throws {
+        let (viewModel, store) = try makeViewModel()
+        _ = try store.createHabit(name: "Workout", iconName: "dumbbell", schedule: .daily)
+        viewModel.loadHabits()
+        XCTAssertEqual(viewModel.habits.count, 1)
+
+        let habit = viewModel.habits[0]
+        viewModel.removeHabit(habit)
+        XCTAssertTrue(viewModel.habits.isEmpty)
+    }
+
+    func testAddBlockedAtMaxSlots() throws {
+        let (viewModel, store) = try makeViewModel()
+        for i in 1...4 {
+            _ = try store.createHabit(name: "Habit \(i)", schedule: .daily)
+        }
+        viewModel.loadHabits()
+        XCTAssertEqual(viewModel.habits.count, 4)
+        XCTAssertFalse(viewModel.canAddSlot)
+
+        viewModel.addHabit(name: "Blocked Habit", iconName: "target", schedule: .daily)
+        XCTAssertEqual(viewModel.habits.count, 4, "Should not exceed max slots")
+    }
+
+    func testAddHabitUpdatesSlotCounter() throws {
+        let (viewModel, _) = try makeViewModel()
+        viewModel.addHabit(name: "Read", iconName: "book", schedule: .weekly)
+        XCTAssertEqual(viewModel.slotCounterText, "1/4 SLOTS ACTIVE")
+    }
+
+    func testRemoveHabitUpdatesCanAddSlot() throws {
+        let (viewModel, store) = try makeViewModel()
+        for i in 1...4 {
+            _ = try store.createHabit(name: "Habit \(i)", schedule: .daily)
+        }
+        viewModel.loadHabits()
+        XCTAssertFalse(viewModel.canAddSlot)
+
+        viewModel.removeHabit(viewModel.habits[0])
+        XCTAssertTrue(viewModel.canAddSlot)
+    }
 }

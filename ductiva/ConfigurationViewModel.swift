@@ -31,6 +31,27 @@ final class ConfigurationViewModel {
         }
     }
 
+    /// Adds a new habit slot if under the maximum. Creates via HabitStore and reloads.
+    func addHabit(name: String, iconName: String, schedule: HabitSchedule) {
+        guard canAddSlot else { return }
+        do {
+            _ = try habitStore.createHabit(name: name, iconName: iconName, schedule: schedule)
+            loadHabits()
+        } catch {
+            // Creation failed — habits array unchanged
+        }
+    }
+
+    /// Removes a habit slot. Deletes via HabitStore and reloads.
+    func removeHabit(_ habit: Habit) {
+        do {
+            try habitStore.deleteHabit(habit)
+            loadHabits()
+        } catch {
+            // Deletion failed — habits array unchanged
+        }
+    }
+
     #if DEBUG
     /// Seeds sample habits for testing. Only available in debug builds.
     func seedSampleHabitsIfEmpty() {

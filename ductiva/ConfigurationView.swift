@@ -4,6 +4,7 @@ import SwiftData
 struct ConfigurationView: View {
     @State var viewModel: ConfigurationViewModel
     @State private var selectedHabit: Habit?
+    @State private var showAddSlotSheet = false
 
     var body: some View {
         ZStack {
@@ -33,6 +34,11 @@ struct ConfigurationView: View {
         .sheet(item: $selectedHabit) { habit in
             HabitStreakPlaceholderView(habit: habit)
                 .frame(minWidth: 360, minHeight: 400)
+        }
+        .sheet(isPresented: $showAddSlotSheet) {
+            AddSlotSheet { name, iconName, schedule in
+                viewModel.addHabit(name: name, iconName: iconName, schedule: schedule)
+            }
         }
         .onAppear {
             viewModel.loadHabits()
@@ -77,7 +83,7 @@ struct ConfigurationView: View {
 
     private var addSlotButton: some View {
         Button {
-            // Will be wired in Phase 3
+            showAddSlotSheet = true
         } label: {
             Text("+ SLOT")
                 .font(.caption)
