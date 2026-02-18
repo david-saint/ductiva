@@ -20,6 +20,7 @@ struct ductivaApp: App {
 
     static func makeModelContainer(inMemoryOnly: Bool = false) throws -> ModelContainer {
         let schema = Schema([
+            Item.self,
             Habit.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: inMemoryOnly)
