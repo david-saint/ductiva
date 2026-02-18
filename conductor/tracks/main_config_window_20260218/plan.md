@@ -23,7 +23,7 @@
 
 - [x] Task 3.1: Create `AddSlotSheet` modal (57071b1)
 - [x] Task 3.2: Implement schedule selection (Daily / Weekly / Specific Days) (f56cf6d)
-- [ ] Task 3.3: Integrate Add/Remove with `HabitStore`
+- [x] Task 3.3: Integrate Add/Remove with `HabitStore` (e8ffe00)
 - [ ] Task 3.4: Add contextual navigation from habit rows to detail
 - [ ] Task 3.5: Verify Phase 3 test coverage
 - [ ] Task 3.6: Phase Completion — Manual Verification & Checkpoint
