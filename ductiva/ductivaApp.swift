@@ -8,6 +8,31 @@
 import SwiftUI
 import SwiftData
 
+// MARK: - Transparent Window Helper
+
+/// Makes the hosting NSWindow transparent so SwiftUI materials
+/// blur through to the desktop instead of an opaque backing.
+private struct TransparentWindowModifier: NSViewRepresentable {
+    func makeNSView(context: Context) -> NSView {
+        let view = NSView()
+        DispatchQueue.main.async {
+            if let window = view.window {
+                window.isOpaque = false
+                window.backgroundColor = .clear
+            }
+        }
+        return view
+    }
+
+    func updateNSView(_ nsView: NSView, context: Context) {}
+}
+
+extension View {
+    func transparentWindow() -> some View {
+        background(TransparentWindowModifier())
+    }
+}
+
 @main
 struct ductivaApp: App {
     var sharedModelContainer: ModelContainer = {
@@ -42,6 +67,7 @@ struct ductivaApp: App {
                         }
                 }
             }
+            .transparentWindow()
             .onAppear {
                 if viewModel == nil {
                     let vm = ConfigurationViewModel(
@@ -58,7 +84,7 @@ struct ductivaApp: App {
         }
         .modelContainer(sharedModelContainer)
         .windowStyle(.hiddenTitleBar)
-        .defaultSize(width: 480, height: 560)
+        .defaultSize(width: 365, height: 510)
         .commands {
             CommandGroup(after: .appInfo) {
                 Button("Widgets...") {

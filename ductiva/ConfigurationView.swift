@@ -8,8 +8,11 @@ struct ConfigurationView: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .fill(StealthCeramicTheme.chassisColor.opacity(0.96))
-                .background(.ultraThinMaterial)
+                .fill(.ultraThinMaterial)
+                .ignoresSafeArea()
+
+            Rectangle()
+                .fill(StealthCeramicTheme.chassisColor.opacity(0.55))
                 .ignoresSafeArea()
 
             VStack(alignment: .leading, spacing: 0) {
