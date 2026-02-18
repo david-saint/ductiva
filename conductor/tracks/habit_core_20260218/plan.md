@@ -6,7 +6,7 @@
 - [x] Task: Conductor - User Manual Verification 'Foundation & Data Model' (Protocol in workflow.md). (0f0c26c)
 
 ## Phase 2: Persistence Layer & Testing
-- [ ] Task: Implement basic CRUD operations for habits.
+- [x] Task: Implement basic CRUD operations for habits. (799acbf)
 - [ ] Task: Write unit tests to verify persistence and retrieval.
 - [ ] Task: Conductor - User Manual Verification 'Persistence Layer & Testing' (Protocol in workflow.md)
 
