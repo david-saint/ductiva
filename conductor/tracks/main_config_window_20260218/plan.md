@@ -1,31 +1,35 @@
 # Implementation Plan: Develop Main Window (Configurations)
 
-## Phase 1: Main Window & Navigation Architecture
-- [ ] Task: Configure the application entry point to launch the Configuration window directly.
-- [ ] Task: Implement the basic `ConfigurationView` with a macOS-native `NavigationSplitView` structure.
-- [ ] Task: Add placeholder views for "Widgets" and "Habit Item Streak" detail screens.
-- [ ] Task: Implement global navigation using macOS Toolbar and App Menu items.
-- [ ] Task: Write unit tests to verify navigation logic and window state management.
-- [ ] Task: Conductor - User Manual Verification 'Main Window & Navigation Architecture' (Protocol in workflow.md)
+## Phase 1: Configuration View Foundation
+- [x] Task 1.1: Add `iconName` property to `Habit` model `2ae3aaf`
+- [ ] Task 1.2: Create `ConfigurationViewModel` with `@Observable`
+- [ ] Task 1.3: Create `ConfigurationView` (single-pane layout)
+- [ ] Task 1.4: Wire `ConfigurationView` as app entry point & remove `ContentView`
+- [ ] Task 1.5: Add placeholder views for Widgets and Habit Streak
+- [ ] Task 1.6: Implement global navigation (Toolbar / App Menu)
+- [ ] Task 1.7: Verify Phase 1 test coverage >80%
+- [ ] Task 1.8: Phase Completion — Manual Verification & Checkpoint
 
 ## Phase 2: Habit List Display & Styling
-- [ ] Task: Update `ConfigurationView` to fetch and display the list of `Habit` objects from SwiftData.
-- [ ] Task: Apply "Stealth Ceramic" (#1C1C1E) chassis styling to the main window and list background.
-- [ ] Task: Implement "Liquid Glass" styling for habit list items (translucency, depth, and subtle hover effects).
-- [ ] Task: Write unit tests to verify the habit list rendering and empty state handling.
-- [ ] Task: Conductor - User Manual Verification 'Habit List Display & Styling' (Protocol in workflow.md)
+- [ ] Task 2.1: Create `HabitSlotRow` and display habits from SwiftData
+- [ ] Task 2.2: Apply "Stealth Ceramic" chassis styling
+- [ ] Task 2.3: Apply "Liquid Glass" styling to interactive elements
+- [ ] Task 2.4: Unit tests for list rendering & empty state
+- [ ] Task 2.5: Phase Completion — Manual Verification & Checkpoint
 
 ## Phase 3: Add/Edit Habit Workflow
-- [ ] Task: Create a "Liquid Glass" modal sheet for adding a new habit.
-- [ ] Task: Implement the form for habit name and frequency selection (Daily, Weekly, Specific Days).
-- [ ] Task: Integrate with `HabitStore` to persist new habits and update existing ones.
-- [ ] Task: Add contextual navigation buttons within habit list items to link to the detail views.
-- [ ] Task: Write unit tests for form validation and habit persistence via the UI.
-- [ ] Task: Conductor - User Manual Verification 'Add/Edit Habit Workflow' (Protocol in workflow.md)
+- [ ] Task 3.1: Create `AddSlotSheet` modal
+- [ ] Task 3.2: Implement schedule selection (Daily / Weekly / Specific Days)
+- [ ] Task 3.3: Integrate Add/Remove with `HabitStore`
+- [ ] Task 3.4: Add contextual navigation from habit rows to detail
+- [ ] Task 3.5: Verify Phase 3 test coverage
+- [ ] Task 3.6: Phase Completion — Manual Verification & Checkpoint
 
 ## Phase 4: Global Settings & Final Refinement
-- [ ] Task: Implement a basic "Global Settings" view for system-wide preferences (Appearance, Notifications).
-- [ ] Task: Refine animations and fluid transitions between views to match the project's "Calm & Stoic" tone.
-- [ ] Task: Conduct a final visual audit against "Main Window - Configuration.png".
-- [ ] Task: Verify overall code coverage for new modules meets the >80% target.
-- [ ] Task: Conductor - User Manual Verification 'Global Settings & Final Refinement' (Protocol in workflow.md)
+- [ ] Task 4.1: Create `SettingsSection` (inline toggles)
+- [ ] Task 4.2: Create `ActionBar` (Cancel + Save Changes)
+- [ ] Task 4.3: Create `AddSlotButton` (dashed border)
+- [ ] Task 4.4: Refine animations and transitions
+- [ ] Task 4.5: Final visual audit against design
+- [ ] Task 4.6: Verify >80% overall coverage
+- [ ] Task 4.7: Phase Completion — Manual Verification & Checkpoint
