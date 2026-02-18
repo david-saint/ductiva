@@ -2,8 +2,12 @@ import SwiftUI
 
 /// A single habit row displaying the icon and name.
 /// Flat by default; glass material appears on hover for interactive feedback.
+/// Supports an optional right-click context menu for deletion.
 struct HabitSlotRow: View {
     let habit: Habit
+
+    /// Optional callback invoked when "Delete" is selected from the context menu.
+    var onDelete: (() -> Void)?
 
     @State private var isHovered = false
 
@@ -16,6 +20,15 @@ struct HabitSlotRow: View {
             .animation(.easeInOut(duration: 0.2), value: isHovered)
             .onHover { hovering in
                 isHovered = hovering
+            }
+            .contextMenu {
+                if let onDelete {
+                    Button(role: .destructive) {
+                        onDelete()
+                    } label: {
+                        Label("Delete", systemImage: "trash")
+                    }
+                }
             }
     }
 

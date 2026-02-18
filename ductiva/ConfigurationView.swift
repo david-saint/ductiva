@@ -69,7 +69,9 @@ struct ConfigurationView: View {
                 Button {
                     selectedHabit = habit
                 } label: {
-                    HabitSlotRow(habit: habit)
+                    HabitSlotRow(habit: habit, onDelete: {
+                        viewModel.removeHabit(habit)
+                    })
                 }
                 .buttonStyle(.plain)
             }

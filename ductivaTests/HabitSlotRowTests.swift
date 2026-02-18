@@ -50,4 +50,28 @@ final class HabitSlotRowTests: XCTestCase {
             XCTAssertEqual(row.habit.iconName, icon)
         }
     }
+
+    // MARK: - Task 3.4: Context menu delete
+
+    func testHabitSlotRowAcceptsDeleteCallback() {
+        let habit = Habit(name: "Read", iconName: "book", schedule: .daily)
+        var deleteCalled = false
+        let row = HabitSlotRow(habit: habit, onDelete: { deleteCalled = true })
+        XCTAssertNotNil(row)
+        row.onDelete?()
+        XCTAssertTrue(deleteCalled)
+    }
+
+    func testHabitSlotRowDeleteCallbackDefaultsToNil() {
+        let habit = Habit(name: "Read", iconName: "book", schedule: .daily)
+        let row = HabitSlotRow(habit: habit)
+        XCTAssertNil(row.onDelete)
+    }
+
+    func testHabitSlotRowBodyRendersWithDeleteCallback() {
+        let habit = Habit(name: "Read", iconName: "book", schedule: .daily)
+        let row = HabitSlotRow(habit: habit, onDelete: {})
+        let body = row.body
+        XCTAssertNotNil(body)
+    }
 }
