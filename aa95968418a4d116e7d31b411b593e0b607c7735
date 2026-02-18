@@ -1,0 +1,16 @@
+Task 4.1: Create SettingsSection (inline toggles)
+
+Summary: Extracted inline settings toggle rows from ConfigurationView into a
+standalone SettingsSection view. The view takes @Binding parameters for
+launchAtLogin and showInMenuBar and renders them using StealthToggle with
+Stealth Ceramic theme styling. Static label constants exposed for testability.
+
+Created files:
+- ductiva/SettingsSection.swift — Standalone settings toggle view
+- ductivaTests/SettingsSectionTests.swift — 7 tests (smoke, bindings, labels)
+
+Modified files:
+- ductiva/ConfigurationView.swift — Replaced inline settings with SettingsSection
+
+Why: Improves view composition by extracting settings into a reusable,
+testable component per Phase 4 plan.
