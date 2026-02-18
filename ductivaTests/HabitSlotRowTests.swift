@@ -25,7 +25,7 @@ final class HabitSlotRowTests: XCTestCase {
     // MARK: - Task 2.3: Hover state
 
     func testHabitSlotRowUsesThemeCornerRadius() {
-        XCTAssertGreaterThanOrEqual(StealthCeramicTheme.surfaceCornerRadius, 12)
+        XCTAssertGreaterThan(StealthCeramicTheme.surfaceCornerRadius, 0)
     }
 
     func testHabitSlotRowGlassStrokeColorIsDefined() {

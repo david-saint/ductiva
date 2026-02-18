@@ -41,6 +41,12 @@ final class AddSlotSheetTests: XCTestCase {
         XCTAssertNotNil(sheet)
     }
 
+    func testAddSlotSheetBodyRenders() {
+        let sheet = AddSlotSheet(onSave: { _, _, _ in })
+        let body = sheet.body
+        XCTAssertNotNil(body)
+    }
+
     // MARK: - ScheduleType
 
     func testScheduleTypeDefaultsToDaily() {

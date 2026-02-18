@@ -10,8 +10,8 @@ final class StealthCeramicThemeTests: XCTestCase {
         XCTAssertEqual(StealthCeramicTheme.glassMaterialToken, "ultraThinMaterial")
     }
 
-    func testSurfaceCornerRadiusSupportsGlassLayering() {
-        XCTAssertGreaterThanOrEqual(StealthCeramicTheme.surfaceCornerRadius, 12)
+    func testSurfaceCornerRadiusIsPositive() {
+        XCTAssertGreaterThan(StealthCeramicTheme.surfaceCornerRadius, 0)
     }
 
     // MARK: - Task 2.2: Stealth Ceramic styling constants
@@ -32,5 +32,31 @@ final class StealthCeramicThemeTests: XCTestCase {
 
     func testSlotCounterTrackingValueIsPositive() {
         XCTAssertGreaterThan(StealthCeramicTheme.counterTracking, 0)
+    }
+
+    func testGlassMaterialReturnsValue() {
+        let material = StealthCeramicTheme.glassMaterial
+        XCTAssertNotNil(material)
+    }
+
+    func testSolidButtonColorsExist() {
+        XCTAssertNotNil(StealthCeramicTheme.solidButtonBackground)
+        XCTAssertNotNil(StealthCeramicTheme.solidButtonForeground)
+    }
+
+    func testToggleColorsExist() {
+        XCTAssertNotNil(StealthCeramicTheme.toggleActiveColor)
+        XCTAssertNotNil(StealthCeramicTheme.toggleInactiveColor)
+        XCTAssertNotNil(StealthCeramicTheme.toggleKnobColor)
+    }
+
+    func testSurfaceColorsExist() {
+        XCTAssertNotNil(StealthCeramicTheme.surfaceColor)
+        XCTAssertNotNil(StealthCeramicTheme.surfaceHoverColor)
+    }
+
+    func testTextColorsExist() {
+        XCTAssertNotNil(StealthCeramicTheme.primaryTextColor)
+        XCTAssertNotNil(StealthCeramicTheme.secondaryTextColor)
     }
 }

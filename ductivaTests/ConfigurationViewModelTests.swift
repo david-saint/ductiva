@@ -213,4 +213,42 @@ final class ConfigurationViewModelTests: XCTestCase {
         viewModel.removeHabit(viewModel.habits[0])
         XCTAssertTrue(viewModel.canAddSlot)
     }
+
+    func testAddHabitWithSpecificDays() throws {
+        let (viewModel, _) = try makeViewModel()
+        viewModel.addHabit(name: "Yoga", iconName: "heart", schedule: .specificDays([.monday, .wednesday, .friday]))
+        XCTAssertEqual(viewModel.habits.count, 1)
+        XCTAssertEqual(viewModel.habits.first?.schedule, .specificDays([.monday, .wednesday, .friday]))
+    }
+
+    func testAddHabitWithWeeklySchedule() throws {
+        let (viewModel, _) = try makeViewModel()
+        viewModel.addHabit(name: "Review", iconName: "book", schedule: .weekly)
+        XCTAssertEqual(viewModel.habits.first?.schedule, .weekly)
+    }
+
+    func testAddMultipleHabitsUpToMax() throws {
+        let (viewModel, _) = try makeViewModel()
+        viewModel.addHabit(name: "Habit 1", iconName: "target", schedule: .daily)
+        viewModel.addHabit(name: "Habit 2", iconName: "book", schedule: .daily)
+        viewModel.addHabit(name: "Habit 3", iconName: "heart", schedule: .weekly)
+        viewModel.addHabit(name: "Habit 4", iconName: "dumbbell", schedule: .daily)
+        XCTAssertEqual(viewModel.habits.count, 4)
+        XCTAssertFalse(viewModel.canAddSlot)
+    }
+
+    func testRemoveAllHabits() throws {
+        let (viewModel, _) = try makeViewModel()
+        viewModel.addHabit(name: "Habit 1", iconName: "target", schedule: .daily)
+        viewModel.addHabit(name: "Habit 2", iconName: "book", schedule: .weekly)
+        XCTAssertEqual(viewModel.habits.count, 2)
+
+        // Remove all
+        while !viewModel.habits.isEmpty {
+            viewModel.removeHabit(viewModel.habits[0])
+        }
+        XCTAssertTrue(viewModel.habits.isEmpty)
+        XCTAssertEqual(viewModel.slotCounterText, "0/4 SLOTS ACTIVE")
+        XCTAssertTrue(viewModel.canAddSlot)
+    }
 }
