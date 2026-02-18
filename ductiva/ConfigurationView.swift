@@ -7,28 +7,25 @@ struct ConfigurationView: View {
 
     var body: some View {
         ZStack {
-            LinearGradient(
-                colors: [
-                    StealthCeramicTheme.chassisColor,
-                    StealthCeramicTheme.chassisColor.opacity(0.86),
-                ],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
+            Rectangle()
+                .fill(StealthCeramicTheme.chassisColor.opacity(0.96))
+                .background(.ultraThinMaterial)
+                .ignoresSafeArea()
 
             VStack(alignment: .leading, spacing: 0) {
                 headerSection
-                Spacer().frame(height: 28)
-                slotListSection
-                Spacer().frame(height: 24)
-                settingsDivider
                 Spacer().frame(height: 20)
+                slotListSection
+                Spacer().frame(height: 20)
+                settingsDivider
+                Spacer().frame(height: 16)
                 settingsSection
                 Spacer()
                 actionBar
             }
-            .padding(28)
+            .padding(.horizontal, 24)
+            .padding(.top, 16)
+            .padding(.bottom, 20)
         }
         .sheet(item: $selectedHabit) { habit in
             HabitStreakPlaceholderView(habit: habit)
@@ -58,7 +55,7 @@ struct ConfigurationView: View {
     // MARK: - Slot List
 
     private var slotListSection: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: 8) {
             ForEach(viewModel.habits) { habit in
                 Button {
                     selectedHabit = habit
@@ -112,11 +109,10 @@ struct ConfigurationView: View {
     private func settingsRow(title: String, isOn: Binding<Bool>) -> some View {
         HStack {
             Text(title)
+                .font(.system(size: 13))
                 .foregroundStyle(StealthCeramicTheme.primaryTextColor)
             Spacer()
-            Toggle("", isOn: isOn)
-                .labelsHidden()
-                .tint(.blue)
+            StealthToggle(isOn: isOn)
         }
     }
 
@@ -131,24 +127,20 @@ struct ConfigurationView: View {
             .buttonStyle(.plain)
             .foregroundStyle(StealthCeramicTheme.secondaryTextColor)
             .tracking(StealthCeramicTheme.counterTracking)
-            .font(.caption)
+            .font(.system(size: 11, weight: .medium))
 
             Button {
                 // Will be wired in Phase 4
             } label: {
                 Text("SAVE CHANGES")
-                    .font(.caption)
+                    .font(.system(size: 11, weight: .semibold))
                     .tracking(StealthCeramicTheme.counterTracking)
-                    .foregroundStyle(StealthCeramicTheme.primaryTextColor)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
+                    .foregroundStyle(StealthCeramicTheme.solidButtonForeground)
+                    .padding(.horizontal, 18)
+                    .padding(.vertical, 9)
                     .background {
-                        RoundedRectangle(cornerRadius: 8, style: .continuous)
-                            .fill(StealthCeramicTheme.glassMaterial)
-                    }
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 8, style: .continuous)
-                            .stroke(StealthCeramicTheme.glassStrokeColor, lineWidth: 1)
+                        RoundedRectangle(cornerRadius: 6, style: .continuous)
+                            .fill(StealthCeramicTheme.solidButtonBackground)
                     }
             }
             .buttonStyle(.plain)

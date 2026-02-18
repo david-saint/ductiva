@@ -11,13 +11,7 @@ struct HabitSlotRow: View {
         rowContent
             .background {
                 RoundedRectangle(cornerRadius: StealthCeramicTheme.surfaceCornerRadius, style: .continuous)
-                    .fill(StealthCeramicTheme.glassMaterial)
-                    .opacity(isHovered ? 1 : 0)
-            }
-            .overlay {
-                RoundedRectangle(cornerRadius: StealthCeramicTheme.surfaceCornerRadius, style: .continuous)
-                    .stroke(StealthCeramicTheme.glassStrokeColor, lineWidth: 1)
-                    .opacity(isHovered ? 1 : 0)
+                    .fill(isHovered ? StealthCeramicTheme.surfaceHoverColor : StealthCeramicTheme.surfaceColor)
             }
             .animation(.easeInOut(duration: 0.2), value: isHovered)
             .onHover { hovering in
@@ -26,16 +20,17 @@ struct HabitSlotRow: View {
     }
 
     private var rowContent: some View {
-        HStack(spacing: 16) {
+        HStack(spacing: 14) {
             Image(systemName: habit.iconName)
-                .font(.system(size: 18))
+                .font(.system(size: 16))
                 .foregroundStyle(StealthCeramicTheme.secondaryTextColor)
-                .frame(width: 28)
+                .frame(width: 24)
             Text(habit.name)
+                .font(.system(size: 13))
                 .foregroundStyle(StealthCeramicTheme.primaryTextColor)
             Spacer()
         }
-        .padding(.vertical, 12)
-        .padding(.horizontal, 16)
+        .padding(.vertical, 11)
+        .padding(.horizontal, 14)
     }
 }

@@ -57,6 +57,7 @@ struct ductivaApp: App {
             }
         }
         .modelContainer(sharedModelContainer)
+        .windowStyle(.hiddenTitleBar)
         .defaultSize(width: 480, height: 560)
         .commands {
             CommandGroup(after: .appInfo) {
