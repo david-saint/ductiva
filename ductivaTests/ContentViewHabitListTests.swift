@@ -12,13 +12,16 @@ final class ContentViewHabitListTests: XCTestCase {
         context.insert(Habit(name: "Newest", createdAt: Date(timeIntervalSince1970: 1_800_000_000), schedule: .weekly))
         try context.save()
 
-        let habits = try context.fetch(ContentView.habitsFetchDescriptor)
+        let descriptor = FetchDescriptor<Habit>(
+            sortBy: [SortDescriptor(\Habit.createdAt, order: .reverse)]
+        )
+        let habits = try context.fetch(descriptor)
 
         XCTAssertEqual(habits.map(\.name), ["Newest", "Older"])
     }
 
     func testScheduleDescriptionForSpecificDays() {
-        let description = ContentView.scheduleDescription(for: .specificDays([.monday, .wednesday, .friday]))
+        let description = ConfigurationViewModel.scheduleDescription(for: .specificDays([.monday, .wednesday, .friday]))
 
         XCTAssertEqual(description, "Mon, Wed, Fri")
     }

@@ -29,8 +29,15 @@ struct ductivaApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ConfigurationView(
+                viewModel: ConfigurationViewModel(
+                    habitStore: HabitStore(
+                        modelContext: sharedModelContainer.mainContext
+                    )
+                )
+            )
         }
         .modelContainer(sharedModelContainer)
+        .defaultSize(width: 480, height: 560)
     }
 }
