@@ -1,0 +1,31 @@
+Task 4.6: Verify >80% overall coverage
+
+Summary: Added targeted tests to improve code coverage from 80.76% to 81.82%.
+Key improvements:
+- ConfigurationViewModel: 71.43% → 95.24% (added seedSampleHabitsIfEmpty tests)
+- StealthToggle: new test file with smoke and rendering tests
+- AddSlotSheet: added state default tests and schedule type rendering tests
+
+Coverage breakdown (app target):
+- Overall: 81.82% (1161/1419)
+- ConfigurationViewModel: 95.24%
+- ConfigurationView: 85.54%
+- ActionBar: 92.11%
+- HabitSlotRow: 89.55%
+- AddSlotButton: 88.52%
+- HabitStore: 100%
+- Habit: 97.30%
+- SettingsSection: 100%
+- Placeholders: 100%
+
+Remaining below 80%: AddSlotSheet (66%) and StealthToggle (77%) — both have
+uncovered code in deep nested SwiftUI interactive closures that require UI tests.
+
+Created files:
+- ductivaTests/StealthToggleTests.swift
+
+Modified files:
+- ductivaTests/ConfigurationViewModelTests.swift
+- ductivaTests/AddSlotSheetTests.swift
+
+Why: Phase 4 requirement to verify >80% overall code coverage.
