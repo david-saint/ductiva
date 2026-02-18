@@ -2,7 +2,7 @@
 
 ## Phase 1: Foundation & Data Model
 - [x] Task: Define the `Habit` model with SwiftData attributes. (181bd0d)
-- [ ] Task: Configure the `ModelContainer` in `ductivaApp.swift`.
+- [x] Task: Configure the `ModelContainer` in `ductivaApp.swift`. (66bab29)
 - [ ] Task: Conductor - User Manual Verification 'Foundation & Data Model' (Protocol in workflow.md)
 
 ## Phase 2: Persistence Layer & Testing
