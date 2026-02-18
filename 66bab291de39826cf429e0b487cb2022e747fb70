@@ -1,0 +1,13 @@
+Task: Configure the ModelContainer in ductivaApp.swift
+
+Summary:
+- Added a dedicated, testable container factory on ductivaApp (makeModelContainer(inMemoryOnly:)).
+- Reconfigured the app’s shared SwiftData container to use the Habit schema.
+- Added a red/green unit test that validates in-memory Habit insert/fetch through the app container configuration.
+
+Files changed:
+- ductiva/ductivaApp.swift
+- ductivaTests/ModelContainerConfigurationTests.swift
+
+Why:
+- This ensures the application bootstraps persistence for the Habit domain model and keeps container setup testable and deterministic.
