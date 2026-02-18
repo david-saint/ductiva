@@ -16,39 +16,78 @@ struct ContentView: View {
     @Query(Self.habitsFetchDescriptor) private var habits: [Habit]
 
     var body: some View {
-        NavigationSplitView {
-            List(habits) { habit in
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(habit.name)
-                        .font(.headline)
-                    Text(Self.scheduleDescription(for: habit.schedule))
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
+        ZStack {
+            LinearGradient(
+                colors: [
+                    StealthCeramicTheme.chassisColor,
+                    StealthCeramicTheme.chassisColor.opacity(0.86),
+                ],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea()
+
+            NavigationSplitView {
+                List(habits) { habit in
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(habit.name)
+                            .font(.headline)
+                            .foregroundStyle(StealthCeramicTheme.primaryTextColor)
+                        Text(Self.scheduleDescription(for: habit.schedule))
+                            .font(.subheadline)
+                            .foregroundStyle(StealthCeramicTheme.secondaryTextColor)
+                    }
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 10)
+                    .background {
+                        RoundedRectangle(cornerRadius: StealthCeramicTheme.surfaceCornerRadius, style: .continuous)
+                            .fill(StealthCeramicTheme.glassMaterial)
+                    }
+                    .overlay {
+                        RoundedRectangle(cornerRadius: StealthCeramicTheme.surfaceCornerRadius, style: .continuous)
+                            .stroke(StealthCeramicTheme.glassStrokeColor, lineWidth: 1)
+                    }
+                    .listRowBackground(Color.clear)
+                    .listRowSeparator(.hidden)
                 }
-            }
-            .overlay {
-                if habits.isEmpty {
-                    ContentUnavailableView(
-                        "No Habits Yet",
-                        systemImage: "target",
-                        description: Text("Create your first habit to begin tracking.")
-                    )
+                .listStyle(.plain)
+                .scrollContentBackground(.hidden)
+                .overlay {
+                    if habits.isEmpty {
+                        ContentUnavailableView(
+                            "No Habits Yet",
+                            systemImage: "target",
+                            description: Text("Create your first habit to begin tracking.")
+                        )
+                        .foregroundStyle(StealthCeramicTheme.secondaryTextColor)
+                    }
                 }
-            }
-            .navigationTitle("Habits")
-            .navigationSplitViewColumnWidth(min: 220, ideal: 280)
-        } detail: {
-            if let selectedHabit = habits.first {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text(selectedHabit.name)
-                        .font(.title2)
-                    Text(Self.scheduleDescription(for: selectedHabit.schedule))
-                        .foregroundStyle(.secondary)
+                .navigationTitle("Habits")
+                .navigationSplitViewColumnWidth(min: 220, ideal: 280)
+            } detail: {
+                if let selectedHabit = habits.first {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(selectedHabit.name)
+                            .font(.title2)
+                            .foregroundStyle(StealthCeramicTheme.primaryTextColor)
+                        Text(Self.scheduleDescription(for: selectedHabit.schedule))
+                            .foregroundStyle(StealthCeramicTheme.secondaryTextColor)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                    .padding(18)
+                    .background {
+                        RoundedRectangle(cornerRadius: StealthCeramicTheme.surfaceCornerRadius, style: .continuous)
+                            .fill(StealthCeramicTheme.glassMaterial)
+                    }
+                    .overlay {
+                        RoundedRectangle(cornerRadius: StealthCeramicTheme.surfaceCornerRadius, style: .continuous)
+                            .stroke(StealthCeramicTheme.glassStrokeColor, lineWidth: 1)
+                    }
+                    .padding()
+                } else {
+                    Text("Select a habit")
+                        .foregroundStyle(StealthCeramicTheme.secondaryTextColor)
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                .padding()
-            } else {
-                Text("Select a habit")
             }
         }
     }
