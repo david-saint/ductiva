@@ -22,7 +22,7 @@ struct HabitStore {
     }
 
     func fetchHabits() throws -> [Habit] {
-        let descriptor = FetchDescriptor<Habit>(sortBy: [SortDescriptor(\Habit.createdAt)])
+        let descriptor = FetchDescriptor<Habit>(sortBy: [SortDescriptor(\Habit.createdAt, order: .reverse)])
         return try modelContext.fetch(descriptor)
     }
 

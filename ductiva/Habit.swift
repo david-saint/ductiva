@@ -2,7 +2,7 @@ import Foundation
 import SwiftData
 
 /// The days of the week used by specific-day schedules.
-enum HabitWeekday: Int, Codable, CaseIterable {
+enum HabitWeekday: Int, CaseIterable {
     case sunday = 1
     case monday = 2
     case tuesday = 3
@@ -13,7 +13,7 @@ enum HabitWeekday: Int, Codable, CaseIterable {
 }
 
 /// Frequency configuration for a habit.
-enum HabitSchedule: Codable, Equatable {
+enum HabitSchedule: Equatable {
     case daily
     case weekly
     case specificDays([HabitWeekday])
@@ -23,8 +23,39 @@ enum HabitSchedule: Codable, Equatable {
 final class Habit {
     var name: String
     var createdAt: Date
-    var schedule: HabitSchedule
+    private var scheduleTypeRaw: String
+    private var scheduleDaysRaw: [Int]
     var completions: [Date]
+
+    @Transient
+    var schedule: HabitSchedule {
+        get {
+            switch scheduleTypeRaw {
+            case "daily":
+                return .daily
+            case "weekly":
+                return .weekly
+            case "specificDays":
+                let days = scheduleDaysRaw.compactMap(HabitWeekday.init(rawValue:))
+                return .specificDays(days)
+            default:
+                return .daily
+            }
+        }
+        set {
+            switch newValue {
+            case .daily:
+                scheduleTypeRaw = "daily"
+                scheduleDaysRaw = []
+            case .weekly:
+                scheduleTypeRaw = "weekly"
+                scheduleDaysRaw = []
+            case let .specificDays(days):
+                scheduleTypeRaw = "specificDays"
+                scheduleDaysRaw = days.map(\.rawValue)
+            }
+        }
+    }
 
     init(
         name: String,
@@ -34,7 +65,9 @@ final class Habit {
     ) {
         self.name = name
         self.createdAt = createdAt
-        self.schedule = schedule
+        self.scheduleTypeRaw = "daily"
+        self.scheduleDaysRaw = []
         self.completions = completions
+        self.schedule = schedule
     }
 }
