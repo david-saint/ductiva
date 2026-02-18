@@ -77,39 +77,11 @@ struct ConfigurationView: View {
             }
 
             if viewModel.canAddSlot {
-                addSlotButton
-                    .padding(.top, 8)
+                AddSlotButton {
+                    showAddSlotSheet = true
+                }
+                .padding(.top, 8)
             }
-        }
-    }
-
-    @State private var isAddSlotHovered = false
-
-    private var addSlotButton: some View {
-        Button {
-            showAddSlotSheet = true
-        } label: {
-            Text("+ SLOT")
-                .font(.caption)
-                .tracking(StealthCeramicTheme.counterTracking)
-                .foregroundStyle(StealthCeramicTheme.secondaryTextColor)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 12)
-                .background {
-                    RoundedRectangle(cornerRadius: StealthCeramicTheme.surfaceCornerRadius, style: .continuous)
-                        .fill(isAddSlotHovered ? StealthCeramicTheme.surfaceHoverColor : .clear)
-                }
-                .overlay {
-                    RoundedRectangle(cornerRadius: StealthCeramicTheme.surfaceCornerRadius, style: .continuous)
-                        .strokeBorder(style: StrokeStyle(lineWidth: 1, dash: [6, 4]))
-                        .foregroundStyle(isAddSlotHovered ? StealthCeramicTheme.glassStrokeColor : StealthCeramicTheme.dashedBorderColor)
-                }
-                .contentShape(RoundedRectangle(cornerRadius: StealthCeramicTheme.surfaceCornerRadius, style: .continuous))
-        }
-        .buttonStyle(.plain)
-        .animation(.easeInOut(duration: 0.2), value: isAddSlotHovered)
-        .onHover { hovering in
-            isAddSlotHovered = hovering
         }
     }
 
