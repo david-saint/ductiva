@@ -8,7 +8,7 @@
 ## Phase 2: Persistence Layer & Testing
 - [x] Task: Implement basic CRUD operations for habits. (799acbf)
 - [x] Task: Write unit tests to verify persistence and retrieval. (67deddb)
-- [ ] Task: Conductor - User Manual Verification 'Persistence Layer & Testing' (Protocol in workflow.md)
+- [~] Task: Conductor - User Manual Verification 'Persistence Layer & Testing' (Protocol in workflow.md)
 
 ## Phase 3: Initial Integration
 - [ ] Task: Update the main view to display a simple list of habits from SwiftData.
