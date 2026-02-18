@@ -1,0 +1,9 @@
+Task 3.2: Implement schedule selection (Daily / Weekly / Specific Days)
+
+Summary: Added weekday toggle button UI to AddSlotSheet. When the user selects 'Specific Days' from the segmented picker, a row of 7 circular day-toggle buttons (S M T W T F S) appears. Added toggleDay() static helper for testable in/out toggling of a Set<HabitWeekday>. Save action now passes sorted selected days into the HabitSchedule.
+
+Files modified:
+- ductiva/AddSlotSheet.swift — Added selectedDays @State, toggleDay() helper, dayToggleButtons view, weekdayLabels
+- ductivaTests/AddSlotSheetTests.swift — Added 9 tests: specific days conversion (3), ignore-for-daily/weekly (2), allCases count, toggleDay on/off/multiple (3)
+
+Why: Users need to pick specific days of the week for habits that don't run daily or weekly.
