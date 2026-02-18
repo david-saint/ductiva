@@ -1,0 +1,12 @@
+Task 2.4: Unit tests for list rendering & empty state
+
+Summary:
+- Added 9 new tests to ConfigurationViewModelTests: slot counter at max, active slot count matching, canAddSlot with 3 habits, icon name preservation, schedule descriptions (daily, weekly, empty specificDays), weekday abbreviations
+- Added 2 new tests to HabitSlotRowTests: body rendering, various icon names
+- Coverage improved from 85.71% to 93.56%
+- HabitSlotRow coverage improved from 0% to 92.16%
+- All 43 tests pass
+
+Files modified:
+- ductivaTests/ConfigurationViewModelTests.swift (9 new tests)
+- ductivaTests/HabitSlotRowTests.swift (2 new tests)
