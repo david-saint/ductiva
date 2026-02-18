@@ -66,7 +66,7 @@ struct AddSlotSheet: View {
             }
             .padding(24)
         }
-        .frame(minWidth: 360, minHeight: 420)
+        .frame(minWidth: 300, idealWidth: 320, minHeight: 420)
     }
 
     // MARK: - Header
@@ -140,11 +140,12 @@ struct AddSlotSheet: View {
     // MARK: - Schedule
 
     private var scheduleSection: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(spacing: 8) {
             Text("SCHEDULE")
                 .font(.caption)
                 .tracking(StealthCeramicTheme.counterTracking)
                 .foregroundStyle(StealthCeramicTheme.secondaryTextColor)
+                .frame(maxWidth: .infinity, alignment: .leading)
 
             Picker("Schedule", selection: $selectedScheduleType) {
                 ForEach(ScheduleType.allCases, id: \.self) { type in
@@ -153,6 +154,7 @@ struct AddSlotSheet: View {
             }
             .pickerStyle(.segmented)
             .labelsHidden()
+            .fixedSize()
 
             if selectedScheduleType == .specificDays {
                 dayToggleButtons
