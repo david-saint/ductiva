@@ -10,7 +10,7 @@
 - [x] Task: Write unit tests to verify persistence and retrieval. (67deddb)
 - [x] Task: Conductor - User Manual Verification 'Persistence Layer & Testing' (Protocol in workflow.md). (a8fe877)
 
-## Phase 3: Initial Integration
+## Phase 3: Initial Integration [checkpoint: 7da1538]
 - [x] Task: Update the main view to display a simple list of habits from SwiftData. (a283f7b)
 - [x] Task: Verify the initial UI aligns with the "Stealth Ceramic" and "Liquid Glass" guidelines. (4714900)
-- [~] Task: Conductor - User Manual Verification 'Initial Integration' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Initial Integration' (Protocol in workflow.md). (7da1538)
