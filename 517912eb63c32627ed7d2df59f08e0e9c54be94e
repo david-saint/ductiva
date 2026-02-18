@@ -1,0 +1,3 @@
+Task 1.4: Wire ConfigurationView as app entry point & remove ContentView
+Deleted: ductiva/ContentView.swift, ductivaTests/ContentViewTests.swift
+Modified: ductiva/ductivaApp.swift, ductivaTests/ContentViewHabitListTests.swift
