@@ -13,7 +13,7 @@
 
 ## Phase 2: Habit List Display & Styling
 
-- [ ] Task 2.1: Create `HabitSlotRow` and display habits from SwiftData
+- [x] Task 2.1: Create `HabitSlotRow` and display habits from SwiftData (4c81849)
 - [ ] Task 2.2: Apply "Stealth Ceramic" chassis styling
 - [ ] Task 2.3: Apply "Liquid Glass" styling to interactive elements
 - [ ] Task 2.4: Unit tests for list rendering & empty state
