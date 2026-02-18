@@ -22,6 +22,7 @@ enum HabitSchedule: Equatable {
 @Model
 final class Habit {
     var name: String
+    var iconName: String
     var createdAt: Date
     private var scheduleTypeRaw: String
     private var scheduleDaysRaw: [Int]
@@ -59,11 +60,13 @@ final class Habit {
 
     init(
         name: String,
+        iconName: String = "target",
         createdAt: Date = Date(),
         schedule: HabitSchedule = .daily,
         completions: [Date] = []
     ) {
         self.name = name
+        self.iconName = iconName
         self.createdAt = createdAt
         self.scheduleTypeRaw = "daily"
         self.scheduleDaysRaw = []

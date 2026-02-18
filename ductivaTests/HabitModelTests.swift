@@ -13,4 +13,16 @@ final class HabitModelTests: XCTestCase {
         XCTAssertEqual(habit.schedule, .daily)
         XCTAssertTrue(habit.completions.isEmpty)
     }
+
+    func testHabitInitializesWithDefaultIcon() {
+        let habit = Habit(name: "Meditate")
+
+        XCTAssertEqual(habit.iconName, "target")
+    }
+
+    func testHabitInitializesWithCustomIcon() {
+        let habit = Habit(name: "Workout", iconName: "dumbbell")
+
+        XCTAssertEqual(habit.iconName, "dumbbell")
+    }
 }

@@ -6,12 +6,14 @@ struct HabitStore {
 
     func createHabit(
         name: String,
+        iconName: String = "target",
         schedule: HabitSchedule,
         createdAt: Date = Date(),
         completions: [Date] = []
     ) throws -> Habit {
         let habit = Habit(
             name: name,
+            iconName: iconName,
             createdAt: createdAt,
             schedule: schedule,
             completions: completions
