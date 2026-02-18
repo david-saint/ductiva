@@ -1,0 +1,14 @@
+Task 2.5 (design fix): Match spacing and layout to design reference
+
+Summary:
+- Adjusted content padding, row spacing, icon sizing, and section gaps to match design-inspiration/Main Window - Configuration.png
+- Added seedSampleHabitsIfEmpty() for debug builds (Deep Work, Strength Training, Side Project)
+- Updated ductivaApp to seed on first launch in debug
+- Updated preview to show populated state
+- All 43 tests pass, 93.56% coverage
+
+Files modified:
+- ductiva/ConfigurationView.swift (spacing, preview)
+- ductiva/ConfigurationViewModel.swift (seedSampleHabitsIfEmpty)
+- ductiva/HabitSlotRow.swift (icon size, padding)
+- ductiva/ductivaApp.swift (debug seeding)
