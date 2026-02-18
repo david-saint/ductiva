@@ -5,10 +5,10 @@
 - [x] Task: Configure the `ModelContainer` in `ductivaApp.swift`. (66bab29)
 - [x] Task: Conductor - User Manual Verification 'Foundation & Data Model' (Protocol in workflow.md). (0f0c26c)
 
-## Phase 2: Persistence Layer & Testing
+## Phase 2: Persistence Layer & Testing [checkpoint: a8fe877]
 - [x] Task: Implement basic CRUD operations for habits. (799acbf)
 - [x] Task: Write unit tests to verify persistence and retrieval. (67deddb)
-- [~] Task: Conductor - User Manual Verification 'Persistence Layer & Testing' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Persistence Layer & Testing' (Protocol in workflow.md). (a8fe877)
 
 ## Phase 3: Initial Integration
 - [ ] Task: Update the main view to display a simple list of habits from SwiftData.
