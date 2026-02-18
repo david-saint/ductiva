@@ -1,13 +1,17 @@
+import SwiftUI
 import XCTest
 @testable import ductiva
 
 final class PlaceholderViewTests: XCTestCase {
-    func testWidgetsPlaceholderViewCanBeCreated() {
-        _ = WidgetsPlaceholderView()
+    func testWidgetsPlaceholderViewBodyRenders() {
+        let view = WidgetsPlaceholderView()
+        _ = view.body
     }
 
-    func testHabitStreakPlaceholderViewCanBeCreated() {
+    func testHabitStreakPlaceholderViewBodyRenders() {
         let habit = Habit(name: "Read", iconName: "book")
-        _ = HabitStreakPlaceholderView(habit: habit)
+        let view = HabitStreakPlaceholderView(habit: habit)
+        XCTAssertEqual(view.habit.name, "Read")
+        _ = view.body
     }
 }
