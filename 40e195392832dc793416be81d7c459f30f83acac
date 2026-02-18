@@ -1,0 +1,14 @@
+Task 2.3: Apply Liquid Glass styling to interactive elements
+
+Summary:
+- Added @State private isHovered to HabitSlotRow for hover tracking
+- Extracted rowContent for clean view composition per SwiftUI skill guidelines
+- Applied glass material background + glass stroke overlay on hover with opacity transition
+- Used .animation(.easeInOut(duration: 0.2), value: isHovered) for smooth glass transitions
+- Flat by default (no glass), glass appears on hover — matches design spec
+- Added 2 tests for theme constants used by hover effect
+- All 36 tests pass
+
+Files modified:
+- ductiva/HabitSlotRow.swift (hover glass effect)
+- ductivaTests/HabitSlotRowTests.swift (2 new tests)
