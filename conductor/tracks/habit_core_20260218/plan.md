@@ -13,4 +13,4 @@
 ## Phase 3: Initial Integration
 - [x] Task: Update the main view to display a simple list of habits from SwiftData. (a283f7b)
 - [x] Task: Verify the initial UI aligns with the "Stealth Ceramic" and "Liquid Glass" guidelines. (4714900)
-- [ ] Task: Conductor - User Manual Verification 'Initial Integration' (Protocol in workflow.md)
+- [~] Task: Conductor - User Manual Verification 'Initial Integration' (Protocol in workflow.md)
