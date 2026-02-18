@@ -7,7 +7,7 @@
 
 ## Phase 2: Persistence Layer & Testing
 - [x] Task: Implement basic CRUD operations for habits. (799acbf)
-- [ ] Task: Write unit tests to verify persistence and retrieval.
+- [x] Task: Write unit tests to verify persistence and retrieval. (67deddb)
 - [ ] Task: Conductor - User Manual Verification 'Persistence Layer & Testing' (Protocol in workflow.md)
 
 ## Phase 3: Initial Integration
