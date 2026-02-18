@@ -37,7 +37,9 @@ struct ConfigurationView: View {
         }
         .sheet(isPresented: $showAddSlotSheet) {
             AddSlotSheet { name, iconName, schedule in
-                viewModel.addHabit(name: name, iconName: iconName, schedule: schedule)
+                withAnimation(.easeInOut(duration: 0.25)) {
+                    viewModel.addHabit(name: name, iconName: iconName, schedule: schedule)
+                }
             }
         }
         .onAppear {
@@ -70,10 +72,13 @@ struct ConfigurationView: View {
                     selectedHabit = habit
                 } label: {
                     HabitSlotRow(habit: habit, onDelete: {
-                        viewModel.removeHabit(habit)
+                        withAnimation(.easeInOut(duration: 0.25)) {
+                            viewModel.removeHabit(habit)
+                        }
                     })
                 }
                 .buttonStyle(.plain)
+                .transition(.opacity.combined(with: .move(edge: .top)))
             }
 
             if viewModel.canAddSlot {
@@ -81,8 +86,10 @@ struct ConfigurationView: View {
                     showAddSlotSheet = true
                 }
                 .padding(.top, 8)
+                .transition(.opacity)
             }
         }
+        .animation(.easeInOut(duration: 0.25), value: viewModel.habits.count)
     }
 
     // MARK: - Settings
