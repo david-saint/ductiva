@@ -25,7 +25,7 @@
 - [x] Task 3.2: Implement schedule selection (Daily / Weekly / Specific Days) (f56cf6d)
 - [x] Task 3.3: Integrate Add/Remove with `HabitStore` (e8ffe00)
 - [x] Task 3.4: Add contextual navigation from habit rows to detail (0fa3dde)
-- [ ] Task 3.5: Verify Phase 3 test coverage
+- [x] Task 3.5: Verify Phase 3 test coverage (aaf1894)
 - [ ] Task 3.6: Phase Completion — Manual Verification & Checkpoint
 
 ## Phase 4: Global Settings & Final Refinement
