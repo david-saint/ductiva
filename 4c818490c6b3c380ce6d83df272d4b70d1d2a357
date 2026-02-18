@@ -1,0 +1,17 @@
+Task 2.1: Create HabitSlotRow and display habits from SwiftData
+
+Summary:
+- Extracted HabitSlotRowInternal from ConfigurationView into standalone HabitSlotRow.swift
+- HabitSlotRow displays habit icon (SF Symbol) and name in an HStack
+- Wired ForEach in ConfigurationView.slotListSection to use HabitSlotRow
+- Added HabitSlotRowTests (3 tests: creation, name, icon)
+- Added ConfigurationViewModelTests for testLoadHabitsPopulatesArray and testEmptyStoreReturnsEmpty
+- All 30 tests pass
+
+Files created:
+- ductiva/HabitSlotRow.swift
+- ductivaTests/HabitSlotRowTests.swift
+
+Files modified:
+- ductiva/ConfigurationView.swift (replaced HabitSlotRowInternal with HabitSlotRow, removed private struct)
+- ductivaTests/ConfigurationViewModelTests.swift (added 2 tests)
