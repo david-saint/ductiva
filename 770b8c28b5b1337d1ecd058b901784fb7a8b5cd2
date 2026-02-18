@@ -1,0 +1,14 @@
+Task 4.4: Refine animations and transitions
+
+Summary: Added animation refinements to the habit slot list:
+- List VStack animates with .easeInOut driven by viewModel.habits.count
+- Individual habit rows have opacity+move(edge: .top) transition
+- AddSlotButton has opacity transition for smooth appear/disappear
+- Add and remove operations wrapped in withAnimation for explicit animation
+- Hover effects already implemented in HabitSlotRow and AddSlotButton
+- Sheet presentation uses default SwiftUI animation (no changes needed)
+
+Modified files:
+- ductiva/ConfigurationView.swift — Added animation modifiers and transitions
+
+Why: Per Phase 4 plan, ensures smooth visual feedback for all list mutations.
