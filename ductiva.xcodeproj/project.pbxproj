@@ -8,6 +8,7 @@
 
 /* Begin PBXFileReference section */
 		85D95BA12F463421004AEA7D /* ductiva.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ductiva.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0B1C2D32F463421004AEA7D /* ductivaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ductivaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -16,10 +17,32 @@
 			path = ductiva;
 			sourceTree = "<group>";
 		};
+		A0B1C2D42F463421004AEA7D /* ductivaTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ductivaTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXContainerItemProxy section */
+		A0B1C2DC2F463421004AEA7D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 85D95B992F463421004AEA7D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 85D95BA02F463421004AEA7D;
+			remoteInfo = ductiva;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		85D95B9E2F463421004AEA7D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0B1C2D52F463421004AEA7D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				85D95BA32F463421004AEA7D /* ductiva */,
+				A0B1C2D42F463421004AEA7D /* ductivaTests */,
 				85D95BA22F463421004AEA7D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				85D95BA12F463421004AEA7D /* ductiva.app */,
+				A0B1C2D32F463421004AEA7D /* ductivaTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,6 +95,29 @@
 			productReference = 85D95BA12F463421004AEA7D /* ductiva.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A0B1C2D82F463421004AEA7D /* ductivaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A0B1C2D92F463421004AEA7D /* Build configuration list for PBXNativeTarget "ductivaTests" */;
+			buildPhases = (
+				A0B1C2D72F463421004AEA7D /* Sources */,
+				A0B1C2D52F463421004AEA7D /* Frameworks */,
+				A0B1C2D62F463421004AEA7D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A0B1C2DD2F463421004AEA7D /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A0B1C2D42F463421004AEA7D /* ductivaTests */,
+			);
+			name = ductivaTests;
+			packageProductDependencies = (
+			);
+			productName = ductivaTests;
+			productReference = A0B1C2D32F463421004AEA7D /* ductivaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -82,6 +130,10 @@
 				TargetAttributes = {
 					85D95BA02F463421004AEA7D = {
 						CreatedOnToolsVersion = 26.2;
+					};
+					A0B1C2D82F463421004AEA7D = {
+						CreatedOnToolsVersion = 26.2;
+						TestTargetID = 85D95BA02F463421004AEA7D;
 					};
 				};
 			};
@@ -100,12 +152,20 @@
 			projectRoot = "";
 			targets = (
 				85D95BA02F463421004AEA7D /* ductiva */,
+				A0B1C2D82F463421004AEA7D /* ductivaTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		85D95B9F2F463421004AEA7D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0B1C2D62F463421004AEA7D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +182,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A0B1C2D72F463421004AEA7D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A0B1C2DD2F463421004AEA7D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 85D95BA02F463421004AEA7D /* ductiva */;
+			targetProxy = A0B1C2DC2F463421004AEA7D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		85D95BAC2F463422004AEA7D /* Debug */ = {
@@ -309,6 +384,48 @@
 			};
 			name = Release;
 		};
+		A0B1C2DA2F463421004AEA7D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 62LTV4PK7X;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.2;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.davidsaint.ductivaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ductiva.app/Contents/MacOS/ductiva";
+			};
+			name = Debug;
+		};
+		A0B1C2DB2F463421004AEA7D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 62LTV4PK7X;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.2;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.davidsaint.ductivaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ductiva.app/Contents/MacOS/ductiva";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -326,6 +443,15 @@
 			buildConfigurations = (
 				85D95BAF2F463422004AEA7D /* Debug */,
 				85D95BB02F463422004AEA7D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A0B1C2D92F463421004AEA7D /* Build configuration list for PBXNativeTarget "ductivaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0B1C2DA2F463421004AEA7D /* Debug */,
+				A0B1C2DB2F463421004AEA7D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
