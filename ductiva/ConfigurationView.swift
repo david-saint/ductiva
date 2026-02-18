@@ -3,6 +3,7 @@ import SwiftData
 
 struct ConfigurationView: View {
     @State var viewModel: ConfigurationViewModel
+    @State private var selectedHabit: Habit?
 
     var body: some View {
         ZStack {
@@ -28,6 +29,10 @@ struct ConfigurationView: View {
                 actionBar
             }
             .padding(24)
+        }
+        .sheet(item: $selectedHabit) { habit in
+            HabitStreakPlaceholderView(habit: habit)
+                .frame(minWidth: 360, minHeight: 400)
         }
         .onAppear {
             viewModel.loadHabits()
@@ -55,7 +60,12 @@ struct ConfigurationView: View {
     private var slotListSection: some View {
         VStack(spacing: 8) {
             ForEach(viewModel.habits) { habit in
-                HabitSlotRowInternal(habit: habit)
+                Button {
+                    selectedHabit = habit
+                } label: {
+                    HabitSlotRowInternal(habit: habit)
+                }
+                .buttonStyle(.plain)
             }
 
             if viewModel.canAddSlot {

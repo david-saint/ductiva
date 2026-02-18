@@ -27,6 +27,8 @@ struct ductivaApp: App {
         return try ModelContainer(for: schema, configurations: [modelConfiguration])
     }
 
+    @State private var showWidgets = false
+
     var body: some Scene {
         WindowGroup {
             ConfigurationView(
@@ -36,8 +38,20 @@ struct ductivaApp: App {
                     )
                 )
             )
+            .sheet(isPresented: $showWidgets) {
+                WidgetsPlaceholderView()
+                    .frame(minWidth: 360, minHeight: 400)
+            }
         }
         .modelContainer(sharedModelContainer)
         .defaultSize(width: 480, height: 560)
+        .commands {
+            CommandGroup(after: .appInfo) {
+                Button("Widgets...") {
+                    showWidgets = true
+                }
+                .keyboardShortcut("w", modifiers: [.command, .shift])
+            }
+        }
     }
 }
