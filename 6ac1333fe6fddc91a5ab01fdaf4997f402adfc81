@@ -1,0 +1,30 @@
+Phase 4 Verification Report: Global Settings & Final Refinement
+
+=== AUTOMATED TESTS ===
+Command: CI=true xcodebuild test -scheme ductiva -destination 'platform=macOS'
+Result: TEST SUCCEEDED — All tests pass (0 failures)
+Coverage: 81.82% overall (target: >80%)
+
+=== MANUAL VERIFICATION STEPS ===
+1. Build and launch: xcodebuild build -scheme ductiva -destination 'platform=macOS'
+   then open ~/Library/Developer/Xcode/DerivedData/ductiva-*/Build/Products/Debug/ductiva.app
+2. Confirm Configuration window launches as main window (~365x510)
+3. Verify visual layout matches design reference:
+   - CONFIGURATION header (all-caps, letter tracking) on left
+   - X/4 SLOTS ACTIVE counter on right
+   - Habit rows with SF Symbol icons and names
+   - Dashed-border + SLOT button below habit rows
+   - Horizontal divider between slot list and settings
+   - Launch at Login toggle (default: OFF)
+   - Show in Menu Bar toggle (default: ON)
+   - CANCEL and SAVE CHANGES buttons at bottom right
+4. Test + SLOT workflow: click, fill form, save, confirm habit appears with animation
+5. Test 4-slot limit: add until 4/4, confirm + SLOT button disappears
+6. Test settings persistence: toggle settings, SAVE CHANGES, quit/relaunch, verify
+7. Test Cancel: change toggle, click CANCEL, confirm revert to saved state
+8. Test delete: right-click habit row, Delete context menu, confirm removal with animation
+9. Verify hover effects on habit rows and + SLOT button
+10. Verify Stealth Ceramic dark background
+
+=== USER CONFIRMATION ===
+User confirmed: yes
