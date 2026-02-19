@@ -1,0 +1,22 @@
+Phase: Phase 4 - Integration & Refinement
+
+Automated test command:
+CI=true xcodebuild -quiet -project ductiva.xcodeproj -scheme ductiva -destination 'platform=macOS' -derivedDataPath /tmp/ductiva-derived CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO -enableCodeCoverage YES test
+
+Automated test result:
+PASS (full suite green)
+Coverage summary:
+- ductiva.app: 83.44% (1834/2198)
+
+Manual verification plan:
+The automated tests have passed. For manual verification, please follow these steps:
+
+Manual Verification Steps:
+1. Start the app from Xcode by running the `ductiva` scheme (Cmd+R).
+2. In Configuration, right-click any habit row and choose `Mark Completed Today`, then choose it again to toggle back.
+3. Confirm that you see: the row completion indicator changes immediately between empty and filled circle states.
+4. Click the same habit row to open streak details and confirm `CURRENT STREAK` / `PERFECT DAYS` values reflect completion toggles.
+5. Confirm accessibility behavior with VoiceOver: month navigation buttons announce purpose, scheduled day dots announce date/completion state, and metrics announce values clearly.
+
+User confirmation:
+User requested to proceed with completion workflow on 2026-02-19 ("proceed").
