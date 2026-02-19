@@ -60,13 +60,7 @@ struct HabitSlotRow: View {
                     .foregroundStyle(StealthCeramicTheme.secondaryTextColor.opacity(0.8))
             }
             Spacer()
-            Image(systemName: isCompletedToday ? "checkmark.circle.fill" : "circle")
-                .font(.system(size: 15, weight: .semibold))
-                .foregroundStyle(
-                    isCompletedToday
-                        ? Color(red: 0.95, green: 0.99, blue: 1.0)
-                        : StealthCeramicTheme.secondaryTextColor.opacity(0.55)
-                )
+            HabitCompletionRingView(habit: habit, isCompletedToday: isCompletedToday)
         }
         .padding(.vertical, 11)
         .padding(.horizontal, 14)
