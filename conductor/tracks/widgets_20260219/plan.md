@@ -48,11 +48,11 @@
 
 ## Phase 5: Deep Linking and Final Polishing
 
-- [x] Task: Implement Deep Linking Support
+- [x] Task: Implement Deep Linking Support (1413a82)
   - [x] Define a custom URL scheme (e.g., `ductiva://habit/{id}`).
   - [x] Add `widgetURL` or `Link` modifiers to widget components.
   - [x] Update `ductivaApp.swift` to handle incoming URLs and navigate to `HabitStreakDetailView`.
-- [~] Task: Final UI/UX Refinement
-  - [ ] Verify translucency and "Liquid Glass" effects against design inspiration.
-  - [ ] Ensure consistent typography and spacing across all widget sizes.
-- [ ] Task: Conductor - User Manual Verification 'Phase 5: Deep Linking and Final Polishing' (Protocol in workflow.md)
+- [x] Task: Final UI/UX Refinement (1413a82)
+  - [x] Verify translucency and "Liquid Glass" effects against design inspiration.
+  - [x] Ensure consistent typography and spacing across all widget sizes.
+- [~] Task: Conductor - User Manual Verification 'Phase 5: Deep Linking and Final Polishing' (Protocol in workflow.md)
