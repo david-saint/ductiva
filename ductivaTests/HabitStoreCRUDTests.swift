@@ -48,4 +48,45 @@ final class HabitStoreCRUDTests: XCTestCase {
         let habits = try store.fetchHabits()
         XCTAssertTrue(habits.isEmpty)
     }
+
+    func testToggleCompletionAddsAndRemovesDayEntry() throws {
+        let calendar = Self.gregorianCalendar
+        let day = Self.date(year: 2026, month: 2, day: 19)
+        let habit = try store.createHabit(name: "Read", schedule: .daily)
+
+        let markedComplete = try store.toggleCompletion(habit, on: day, calendar: calendar)
+        XCTAssertTrue(markedComplete)
+        XCTAssertTrue(store.isCompleted(habit, on: day, calendar: calendar))
+
+        let markedIncomplete = try store.toggleCompletion(habit, on: day, calendar: calendar)
+        XCTAssertFalse(markedIncomplete)
+        XCTAssertFalse(store.isCompleted(habit, on: day, calendar: calendar))
+    }
+
+    func testIsCompletedUsesCalendarDayGranularity() throws {
+        let calendar = Self.gregorianCalendar
+        let habit = try store.createHabit(name: "Meditate", schedule: .daily)
+        let completion = Self.date(year: 2026, month: 2, day: 19, hour: 8)
+        let sameDayLater = Self.date(year: 2026, month: 2, day: 19, hour: 20)
+
+        _ = try store.toggleCompletion(habit, on: completion, calendar: calendar)
+        XCTAssertTrue(store.isCompleted(habit, on: sameDayLater, calendar: calendar))
+    }
+
+    private static var gregorianCalendar: Calendar {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone(secondsFromGMT: 0)!
+        return calendar
+    }
+
+    private static func date(year: Int, month: Int, day: Int, hour: Int = 12) -> Date {
+        DateComponents(
+            calendar: gregorianCalendar,
+            timeZone: gregorianCalendar.timeZone,
+            year: year,
+            month: month,
+            day: day,
+            hour: hour
+        ).date!
+    }
 }

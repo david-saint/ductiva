@@ -5,6 +5,8 @@ import SwiftUI
 /// Supports an optional right-click context menu for deletion.
 struct HabitSlotRow: View {
     let habit: Habit
+    var isCompletedToday: Bool = false
+    var onToggleCompletion: (() -> Void)?
 
     /// Optional callback invoked when "Delete" is selected from the context menu.
     var onDelete: (() -> Void)?
@@ -22,6 +24,17 @@ struct HabitSlotRow: View {
                 isHovered = hovering
             }
             .contextMenu {
+                if let onToggleCompletion {
+                    Button {
+                        onToggleCompletion()
+                    } label: {
+                        Label(
+                            isCompletedToday ? "Mark Incomplete Today" : "Mark Completed Today",
+                            systemImage: isCompletedToday ? "xmark.circle" : "checkmark.circle"
+                        )
+                    }
+                }
+
                 if let onDelete {
                     Button(role: .destructive) {
                         onDelete()
@@ -42,8 +55,18 @@ struct HabitSlotRow: View {
                 .font(.system(size: 13))
                 .foregroundStyle(StealthCeramicTheme.primaryTextColor)
             Spacer()
+            Image(systemName: isCompletedToday ? "checkmark.circle.fill" : "circle")
+                .font(.system(size: 15, weight: .semibold))
+                .foregroundStyle(
+                    isCompletedToday
+                        ? Color(red: 0.95, green: 0.99, blue: 1.0)
+                        : StealthCeramicTheme.secondaryTextColor.opacity(0.55)
+                )
         }
         .padding(.vertical, 11)
         .padding(.horizontal, 14)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("\(habit.name), \(isCompletedToday ? "completed today" : "not completed today")")
+        .accessibilityHint("Select to view streak details. Use context menu to toggle completion.")
     }
 }

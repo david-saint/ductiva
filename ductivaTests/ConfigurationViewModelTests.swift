@@ -398,4 +398,61 @@ final class ConfigurationViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.slotCounterText, "0/4 SLOTS ACTIVE")
         XCTAssertTrue(viewModel.canAddSlot)
     }
+
+    // MARK: - Phase 4.1: Completion toggle integration
+
+    func testToggleCompletionTodayAddsAndRemovesCompletion() throws {
+        let (viewModel, _) = try makeViewModel()
+        let calendar = Self.gregorianCalendar
+        let now = Self.date(year: 2026, month: 2, day: 19)
+
+        viewModel.addHabit(name: "Deep Work", iconName: "display", schedule: .daily)
+        guard let habit = viewModel.habits.first else {
+            XCTFail("Expected habit to exist")
+            return
+        }
+
+        XCTAssertFalse(viewModel.isCompletedToday(for: habit, now: now, calendar: calendar))
+
+        viewModel.toggleCompletionToday(for: habit, now: now, calendar: calendar)
+        XCTAssertTrue(viewModel.isCompletedToday(for: habit, now: now, calendar: calendar))
+
+        viewModel.toggleCompletionToday(for: habit, now: now, calendar: calendar)
+        XCTAssertFalse(viewModel.isCompletedToday(for: habit, now: now, calendar: calendar))
+    }
+
+    func testToggleCompletionTodayUpdatesStreakSnapshot() throws {
+        let (viewModel, _) = try makeViewModel()
+        let calendar = Self.gregorianCalendar
+        let now = Self.date(year: 2026, month: 2, day: 19)
+
+        viewModel.addHabit(name: "Read", iconName: "book", schedule: .daily)
+        guard let habit = viewModel.habits.first else {
+            XCTFail("Expected habit to exist")
+            return
+        }
+
+        let service = HabitStreakService(calendar: calendar, now: now)
+        XCTAssertEqual(service.snapshot(for: habit).currentStreak, 0)
+
+        viewModel.toggleCompletionToday(for: habit, now: now, calendar: calendar)
+        XCTAssertEqual(service.snapshot(for: habit).currentStreak, 1)
+    }
+
+    private static var gregorianCalendar: Calendar {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone(secondsFromGMT: 0)!
+        return calendar
+    }
+
+    private static func date(year: Int, month: Int, day: Int) -> Date {
+        DateComponents(
+            calendar: gregorianCalendar,
+            timeZone: gregorianCalendar.timeZone,
+            year: year,
+            month: month,
+            day: day,
+            hour: 12
+        ).date!
+    }
 }

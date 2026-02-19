@@ -44,4 +44,26 @@ struct HabitStore {
         modelContext.delete(habit)
         try modelContext.save()
     }
+
+    func isCompleted(_ habit: Habit, on date: Date = Date(), calendar: Calendar = .current) -> Bool {
+        let targetDay = calendar.startOfDay(for: date)
+        return habit.completions.contains { completionDate in
+            calendar.isDate(completionDate, inSameDayAs: targetDay)
+        }
+    }
+
+    @discardableResult
+    func toggleCompletion(_ habit: Habit, on date: Date = Date(), calendar: Calendar = .current) throws -> Bool {
+        let targetDay = calendar.startOfDay(for: date)
+
+        if let index = habit.completions.firstIndex(where: { calendar.isDate($0, inSameDayAs: targetDay) }) {
+            habit.completions.remove(at: index)
+            try modelContext.save()
+            return false
+        }
+
+        habit.completions.append(targetDay)
+        try modelContext.save()
+        return true
+    }
 }

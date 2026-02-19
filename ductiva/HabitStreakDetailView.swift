@@ -23,7 +23,7 @@ struct HabitStreakDetailView: View {
 
             VStack(spacing: 0) {
                 Text("HISTORY_LOG_V2.0")
-                    .font(.system(size: 11, weight: .medium))
+                    .font(.system(size: 11, weight: .medium, design: .monospaced))
                     .tracking(StealthCeramicTheme.headerTracking)
                     .foregroundStyle(StealthCeramicTheme.secondaryTextColor.opacity(0.65))
                     .padding(.top, 10)
@@ -49,6 +49,7 @@ struct HabitStreakDetailView: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel("\(habit.name) streak details")
+        .accessibilityHint("Shows monthly scheduled-day completion history and streak metrics")
     }
 
     private var snapshot: HabitStreakSnapshot {

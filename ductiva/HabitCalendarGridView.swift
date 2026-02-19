@@ -32,7 +32,7 @@ struct HabitCalendarGridView: View {
             Spacer()
 
             Text(monthTitle.uppercased())
-                .font(.system(size: 22, weight: .semibold, design: .default))
+                .font(.system(size: 22, weight: .semibold, design: .monospaced))
                 .tracking(StealthCeramicTheme.headerTracking)
                 .foregroundStyle(StealthCeramicTheme.primaryTextColor)
 
@@ -53,7 +53,7 @@ struct HabitCalendarGridView: View {
         HStack(spacing: 0) {
             ForEach(weekdaySymbols, id: \.self) { symbol in
                 Text(symbol)
-                    .font(.system(size: 11, weight: .medium))
+                    .font(.system(size: 11, weight: .medium, design: .monospaced))
                     .foregroundStyle(StealthCeramicTheme.secondaryTextColor.opacity(0.6))
                     .frame(maxWidth: .infinity)
             }

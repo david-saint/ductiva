@@ -39,7 +39,7 @@ struct HabitMetricsView: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(spacing: 4) {
                 Text(title)
-                    .font(.system(size: 11, weight: .medium))
+                    .font(.system(size: 11, weight: .medium, design: .monospaced))
                     .tracking(StealthCeramicTheme.headerTracking)
                     .foregroundStyle(StealthCeramicTheme.secondaryTextColor)
                 if showsFlame {
@@ -53,14 +53,14 @@ struct HabitMetricsView: View {
 
             HStack(alignment: .lastTextBaseline, spacing: 7) {
                 Text("\(value)")
-                    .font(.system(size: 38, weight: .medium))
+                    .font(.system(size: 38, weight: .medium, design: .monospaced))
                     .foregroundStyle(
                         showsFlame
                             ? Color(red: 1.0, green: 0.52, blue: 0.18)
                             : StealthCeramicTheme.primaryTextColor
                     )
                 Text(unit)
-                    .font(.system(size: 11, weight: .medium))
+                    .font(.system(size: 11, weight: .medium, design: .monospaced))
                     .tracking(StealthCeramicTheme.counterTracking)
                     .foregroundStyle(StealthCeramicTheme.secondaryTextColor.opacity(0.55))
             }

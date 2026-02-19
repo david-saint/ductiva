@@ -72,6 +72,21 @@ final class ConfigurationViewModel {
         }
     }
 
+    /// Returns whether the provided habit has a completion recorded for the supplied day.
+    func isCompletedToday(for habit: Habit, now: Date = Date(), calendar: Calendar = .current) -> Bool {
+        habitStore.isCompleted(habit, on: now, calendar: calendar)
+    }
+
+    /// Toggles a completion entry for the provided habit on the supplied day and reloads the list.
+    func toggleCompletionToday(for habit: Habit, now: Date = Date(), calendar: Calendar = .current) {
+        do {
+            _ = try habitStore.toggleCompletion(habit, on: now, calendar: calendar)
+            loadHabits()
+        } catch {
+            // Toggle failed — habits array unchanged
+        }
+    }
+
     #if DEBUG
     /// Seeds sample habits for testing. Only available in debug builds.
     func seedSampleHabitsIfEmpty() {

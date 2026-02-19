@@ -71,11 +71,20 @@ struct ConfigurationView: View {
                 Button {
                     selectedHabit = habit
                 } label: {
-                    HabitSlotRow(habit: habit, onDelete: {
-                        withAnimation(.easeInOut(duration: 0.25)) {
-                            viewModel.removeHabit(habit)
+                    HabitSlotRow(
+                        habit: habit,
+                        isCompletedToday: viewModel.isCompletedToday(for: habit),
+                        onToggleCompletion: {
+                            withAnimation(.easeInOut(duration: 0.2)) {
+                                viewModel.toggleCompletionToday(for: habit)
+                            }
+                        },
+                        onDelete: {
+                            withAnimation(.easeInOut(duration: 0.25)) {
+                                viewModel.removeHabit(habit)
+                            }
                         }
-                    })
+                    )
                 }
                 .buttonStyle(.plain)
                 .transition(.opacity.combined(with: .move(edge: .top)))

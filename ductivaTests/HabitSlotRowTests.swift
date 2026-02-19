@@ -68,6 +68,31 @@ final class HabitSlotRowTests: XCTestCase {
         XCTAssertNil(row.onDelete)
     }
 
+    func testHabitSlotRowCompletionDefaultsToFalse() {
+        let habit = Habit(name: "Read", iconName: "book", schedule: .daily)
+        let row = HabitSlotRow(habit: habit)
+        XCTAssertFalse(row.isCompletedToday)
+    }
+
+    func testHabitSlotRowAcceptsToggleCompletionCallback() {
+        let habit = Habit(name: "Read", iconName: "book", schedule: .daily)
+        var called = false
+        let row = HabitSlotRow(
+            habit: habit,
+            isCompletedToday: false,
+            onToggleCompletion: { called = true }
+        )
+
+        row.onToggleCompletion?()
+        XCTAssertTrue(called)
+    }
+
+    func testHabitSlotRowCanRepresentCompletedTodayState() {
+        let habit = Habit(name: "Read", iconName: "book", schedule: .daily)
+        let row = HabitSlotRow(habit: habit, isCompletedToday: true)
+        XCTAssertTrue(row.isCompletedToday)
+    }
+
     func testHabitSlotRowBodyRendersWithDeleteCallback() {
         let habit = Habit(name: "Read", iconName: "book", schedule: .daily)
         let row = HabitSlotRow(habit: habit, onDelete: {})
