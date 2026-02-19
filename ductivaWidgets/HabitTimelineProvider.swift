@@ -1,39 +1,38 @@
 import WidgetKit
 import SwiftData
+import SwiftUI
 
 struct HabitTimelineEntry: TimelineEntry {
     let date: Date
     let configuration: HabitSelectionIntent
     let habits: [Habit]
     let selectedHabit: Habit?
+    let errorMessage: String?
 }
 
 struct HabitTimelineProvider: AppIntentTimelineProvider {
     func placeholder(in context: Context) -> HabitTimelineEntry {
-        HabitTimelineEntry(date: Date(), configuration: HabitSelectionIntent(), habits: [], selectedHabit: nil)
+        HabitTimelineEntry(date: Date(), configuration: HabitSelectionIntent(), habits: [], selectedHabit: nil, errorMessage: nil)
     }
 
     func snapshot(for configuration: HabitSelectionIntent, in context: Context) async -> HabitTimelineEntry {
-        let (allHabits, selected) = (try? await fetchWidgetData(for: configuration)) ?? ([], nil)
-        return HabitTimelineEntry(
-            date: Date(),
-            configuration: configuration,
-            habits: allHabits,
-            selectedHabit: selected
-        )
+        do {
+            let (allHabits, selected) = try await fetchWidgetData(for: configuration)
+            return HabitTimelineEntry(date: Date(), configuration: configuration, habits: allHabits, selectedHabit: selected, errorMessage: nil)
+        } catch {
+            return HabitTimelineEntry(date: Date(), configuration: configuration, habits: [], selectedHabit: nil, errorMessage: error.localizedDescription)
+        }
     }
     
     func timeline(for configuration: HabitSelectionIntent, in context: Context) async -> Timeline<HabitTimelineEntry> {
-        let (allHabits, selected) = (try? await fetchWidgetData(for: configuration)) ?? ([], nil)
+        let entry: HabitTimelineEntry
+        do {
+            let (allHabits, selected) = try await fetchWidgetData(for: configuration)
+            entry = HabitTimelineEntry(date: Date(), configuration: configuration, habits: allHabits, selectedHabit: selected, errorMessage: nil)
+        } catch {
+            entry = HabitTimelineEntry(date: Date(), configuration: configuration, habits: [], selectedHabit: nil, errorMessage: error.localizedDescription)
+        }
         
-        let entry = HabitTimelineEntry(
-            date: Date(),
-            configuration: configuration,
-            habits: allHabits,
-            selectedHabit: selected
-        )
-        
-        // Update tomorrow at midnight to refresh streaks and daily completions
         let calendar = Calendar.current
         let tomorrow = calendar.startOfDay(for: calendar.date(byAdding: .day, value: 1, to: Date())!)
         

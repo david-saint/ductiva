@@ -19,7 +19,9 @@ struct ductivaWidgetsEntryView : View {
 
     var body: some View {
         VStack {
-            if let habit = entry.selectedHabit {
+            if let error = entry.errorMessage {
+                Text("Error: \(error)").font(.caption).foregroundColor(.red)
+            } else if let habit = entry.selectedHabit {
                 Text("Focused on: \(habit.name)")
             } else {
                 Text("All Habits (\(entry.habits.count))")

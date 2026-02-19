@@ -1,6 +1,10 @@
 import SwiftData
 import Foundation
 
+enum ContainerError: Error {
+    case missingAppGroup
+}
+
 @MainActor
 public struct SharedContainer {
     public static func make() throws -> ModelContainer {
@@ -9,7 +13,10 @@ public struct SharedContainer {
             Habit.self,
         ])
         
-        let sharedAppGroupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.saint.ductiva")!
+        guard let sharedAppGroupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.saint.ductiva") else {
+            throw ContainerError.missingAppGroup
+        }
+        
         let databaseURL = sharedAppGroupURL.appendingPathComponent("ductiva.sqlite")
         let modelConfiguration = ModelConfiguration(schema: schema, url: databaseURL)
         
