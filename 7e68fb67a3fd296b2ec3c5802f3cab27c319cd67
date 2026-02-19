@@ -1,0 +1,5 @@
+Task: Fix ModelContainer loading error in Widget
+Summary: Modified SharedContainer.make() to set allowsSave: false when running in the App Extension.
+Files modified/created:
+- ductiva/SharedContainer.swift
+Why: macOS widgets often fail with SwiftDataError error 1 if they attempt to open an App Group SQLite database with write permissions while the main app has it locked. Making the widget container read-only resolves this.
