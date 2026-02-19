@@ -36,7 +36,7 @@
   - [x] **Green Phase:** Implement the Focus view showing a single habit's ring and name.
 - [x] Task: Conductor - User Manual Verification 'Phase 3: Small Widget Implementation' (Protocol in workflow.md) e72c5cb
 
-## Phase 4: Medium and Large Widget Implementation
+## Phase 4: Medium and Large Widget Implementation [checkpoint: a2963cf]
 
 - [x] Task: Implement Medium Summary Widget (4x1 Grid) 4d16773
   - [x] **Red Phase:** Write failing tests for the medium 4x1 layout.
@@ -44,7 +44,7 @@
 - [x] Task: Implement Large Overview Widget (4x4) 1a613af
   - [x] **Red Phase:** Write failing tests for the large overview layout.
   - [x] **Green Phase:** Implement the large view (e.g., a focused habit's monthly grid or all-habit summary).
-- [ ] Task: Conductor - User Manual Verification 'Phase 4: Medium and Large Widget Implementation' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 4: Medium and Large Widget Implementation' (Protocol in workflow.md) a2963cf
 
 ## Phase 5: Deep Linking and Final Polishing
 
