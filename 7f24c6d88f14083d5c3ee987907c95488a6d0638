@@ -1,0 +1,10 @@
+Phase 5 Complete: Deep Linking and Final Polishing
+Automated tests run: xcodebuild test -project ductiva.xcodeproj -scheme ductiva -destination 'platform=macOS'
+
+Manual Verification:
+1. Run the App via Xcode: Build and run the ductiva scheme.
+2. Add a Widget to Notification Center/Desktop: Open the widget gallery, add a ductiva widget (any size). Make sure you have habits set up so they are displayed.
+3. Trigger Deep Link: Click on a specific habit inside the widget.
+4. Confirm expected behavior: The Ductiva app opens (or comes to the foreground) and automatically presents the detail view (a sheet) for the specific habit you clicked. Additionally, observe the background of your widgets on the desktop to ensure they properly display the "Liquid Glass" semi-translucent styling instead of a solid flat color.
+
+User confirmed outcomes matched expectations.
