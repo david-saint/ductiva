@@ -1,0 +1,4 @@
+Task: Deep Linking and UI Refinement
+Summary: Added custom URL scheme 'ductiva://habit/{id}' to App.swift with onOpenURL handler to present HabitStreakDetailView. Wrapped Small/Medium/Large widget cells with Link or widgetURL. Refined WidgetLiquidGlassModifier to use ultraThinMaterial to better approximate Stealth Ceramic theme.
+Changed files: ductivaApp.swift, NavigationTests.swift, SmallFocusWidgetView.swift, SmallStandardWidgetView.swift, MediumSummaryWidgetView.swift, LargeFocusWidgetView.swift, LargeStandardWidgetView.swift, WidgetLiquidGlassModifier.swift.
+Why: Enable seamless navigation from macOS Notification Center/Desktop widgets directly to the specified habit's detail view, and ensure widget aesthetics perfectly match the core App design.
