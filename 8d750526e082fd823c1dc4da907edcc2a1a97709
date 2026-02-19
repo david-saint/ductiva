@@ -1,0 +1,16 @@
+Task: Create Widget Extension Target, Configure App Groups, Verify Shared Data Access
+Summary: Added ductivaWidgets target, configured the 'group.com.saint.ductiva' App Group, updated SwiftData to use the App Group URL for shared persistence, and added an XCTest.
+Files modified/created:
+- add_entitlements.rb
+- add_swift_file.rb
+- add_test_file.rb
+- add_widget_target.rb
+- ductiva.xcodeproj/project.pbxproj
+- ductiva/ductiva.entitlements
+- ductiva/ductivaApp.swift
+- ductivaTests/SharedDataTests.swift
+- ductivaWidgets/Info.plist
+- ductivaWidgets/ductivaWidgets.entitlements
+- ductivaWidgets/ductivaWidgets.swift
+- ductivaWidgets/ductivaWidgetsBundle.swift
+Why: Infrastructure setup for macOS Widget Extension to allow shared data between the app and the widgets.
