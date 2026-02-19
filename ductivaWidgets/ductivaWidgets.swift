@@ -54,13 +54,15 @@ struct DuctivaWidgetEntryView: View {
         MediumSummaryWidgetView(habits: entry.habits, currentDate: entry.date)
     }
 
-    // MARK: - Large Widget (placeholder until Phase 4)
+    // MARK: - Large Widget
 
     @ViewBuilder
     private var largeWidget: some View {
-        Text("LARGE")
-            .font(.system(size: 10, weight: .medium, design: .monospaced))
-            .foregroundStyle(StealthCeramicTheme.secondaryTextColor)
+        if let habit = entry.selectedHabit {
+            LargeFocusWidgetView(habit: habit, dayStates: entry.selectedHabitDayStates, monthTitle: entry.selectedHabitMonthTitle, currentDate: entry.date)
+        } else {
+            LargeStandardWidgetView(habits: entry.habits, currentDate: entry.date)
+        }
     }
 
     // MARK: - Error

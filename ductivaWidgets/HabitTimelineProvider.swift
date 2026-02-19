@@ -7,12 +7,14 @@ struct HabitTimelineEntry: TimelineEntry {
     let configuration: HabitSelectionIntent
     let habits: [WidgetHabitSnapshot]
     let selectedHabit: WidgetHabitSnapshot?
+    let selectedHabitDayStates: [HabitCalendarDayState]?
+    let selectedHabitMonthTitle: String?
     let errorMessage: String?
 }
 
 struct HabitTimelineProvider: AppIntentTimelineProvider {
     func placeholder(in context: Context) -> HabitTimelineEntry {
-        HabitTimelineEntry(date: Date(), configuration: HabitSelectionIntent(), habits: [], selectedHabit: nil, errorMessage: nil)
+        HabitTimelineEntry(date: Date(), configuration: HabitSelectionIntent(), habits: [], selectedHabit: nil, selectedHabitDayStates: nil, selectedHabitMonthTitle: nil, errorMessage: nil)
     }
 
     func snapshot(for configuration: HabitSelectionIntent, in context: Context) async -> HabitTimelineEntry {
@@ -30,12 +32,14 @@ struct HabitTimelineProvider: AppIntentTimelineProvider {
 
     private func loadEntry(for configuration: HabitSelectionIntent, source: String) async -> HabitTimelineEntry {
         do {
-            let (allHabits, selected) = try await fetchWidgetData(for: configuration)
+            let data = try await fetchWidgetData(for: configuration)
             return HabitTimelineEntry(
                 date: Date(),
                 configuration: configuration,
-                habits: allHabits,
-                selectedHabit: selected,
+                habits: data.all,
+                selectedHabit: data.selected,
+                selectedHabitDayStates: data.dayStates,
+                selectedHabitMonthTitle: data.monthTitle,
                 errorMessage: nil
             )
         } catch {
@@ -45,12 +49,14 @@ struct HabitTimelineProvider: AppIntentTimelineProvider {
         try? await Task.sleep(nanoseconds: 150_000_000)
 
         do {
-            let (allHabits, selected) = try await fetchWidgetData(for: configuration)
+            let data = try await fetchWidgetData(for: configuration)
             return HabitTimelineEntry(
                 date: Date(),
                 configuration: configuration,
-                habits: allHabits,
-                selectedHabit: selected,
+                habits: data.all,
+                selectedHabit: data.selected,
+                selectedHabitDayStates: data.dayStates,
+                selectedHabitMonthTitle: data.monthTitle,
                 errorMessage: nil
             )
         } catch {
@@ -61,18 +67,23 @@ struct HabitTimelineProvider: AppIntentTimelineProvider {
                 configuration: configuration,
                 habits: [],
                 selectedHabit: nil,
+                selectedHabitDayStates: nil,
+                selectedHabitMonthTitle: nil,
                 errorMessage: nil
             )
         }
     }
     
     @MainActor
-    private func fetchWidgetData(for configuration: HabitSelectionIntent) throws -> (all: [WidgetHabitSnapshot], selected: WidgetHabitSnapshot?) {
+    private func fetchWidgetData(for configuration: HabitSelectionIntent) throws -> (all: [WidgetHabitSnapshot], selected: WidgetHabitSnapshot?, dayStates: [HabitCalendarDayState]?, monthTitle: String?) {
         let container = try SharedContainer.make()
         let context = container.mainContext
         let descriptor = FetchDescriptor<Habit>(sortBy: [SortDescriptor(\.createdAt, order: .forward)])
         let allHabits = try context.fetch(descriptor)
-        let streakService = HabitStreakService(calendar: Calendar.current, now: Date())
+        let calendar = Calendar.current
+        let now = Date()
+        let streakService = HabitStreakService(calendar: calendar, now: now)
+        
         let snapshots = allHabits.map { habit in
             let streakSnapshot = streakService.snapshot(for: habit)
             return WidgetHabitSnapshot(
@@ -86,10 +97,38 @@ struct HabitTimelineProvider: AppIntentTimelineProvider {
         }
         
         var selectedHabit: WidgetHabitSnapshot? = nil
+        var dayStates: [HabitCalendarDayState]? = nil
+        var monthTitle: String? = nil
+        
         if let configHabitID = configuration.habit?.id, configHabitID != "none", let uuid = UUID(uuidString: configHabitID) {
             selectedHabit = snapshots.first(where: { $0.id == uuid })
+            if let realHabit = allHabits.first(where: { $0.id == uuid }) {
+                var mondayStartCalendar = calendar
+                mondayStartCalendar.firstWeekday = 2 // Monday
+                let start = mondayStartCalendar.date(from: mondayStartCalendar.dateComponents([.year, .month], from: now)) ?? mondayStartCalendar.startOfDay(for: now)
+                monthTitle = start.formatted(.dateTime.month(.wide).year())
+                
+                if let monthInterval = mondayStartCalendar.dateInterval(of: .month, for: start),
+                   let firstGridDate = mondayStartCalendar.dateInterval(of: .weekOfYear, for: monthInterval.start)?.start {
+                    dayStates = (0..<42).compactMap { offset in
+                        guard let day = mondayStartCalendar.date(byAdding: .day, value: offset, to: firstGridDate) else { return nil }
+                        let dayDay = mondayStartCalendar.startOfDay(for: day)
+                        let currentMonth = mondayStartCalendar.component(.month, from: start)
+                        let currentYear = mondayStartCalendar.component(.year, from: start)
+                        let dayMonth = mondayStartCalendar.component(.month, from: dayDay)
+                        let dayYear = mondayStartCalendar.component(.year, from: dayDay)
+                        return HabitCalendarDayState(
+                            date: dayDay,
+                            isInDisplayedMonth: currentMonth == dayMonth && currentYear == dayYear,
+                            isScheduled: streakService.isScheduled(on: dayDay, for: realHabit),
+                            isCompleted: streakService.isCompleted(on: dayDay, for: realHabit),
+                            isToday: mondayStartCalendar.isDate(dayDay, inSameDayAs: now)
+                        )
+                    }
+                }
+            }
         }
         
-        return (snapshots, selectedHabit)
+        return (snapshots, selectedHabit, dayStates, monthTitle)
     }
 }
