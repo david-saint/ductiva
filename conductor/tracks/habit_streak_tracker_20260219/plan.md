@@ -11,14 +11,14 @@ Focus on the underlying math for streaks and "Perfect Days" based on schedules.
 - [x] Task: Implement threshold detection logic in `HabitStreakService`. [dc80e91]
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Core Logic & Calculations' (Protocol in workflow.md). [592f22e]
 
-## Phase 2: Calendar ViewModel & Monthly Grid
+## Phase 2: Calendar ViewModel & Monthly Grid [checkpoint: 1334774]
 Develop the logic for the calendar grid, including date calculations and navigation.
 
 - [x] Task: Create `HabitCalendarViewModelTests.swift` to verify month navigation and scheduled day identification. [dc80e91]
 - [x] Task: Implement `HabitCalendarViewModel` to provide data for the calendar grid (dates, completion status, scheduled status). [dc80e91]
 - [x] Task: Add tests for identifying the "current day" and non-scheduled days within the monthly grid. [dc80e91]
 - [x] Task: Refine `HabitCalendarViewModel` to support month/year switching. [dc80e91]
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: Calendar ViewModel & Monthly Grid' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Calendar ViewModel & Monthly Grid' (Protocol in workflow.md). [1334774]
 
 ## Phase 3: UI Implementation (Stealth Ceramic Style)
 Build the visual components matching the design inspiration.
