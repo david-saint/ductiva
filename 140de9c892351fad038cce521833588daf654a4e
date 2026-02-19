@@ -1,0 +1,5 @@
+Task: Core Widget Logic
+Summary: Connected the main widget struct to HabitSelectionIntent and HabitTimelineProvider.
+Files modified/created:
+- ductivaWidgets/ductivaWidgets.swift
+Why: To finalize the core logic plumbing before actually building out the layouts.
