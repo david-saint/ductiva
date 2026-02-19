@@ -33,7 +33,7 @@ Build the visual components matching the design inspiration.
 ## Phase 4: Integration & Refinement
 Ensure the streak tracker updates correctly when habits are completed and follows the theme.
 
-- [~] Task: Verify real-time updates of the streak view when a habit completion is toggled in the main view.
-- [ ] Task: Audit UI against `StealthCeramicTheme` and design inspiration for spacing, tracking (4), and typography.
-- [ ] Task: Final pass on accessibility labels for the calendar and metrics.
-- [ ] Task: Conductor - User Manual Verification 'Phase 4: Integration & Refinement' (Protocol in workflow.md)
+- [x] Task: Verify real-time updates of the streak view when a habit completion is toggled in the main view. [06a0b33]
+- [x] Task: Audit UI against `StealthCeramicTheme` and design inspiration for spacing, tracking (4), and typography. [06a0b33]
+- [x] Task: Final pass on accessibility labels for the calendar and metrics. [06a0b33]
+- [~] Task: Conductor - User Manual Verification 'Phase 4: Integration & Refinement' (Protocol in workflow.md)
