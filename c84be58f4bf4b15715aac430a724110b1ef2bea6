@@ -1,0 +1,18 @@
+Task group: Phase 3 UI implementation (calendar grid, metrics, fire visuals, detail integration)
+
+Summary:
+- Added HabitCalendarGridView with month navigation, weekday legend, and scheduled-day dot rendering.
+- Added HabitMetricsView split-pane showing Current Streak and Perfect Days.
+- Integrated fire visual behavior in metrics (flame icon, warm color palette, pulse animation) when threshold is active.
+- Added HabitStreakDetailView composing history header, calendar grid, and metrics panel.
+- Replaced ConfigurationView streak sheet content from placeholder to HabitStreakDetailView.
+
+Files:
+- ductiva/HabitCalendarGridView.swift
+- ductiva/HabitMetricsView.swift
+- ductiva/HabitStreakDetailView.swift
+- ductiva/HabitCalendarViewModel.swift
+- ductiva/ConfigurationView.swift
+
+Why:
+Deliver the Phase 3 habit streak experience so users can inspect schedule-aware completion history and key streak metrics in the target visual style.
