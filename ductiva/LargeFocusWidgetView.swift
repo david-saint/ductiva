@@ -26,7 +26,12 @@ struct LargeFocusWidgetView: View {
                             .foregroundStyle(.white)
                             .lineLimit(1)
                         
-                        Text("\(habit.currentStreak) \((habit.currentStreak == 1) ? "day" : "days") streak")
+                        let scheduleStr = habit.schedule.localizedDescription
+                        let completed = habit.completions.contains { completion in
+                            Calendar.current.isDate(completion, inSameDayAs: Calendar.current.startOfDay(for: currentDate))
+                        }
+                        let timeOrStatus = habit.isScheduled(on: currentDate) ? (completed ? "Done" : timeLeft(from: currentDate)) : (completed ? "Done" : "Off Today")
+                        Text("\(habit.currentStreak) \((habit.currentStreak == 1) ? "day" : "days") streak • \(scheduleStr) • \(timeOrStatus)")
                             .font(.system(size: 12, weight: .regular))
                             .foregroundStyle(.white.opacity(0.6))
                     }
@@ -57,6 +62,24 @@ struct LargeFocusWidgetView: View {
         }
     }
     
+    // MARK: - Helpers
+    
+    private func timeLeft(from date: Date) -> String {
+        let calendar = Calendar.current
+        guard let endOfDay = calendar.date(bySettingHour: 23, minute: 59, second: 0, of: date) else {
+            return ""
+        }
+        let components = calendar.dateComponents([.hour, .minute], from: date, to: endOfDay)
+        let hours = components.hour ?? 0
+        let minutes = components.minute ?? 0
+        
+        if hours > 0 {
+            return "\(hours)hr, \(minutes)m"
+        } else {
+            return "\(minutes)m"
+        }
+    }
+
     private var emptyState: some View {
         VStack(spacing: 8) {
             Image(systemName: "calendar.badge.exclamationmark")

@@ -38,9 +38,9 @@
 
 ## Phase 4: Medium and Large Widget Implementation
 
-- [x] Task: Implement Medium Summary Widget (4x2) 4d16773
-  - [x] **Red Phase:** Write failing tests for the medium summary layout.
-  - [x] **Green Phase:** Implement the summary view showing multiple habits with streaks.
+- [x] Task: Implement Medium Summary Widget (4x1 Grid) 4d16773
+  - [x] **Red Phase:** Write failing tests for the medium 4x1 layout.
+  - [x] **Green Phase:** Implement the view showing a 4x1 row of habits, similar to the small widget.
 - [x] Task: Implement Large Overview Widget (4x4) 1a613af
   - [x] **Red Phase:** Write failing tests for the large overview layout.
   - [x] **Green Phase:** Implement the large view (e.g., a focused habit's monthly grid or all-habit summary).

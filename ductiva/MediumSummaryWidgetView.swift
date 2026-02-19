@@ -24,60 +24,98 @@ struct MediumSummaryWidgetView: View {
         }
     }
     
+    // MARK: - Body
+
     var body: some View {
         if displayedHabits.isEmpty {
             emptyState
         } else {
-            VStack(spacing: 0) {
-                ForEach(displayedHabits) { habit in
-                    habitRow(habit)
-                    if habit.id != displayedHabits.last?.id {
-                        Divider()
-                            .background(Color.white.opacity(0.1))
-                    }
-                }
-                Spacer(minLength: 0)
+            HStack(spacing: 0) {
+                let slots = habitSlots
+                slotCell(slots[0])
+                slotCell(slots[1])
+                slotCell(slots[2])
+                slotCell(slots[3])
             }
-            .padding(.vertical, 8)
-            .padding(.horizontal, 12)
+            .padding(4)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+    }
+
+    private var habitSlots: [WidgetHabitSnapshot?] {
+        var slots = displayedHabits.map(Optional.some)
+        while slots.count < 4 {
+            slots.append(nil)
+        }
+        return slots
+    }
+
+    @ViewBuilder
+    private func slotCell(_ habit: WidgetHabitSnapshot?) -> some View {
+        if let habit {
+            habitCell(habit)
+        } else {
+            Color.clear
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .accessibilityHidden(true)
+        }
+    }
+
+    @ViewBuilder
+    private func habitCell(_ habit: WidgetHabitSnapshot) -> some View {
+        let completed = isCompleted(habit)
+
+        VStack(spacing: 12) {
+            ZStack {
+                // Completion ring
+                WidgetCompletionRing(
+                    progress: HabitCompletionRingView.ringProgress(
+                        schedule: habit.schedule,
+                        now: currentDate
+                    ),
+                    isCompleted: completed,
+                    ringSize: 54 // slightly reduced to fit text
+                )
+
+                // Habit icon
+                Image(systemName: habit.iconName)
+                    .font(.system(size: 20, weight: .medium))
+                    .foregroundStyle(
+                        completed
+                            ? Color.white
+                            : Color.white.opacity(0.7)
+                    )
+            }
+            
+            let timeOrStatus = habit.isScheduled(on: currentDate) ? (completed ? "Done" : timeLeft(from: currentDate)) : (completed ? "Done" : "Off Today")
+            Text(timeOrStatus)
+                .font(.system(size: 10, weight: .regular))
+                .foregroundStyle(Color.white.opacity(0.5))
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("\(habit.name), \(completed ? "completed" : "not completed")")
+    }
+    
+    // MARK: - Helpers
+    
+    private func timeLeft(from date: Date) -> String {
+        let calendar = Calendar.current
+        guard let endOfDay = calendar.date(bySettingHour: 23, minute: 59, second: 0, of: date) else {
+            return ""
+        }
+        let components = calendar.dateComponents([.hour, .minute], from: date, to: endOfDay)
+        let hours = components.hour ?? 0
+        let minutes = components.minute ?? 0
+        
+        if hours > 0 {
+            return "\(hours)hr, \(minutes)m"
+        } else {
+            return "\(minutes)m"
         }
     }
     
-    @ViewBuilder
-    private func habitRow(_ habit: WidgetHabitSnapshot) -> some View {
-        let completed = isCompleted(habit)
-        
-        HStack(spacing: 12) {
-            Image(systemName: habit.iconName)
-                .font(.system(size: 14, weight: .medium))
-                .foregroundStyle(completed ? .white : .white.opacity(0.6))
-                .frame(width: 20)
-            
-            VStack(alignment: .leading, spacing: 2) {
-                Text(habit.name)
-                    .font(.system(size: 13, weight: .medium))
-                    .foregroundStyle(completed ? .white : .white.opacity(0.8))
-                    .lineLimit(1)
-                
-                Text("\(habit.currentStreak) \((habit.currentStreak == 1) ? "day" : "days")")
-                    .font(.system(size: 10, weight: .regular))
-                    .foregroundStyle(.white.opacity(0.5))
-            }
-            
-            Spacer()
-            
-            WidgetCompletionRing(
-                progress: HabitCompletionRingView.ringProgress(
-                    schedule: habit.schedule,
-                    now: currentDate
-                ),
-                isCompleted: completed,
-                ringSize: ringSize,
-                lineWidth: 3
-            )
-        }
-        .padding(.vertical, 6)
-    }
+    // MARK: - Empty State
     
     private var emptyState: some View {
         VStack(spacing: 6) {

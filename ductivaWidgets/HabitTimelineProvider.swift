@@ -25,9 +25,10 @@ struct HabitTimelineProvider: AppIntentTimelineProvider {
         let entry = await loadEntry(for: configuration, source: "timeline")
         
         let calendar = Calendar.current
-        let tomorrow = calendar.startOfDay(for: calendar.date(byAdding: .day, value: 1, to: Date())!)
+        // Update every 15 minutes to keep the time left relatively fresh
+        let nextUpdate = calendar.date(byAdding: .minute, value: 15, to: Date()) ?? calendar.startOfDay(for: calendar.date(byAdding: .day, value: 1, to: Date())!)
         
-        return Timeline(entries: [entry], policy: .after(tomorrow))
+        return Timeline(entries: [entry], policy: .after(nextUpdate))
     }
 
     private func loadEntry(for configuration: HabitSelectionIntent, source: String) async -> HabitTimelineEntry {

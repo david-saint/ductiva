@@ -12,6 +12,18 @@ struct WidgetHabitSnapshot: Identifiable, Hashable, Sendable {
     let currentStreak: Int
 }
 
+extension WidgetHabitSnapshot {
+    func isScheduled(on date: Date) -> Bool {
+        switch schedule {
+        case .daily, .weekly:
+            return true
+        case .specificDays(let days):
+            let weekday = Calendar.current.component(.weekday, from: date)
+            return days.contains { $0.rawValue == weekday }
+        }
+    }
+}
+
 /// A 2x2 grid widget view displaying up to 4 habits with their completion rings.
 /// Used in the `.systemSmall` widget family when no specific habit is focused.
 ///

@@ -55,7 +55,9 @@ struct LargeStandardWidgetView: View {
                     .foregroundStyle(completed ? .white : .white.opacity(0.8))
                     .lineLimit(1)
                 
-                Text("\(habit.currentStreak) \((habit.currentStreak == 1) ? "day" : "days")")
+                let scheduleStr = habit.schedule.localizedDescription
+                let timeOrStatus = habit.isScheduled(on: currentDate) ? (completed ? "Done" : timeLeft(from: currentDate)) : (completed ? "Done" : "Off Today")
+                Text("\(habit.currentStreak) \((habit.currentStreak == 1) ? "day" : "days") streak • \(scheduleStr) • \(timeOrStatus)")
                     .font(.system(size: 10, weight: .regular))
                     .foregroundStyle(.white.opacity(0.5))
             }
@@ -67,9 +69,27 @@ struct LargeStandardWidgetView: View {
                 lineWidth: 3
             )
         }
-        .padding(.vertical, 6)
+        .padding(.vertical, 12)
     }
     
+    // MARK: - Helpers
+    
+    private func timeLeft(from date: Date) -> String {
+        let calendar = Calendar.current
+        guard let endOfDay = calendar.date(bySettingHour: 23, minute: 59, second: 0, of: date) else {
+            return ""
+        }
+        let components = calendar.dateComponents([.hour, .minute], from: date, to: endOfDay)
+        let hours = components.hour ?? 0
+        let minutes = components.minute ?? 0
+        
+        if hours > 0 {
+            return "\(hours)hr, \(minutes)m"
+        } else {
+            return "\(minutes)m"
+        }
+    }
+
     private var emptyState: some View {
         VStack(spacing: 6) {
             Image(systemName: "plus.circle.dashed")
