@@ -1,0 +1,15 @@
+Task group: Habit streak tracker core logic + calendar view model
+
+Summary:
+- Added HabitStreakService with schedule-aware streak computation, perfect-day counting, completion lookup, and fire-threshold logic.
+- Added HabitCalendarViewModel + HabitCalendarDayState for month grid generation, month navigation, scheduled/completed/today flags.
+- Added and expanded unit tests for streak logic and calendar behavior including month navigation, scheduled-day detection, today marking, and month/year correctness.
+
+Files:
+- ductiva/HabitStreakService.swift
+- ductiva/HabitCalendarViewModel.swift
+- ductivaTests/HabitStreakServiceTests.swift
+- ductivaTests/HabitCalendarViewModelTests.swift
+
+Why:
+Provide the data/logic foundation required by the track spec so the upcoming UI replacement can render correct streak and calendar states across schedules.
