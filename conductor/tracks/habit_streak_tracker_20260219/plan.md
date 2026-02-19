@@ -23,12 +23,12 @@ Develop the logic for the calendar grid, including date calculations and navigat
 ## Phase 3: UI Implementation (Stealth Ceramic Style)
 Build the visual components matching the design inspiration.
 
-- [ ] Task: Create `HabitCalendarViewTests.swift` (Snapshot or UI tests if applicable, otherwise functional view tests).
-- [ ] Task: Implement `HabitCalendarGridView` showing the days of the week and dots for scheduled days.
-- [ ] Task: Implement `HabitMetricsView` to display "Current Streak" and "Perfect Days" with the split-pane design.
-- [ ] Task: Integrate "Fire" visuals (color/icon/animation) for streaks meeting thresholds.
-- [ ] Task: Replace `HabitStreakPlaceholderView` with the new integrated `HabitStreakDetailView`.
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: UI Implementation' (Protocol in workflow.md)
+- [x] Task: Create `HabitCalendarViewTests.swift` (Snapshot or UI tests if applicable, otherwise functional view tests). [b8a668e]
+- [x] Task: Implement `HabitCalendarGridView` showing the days of the week and dots for scheduled days. [c84be58]
+- [x] Task: Implement `HabitMetricsView` to display "Current Streak" and "Perfect Days" with the split-pane design. [c84be58]
+- [x] Task: Integrate "Fire" visuals (color/icon/animation) for streaks meeting thresholds. [c84be58]
+- [x] Task: Replace `HabitStreakPlaceholderView` with the new integrated `HabitStreakDetailView`. [c84be58]
+- [~] Task: Conductor - User Manual Verification 'Phase 3: UI Implementation' (Protocol in workflow.md)
 
 ## Phase 4: Integration & Refinement
 Ensure the streak tracker updates correctly when habits are completed and follows the theme.
