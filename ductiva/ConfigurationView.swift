@@ -32,7 +32,7 @@ struct ConfigurationView: View {
             .padding(.bottom, 20)
         }
         .sheet(item: $selectedHabit) { habit in
-            HabitStreakPlaceholderView(habit: habit)
+            HabitStreakDetailView(habit: habit)
                 .frame(minWidth: 360, minHeight: 400)
         }
         .sheet(isPresented: $showAddSlotSheet) {

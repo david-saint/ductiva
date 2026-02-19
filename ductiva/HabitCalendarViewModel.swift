@@ -1,4 +1,5 @@
 import Foundation
+import Observation
 
 struct HabitCalendarDayState: Identifiable {
     let date: Date
@@ -10,6 +11,7 @@ struct HabitCalendarDayState: Identifiable {
     var id: Date { date }
 }
 
+@Observable
 final class HabitCalendarViewModel {
     let habit: Habit
     let calendar: Calendar
