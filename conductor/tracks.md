@@ -4,5 +4,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [ ] **Track: Implement the habit item streak tracker feature, matching the design with scheduled-aware streak calculations.**
+- [x] **Track: Implement the habit item streak tracker feature, matching the design with scheduled-aware streak calculations.**
 *Link: [./tracks/habit_streak_tracker_20260219/](./tracks/habit_streak_tracker_20260219/)*
