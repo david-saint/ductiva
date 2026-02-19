@@ -1,0 +1,5 @@
+Task: Develop HabitTimelineProvider
+Summary: Created TimelineProvider to fetch Habit data via the shared container and serve widget entries.
+Files modified/created:
+- ductivaWidgets/HabitTimelineProvider.swift
+Why: Required by WidgetKit to provide the content/states over time for the widgets to render.
