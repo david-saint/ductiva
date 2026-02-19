@@ -14,10 +14,13 @@
 		352098F920FB25A417210379 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393C1F19CF4BFA83D18E3A1A /* Item.swift */; };
 		4D51497A197329C1BC190014 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC03042957F07E9FF1A8AB2 /* SwiftUI.framework */; };
 		4EE12300489FEA7D5F4E185E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C42CFD1A1D9A9AB0DFE965 /* WidgetKit.framework */; };
+		634F3C137B3D55AA3F1C09C7 /* WidgetLiquidGlassModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA6336E14499D5C86D27E3A /* WidgetLiquidGlassModifier.swift */; };
 		779696B259FFDE96F48C3979 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BABFD22FF199987257FDC2 /* Habit.swift */; };
 		7C7B756B6F548D1AFD36BEC0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0494D722D307F0BF359F7BBC /* Foundation.framework */; };
 		81E992BEFAEC6D943D24D8AB /* ductivaWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 650454426FB169A32581DA70 /* ductivaWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8301CEBBCF1DAA08FD7AE870 /* ductivaWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB200C78B38607C869C9D6 /* ductivaWidgetsBundle.swift */; };
+		96007DD6B09A98F3DCFD9B58 /* StealthCeramicTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33ECEE724A7173596B4A44E /* StealthCeramicTheme.swift */; };
+		9A73BF4E0E9F08C3C38B944F /* HabitCompletionRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E726B9E371488976366CF15D /* HabitCompletionRingView.swift */; };
 		E79569714B622F9B149D21CA /* HabitSelectionIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13999CFE919EB5BC19A11324 /* HabitSelectionIntent.swift */; };
 		F546DABB639BC485C89DB6B1 /* ductivaWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6DD409717A4593EC68C1D1 /* ductivaWidgets.swift */; };
 /* End PBXBuildFile section */
@@ -49,6 +52,7 @@
 /* Begin PBXFileReference section */
 		0494D722D307F0BF359F7BBC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		13999CFE919EB5BC19A11324 /* HabitSelectionIntent.swift */ = {isa = PBXFileReference; includeInIndex = 1; name = HabitSelectionIntent.swift; path = ductivaWidgets/HabitSelectionIntent.swift; sourceTree = "<group>"; };
+		1EA6336E14499D5C86D27E3A /* WidgetLiquidGlassModifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; name = WidgetLiquidGlassModifier.swift; path = ductivaWidgets/WidgetLiquidGlassModifier.swift; sourceTree = "<group>"; };
 		393C1F19CF4BFA83D18E3A1A /* Item.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Item.swift; path = ductiva/Item.swift; sourceTree = "<group>"; };
 		52C42CFD1A1D9A9AB0DFE965 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = "<group>"; };
 		650454426FB169A32581DA70 /* ductivaWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ductivaWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,7 +64,9 @@
 		C4D3047D312D4824B1FEB92B /* HabitTimelineProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; name = HabitTimelineProvider.swift; path = ductivaWidgets/HabitTimelineProvider.swift; sourceTree = "<group>"; };
 		CA6DD409717A4593EC68C1D1 /* ductivaWidgets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ductivaWidgets.swift; sourceTree = "<group>"; };
 		CCC03042957F07E9FF1A8AB2 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = "<group>"; };
+		D33ECEE724A7173596B4A44E /* StealthCeramicTheme.swift */ = {isa = PBXFileReference; includeInIndex = 1; name = StealthCeramicTheme.swift; path = ductiva/StealthCeramicTheme.swift; sourceTree = "<group>"; };
 		DE6259B3314A1C345558E11E /* SharedContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; name = SharedContainer.swift; path = ductiva/SharedContainer.swift; sourceTree = "<group>"; };
+		E726B9E371488976366CF15D /* HabitCompletionRingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; name = HabitCompletionRingView.swift; path = ductiva/HabitCompletionRingView.swift; sourceTree = "<group>"; };
 		FAC0ADFD93B0C827C201EDA2 /* HabitStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HabitStore.swift; path = ductiva/HabitStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,6 +147,9 @@
 				DE6259B3314A1C345558E11E /* SharedContainer.swift */,
 				13999CFE919EB5BC19A11324 /* HabitSelectionIntent.swift */,
 				C4D3047D312D4824B1FEB92B /* HabitTimelineProvider.swift */,
+				D33ECEE724A7173596B4A44E /* StealthCeramicTheme.swift */,
+				E726B9E371488976366CF15D /* HabitCompletionRingView.swift */,
+				1EA6336E14499D5C86D27E3A /* WidgetLiquidGlassModifier.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -318,6 +327,9 @@
 				2A669B780D63ACF24C9112DC /* SharedContainer.swift in Sources */,
 				E79569714B622F9B149D21CA /* HabitSelectionIntent.swift in Sources */,
 				109D4108173DB5394F39B9B1 /* HabitTimelineProvider.swift in Sources */,
+				96007DD6B09A98F3DCFD9B58 /* StealthCeramicTheme.swift in Sources */,
+				9A73BF4E0E9F08C3C38B944F /* HabitCompletionRingView.swift in Sources */,
+				634F3C137B3D55AA3F1C09C7 /* WidgetLiquidGlassModifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

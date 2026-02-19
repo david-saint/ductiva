@@ -3,6 +3,10 @@ import SwiftUI
 struct HabitCompletionRingView: View {
     let habit: Habit
     let isCompletedToday: Bool
+    
+    /// Optional date override. If provided, the ring will strictly render for this date
+    /// (useful for widgets where TimelineView is suspended). If nil, uses a self-updating TimelineView.
+    var explicitDate: Date? = nil
 
     @State private var glowPulse = false
 
@@ -37,22 +41,30 @@ struct HabitCompletionRingView: View {
     }
 
     var body: some View {
-        TimelineView(.periodic(from: .now, by: tickInterval)) { context in
-            let progress = effectiveProgress(now: context.date)
+        if let explicitDate = explicitDate {
+            let progress = effectiveProgress(now: explicitDate)
             let urgency = RingUrgency(progress: progress)
             ringStack(progress: progress, urgency: urgency)
-                .onChange(of: urgency == .critical) { _, isCritical in
-                    if isCritical {
-                        withAnimation(.easeInOut(duration: 1.4).repeatForever(autoreverses: true)) {
-                            glowPulse = true
+                .frame(width: 24, height: 24)
+                .accessibilityHidden(true)
+        } else {
+            TimelineView(.periodic(from: .now, by: tickInterval)) { context in
+                let progress = effectiveProgress(now: context.date)
+                let urgency = RingUrgency(progress: progress)
+                ringStack(progress: progress, urgency: urgency)
+                    .onChange(of: urgency == .critical) { _, isCritical in
+                        if isCritical {
+                            withAnimation(.easeInOut(duration: 1.4).repeatForever(autoreverses: true)) {
+                                glowPulse = true
+                            }
+                        } else {
+                            glowPulse = false
                         }
-                    } else {
-                        glowPulse = false
                     }
-                }
+            }
+            .frame(width: 24, height: 24)
+            .accessibilityHidden(true)
         }
-        .frame(width: 24, height: 24)
-        .accessibilityHidden(true)
     }
 
     @ViewBuilder
