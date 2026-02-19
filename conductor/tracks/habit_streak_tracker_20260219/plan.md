@@ -20,7 +20,7 @@ Develop the logic for the calendar grid, including date calculations and navigat
 - [x] Task: Refine `HabitCalendarViewModel` to support month/year switching. [dc80e91]
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Calendar ViewModel & Monthly Grid' (Protocol in workflow.md). [1334774]
 
-## Phase 3: UI Implementation (Stealth Ceramic Style)
+## Phase 3: UI Implementation (Stealth Ceramic Style) [checkpoint: cb8608e]
 Build the visual components matching the design inspiration.
 
 - [x] Task: Create `HabitCalendarViewTests.swift` (Snapshot or UI tests if applicable, otherwise functional view tests). [b8a668e]
@@ -28,12 +28,12 @@ Build the visual components matching the design inspiration.
 - [x] Task: Implement `HabitMetricsView` to display "Current Streak" and "Perfect Days" with the split-pane design. [c84be58]
 - [x] Task: Integrate "Fire" visuals (color/icon/animation) for streaks meeting thresholds. [c84be58]
 - [x] Task: Replace `HabitStreakPlaceholderView` with the new integrated `HabitStreakDetailView`. [c84be58]
-- [~] Task: Conductor - User Manual Verification 'Phase 3: UI Implementation' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 3: UI Implementation' (Protocol in workflow.md). [cb8608e]
 
 ## Phase 4: Integration & Refinement
 Ensure the streak tracker updates correctly when habits are completed and follows the theme.
 
-- [ ] Task: Verify real-time updates of the streak view when a habit completion is toggled in the main view.
+- [~] Task: Verify real-time updates of the streak view when a habit completion is toggled in the main view.
 - [ ] Task: Audit UI against `StealthCeramicTheme` and design inspiration for spacing, tracking (4), and typography.
 - [ ] Task: Final pass on accessibility labels for the calendar and metrics.
 - [ ] Task: Conductor - User Manual Verification 'Phase 4: Integration & Refinement' (Protocol in workflow.md)
