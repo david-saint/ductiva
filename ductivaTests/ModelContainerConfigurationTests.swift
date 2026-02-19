@@ -4,7 +4,7 @@ import XCTest
 
 final class ModelContainerConfigurationTests: XCTestCase {
     func testMakeModelContainerInMemorySupportsHabitPersistence() throws {
-        let container = try ductivaApp.makeModelContainer(inMemoryOnly: true)
+        let container = try SharedContainer.makeInMemory()
         let context = ModelContext(container)
 
         let habit = Habit(name: "Hydrate")

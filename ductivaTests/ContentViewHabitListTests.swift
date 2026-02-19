@@ -5,7 +5,7 @@ import XCTest
 
 final class ContentViewHabitListTests: XCTestCase {
     func testHabitsFetchDescriptorReturnsNewestFirst() throws {
-        let container = try ductivaApp.makeModelContainer(inMemoryOnly: true)
+        let container = try SharedContainer.makeInMemory()
         let context = ModelContext(container)
 
         context.insert(Habit(name: "Older", createdAt: Date(timeIntervalSince1970: 1_700_000_000), schedule: .daily))

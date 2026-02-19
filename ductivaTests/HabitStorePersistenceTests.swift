@@ -7,7 +7,7 @@ final class HabitStorePersistenceTests: XCTestCase {
     private var container: ModelContainer!
 
     override func setUpWithError() throws {
-        container = try ductivaApp.makeModelContainer(inMemoryOnly: true)
+        container = try SharedContainer.makeInMemory()
     }
 
     override func tearDownWithError() throws {

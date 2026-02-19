@@ -14,7 +14,7 @@ public struct SharedContainer {
             Habit.self,
         ])
         
-        guard let sharedAppGroupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.saint.ductiva") else {
+        guard let sharedAppGroupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "62LTV4PK7X.group.com.saint.ductiva") else {
             throw ContainerError.missingAppGroup
         }
         
@@ -39,5 +39,14 @@ public struct SharedContainer {
             }
             return try ModelContainer(for: schema, configurations: [modelConfiguration])
         }
+    }
+    
+    public static func makeInMemory() throws -> ModelContainer {
+        let schema = Schema([
+            Item.self,
+            Habit.self,
+        ])
+        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
+        return try ModelContainer(for: schema, configurations: [modelConfiguration])
     }
 }

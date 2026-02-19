@@ -15,7 +15,7 @@ final class NavigationTests: XCTestCase {
     }
 
     func testConfigurationViewAcceptsViewModel() throws {
-        let container = try ductivaApp.makeModelContainer(inMemoryOnly: true)
+        let container = try SharedContainer.makeInMemory()
         let context = ModelContext(container)
         let store = HabitStore(modelContext: context)
         let viewModel = ConfigurationViewModel(habitStore: store)

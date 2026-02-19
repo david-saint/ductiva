@@ -5,7 +5,7 @@ import XCTest
 
 final class ConfigurationViewModelTests: XCTestCase {
     private func makeViewModel() throws -> (ConfigurationViewModel, HabitStore) {
-        let container = try ductivaApp.makeModelContainer(inMemoryOnly: true)
+        let container = try SharedContainer.makeInMemory()
         let context = ModelContext(container)
         let store = HabitStore(modelContext: context)
         let viewModel = ConfigurationViewModel(habitStore: store)

@@ -9,7 +9,7 @@ final class HabitStoreCRUDTests: XCTestCase {
     private var store: HabitStore!
 
     override func setUpWithError() throws {
-        container = try ductivaApp.makeModelContainer(inMemoryOnly: true)
+        container = try SharedContainer.makeInMemory()
         context = ModelContext(container)
         store = HabitStore(modelContext: context)
     }
