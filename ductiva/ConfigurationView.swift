@@ -158,7 +158,7 @@ extension ConfigurationViewModel {
 }
 
 #Preview {
-    let container = try! ductivaApp.makeModelContainer(inMemoryOnly: true)
+    let container = try! SharedContainer.make()
     let context = ModelContext(container)
     let store = HabitStore(modelContext: context)
 
@@ -170,5 +170,5 @@ extension ConfigurationViewModel {
     let viewModel = ConfigurationViewModel(habitStore: store)
     viewModel.loadHabits()
 
-    return ConfigurationView(viewModel: viewModel)
+    ConfigurationView(viewModel: viewModel)
 }

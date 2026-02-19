@@ -37,28 +37,11 @@ extension View {
 struct ductivaApp: App {
     var sharedModelContainer: ModelContainer = {
         do {
-            return try makeModelContainer()
+            return try SharedContainer.make()
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
-
-    static func makeModelContainer(inMemoryOnly: Bool = false) throws -> ModelContainer {
-        let schema = Schema([
-            Item.self,
-            Habit.self,
-        ])
-        
-        if inMemoryOnly {
-            let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } else {
-            let sharedAppGroupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.saint.ductiva")!
-            let databaseURL = sharedAppGroupURL.appendingPathComponent("ductiva.sqlite")
-            let modelConfiguration = ModelConfiguration(schema: schema, url: databaseURL)
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        }
-    }
 
     @State private var showWidgets = false
 

@@ -8,7 +8,7 @@ final class SharedDataTests: XCTestCase {
         // Skip this test on CI/Linux if it causes issues, 
         // but let's try to verify the URL points to the app group
         
-        let container = try ductivaApp.makeModelContainer(inMemoryOnly: false)
+        let container = try SharedContainer.make()
         
         // ModelContainer configuration url should be in the shared App Group directory
         if let config = container.configurations.first {

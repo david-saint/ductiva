@@ -13,7 +13,7 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Infrastructure and Data Sharing' (Protocol in workflow.md) 123270f
 
 ## Phase 2: Core Widget Logic and Theming
-- [ ] Task: Implement Widget Configuration Intent
+- [~] Task: Implement Widget Configuration Intent
     - [ ] Create `HabitSelectionIntent` (AppIntent) to allow users to select a habit for the Focus widget.
     - [ ] Implement a query to provide the list of available habits to the intent.
 - [ ] Task: Develop HabitTimelineProvider
