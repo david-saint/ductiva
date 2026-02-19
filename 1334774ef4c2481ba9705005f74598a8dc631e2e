@@ -1,0 +1,16 @@
+Phase: Phase 2 - Calendar ViewModel & Monthly Grid
+
+Automated test command:
+CI=true xcodebuild -quiet -project ductiva.xcodeproj -scheme ductiva -destination 'platform=macOS' -derivedDataPath /tmp/ductiva-derived CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO test
+
+Automated test result:
+PASS (full suite green)
+
+Manual verification steps provided:
+1. Open `ductivaTests/HabitCalendarViewModelTests.swift` in Xcode.
+2. Run tests and confirm month navigation (previous/next) changes `displayedMonthStart` correctly.
+3. Confirm scheduled-day identification for specific-day habits (e.g., Mon/Wed/Fri) is accurate.
+4. Confirm `isToday` and `isInDisplayedMonth` flags are correctly set for edge cases.
+
+User confirmation:
+User explicitly confirmed Phase 2 verification in chat on 2026-02-19 ("I've verified phase 2").
