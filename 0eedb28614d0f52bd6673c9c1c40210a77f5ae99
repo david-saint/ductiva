@@ -1,0 +1,5 @@
+Task: Resolve build failure
+Summary: Fixed ViewBuilder explicit return error in ConfigurationView preview wrapper.
+Files modified/created:
+- ductiva/ConfigurationView.swift
+Why: Xcode 15+ strict ViewBuilder rules caused earlier modifications to fail.
