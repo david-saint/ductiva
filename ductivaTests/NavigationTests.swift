@@ -22,4 +22,29 @@ final class NavigationTests: XCTestCase {
         let view = ConfigurationView(viewModel: viewModel)
         XCTAssertNotNil(view)
     }
+
+    // MARK: - Deep Linking Tests
+    
+    func testValidDeepLink() {
+        let id = UUID()
+        let url = URL(string: "ductiva://habit/\(id.uuidString)")!
+        let route = HabitAppRoute(url: url)
+        XCTAssertEqual(route, .habitDetail(id: id))
+    }
+    
+    func testInvalidScheme() {
+        let url = URL(string: "https://habit/123")!
+        XCTAssertNil(HabitAppRoute(url: url))
+    }
+    
+    func testInvalidHost() {
+        let url = URL(string: "ductiva://settings/123")!
+        XCTAssertNil(HabitAppRoute(url: url))
+    }
+    
+    func testInvalidUUID() {
+        let url = URL(string: "ductiva://habit/invalid-uuid")!
+        XCTAssertNil(HabitAppRoute(url: url))
+    }
 }
+

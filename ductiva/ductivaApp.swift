@@ -8,6 +8,23 @@
 import SwiftUI
 import SwiftData
 
+// MARK: - App Routing
+enum HabitAppRoute: Equatable {
+    case habitDetail(id: UUID)
+    
+    init?(url: URL) {
+        guard url.scheme == "ductiva", url.host == "habit" else {
+            return nil
+        }
+        
+        let pathComponent = url.pathComponents.dropFirst().first ?? url.lastPathComponent
+        guard let uuid = UUID(uuidString: pathComponent) else {
+            return nil
+        }
+        self = .habitDetail(id: uuid)
+    }
+}
+
 // MARK: - Transparent Window Helper
 
 /// Makes the hosting NSWindow transparent so SwiftUI materials

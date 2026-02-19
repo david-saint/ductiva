@@ -10,7 +10,11 @@ struct WidgetLiquidGlassModifier: ViewModifier {
                 // content isn't washed out by vibrancy, while still picking up a faint
                 // desktop tint at the edges for a "liquid glass" feel.
                 ZStack {
-                    Color(red: 0.11, green: 0.11, blue: 0.12)
+                    Rectangle()
+                        .fill(.ultraThinMaterial)
+                    
+                    Rectangle()
+                        .fill(StealthCeramicTheme.chassisColor.opacity(0.55))
                 }
             }
     }

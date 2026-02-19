@@ -27,7 +27,11 @@ struct LargeStandardWidgetView: View {
         } else {
             VStack(spacing: 0) {
                 ForEach(displayedHabits) { habit in
-                    habitRow(habit)
+                    Link(destination: URL(string: "ductiva://habit/\(habit.id.uuidString)")!) {
+                        habitRow(habit)
+                    }
+                    .buttonStyle(.plain)
+                    
                     if habit.id != displayedHabits.last?.id {
                         Divider()
                             .background(Color.white.opacity(0.1))

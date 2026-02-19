@@ -57,6 +57,7 @@ struct LargeFocusWidgetView: View {
                 Spacer(minLength: 0)
             }
             .padding(12)
+            .widgetURL(URL(string: "ductiva://habit/\(habit.id.uuidString)"))
         } else {
             emptyState
         }

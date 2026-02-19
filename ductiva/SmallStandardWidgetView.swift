@@ -117,7 +117,9 @@ struct SmallStandardWidgetView: View {
     @ViewBuilder
     private func slotCell(_ habit: WidgetHabitSnapshot?) -> some View {
         if let habit {
-            habitCell(habit)
+            Link(destination: URL(string: "ductiva://habit/\(habit.id.uuidString)")!) {
+                habitCell(habit)
+            }
         } else {
             Color.clear
                 .frame(maxWidth: .infinity, maxHeight: .infinity)

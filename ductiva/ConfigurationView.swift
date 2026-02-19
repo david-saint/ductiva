@@ -45,6 +45,17 @@ struct ConfigurationView: View {
         .onAppear {
             viewModel.loadHabits()
         }
+        .onOpenURL { url in
+            if let route = HabitAppRoute(url: url) {
+                switch route {
+                case .habitDetail(let id):
+                    // Ensure habits are loaded, though they should be by the time this is called
+                    if let habit = viewModel.habits.first(where: { $0.id == id }) {
+                        selectedHabit = habit
+                    }
+                }
+            }
+        }
     }
 
     // MARK: - Header

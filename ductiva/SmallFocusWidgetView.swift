@@ -1,4 +1,5 @@
 import SwiftUI
+import WidgetKit
 
 /// A small widget view focused on a single habit, showing a large completion ring,
 /// the habit name, and schedule label. Used in `.systemSmall` when a specific habit
@@ -83,6 +84,7 @@ struct SmallFocusWidgetView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .widgetURL(URL(string: "ductiva://habit/\(habit.id.uuidString)"))
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("\(habit.name), \(isHabitCompleted ? "completed" : "not completed")")
     }
