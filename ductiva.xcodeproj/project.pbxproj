@@ -55,11 +55,15 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		85D95BA32F463421004AEA7D /* ductiva */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = ductiva;
 			sourceTree = "<group>";
 		};
 		A0B1C2D42F463421004AEA7D /* ductivaTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = ductivaTests;
 			sourceTree = "<group>";
 		};
@@ -310,7 +314,7 @@
 				CODE_SIGN_ENTITLEMENTS = ductivaWidgets/ductivaWidgets.entitlements;
 				INFOPLIST_FILE = ductivaWidgets/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.saint.ductiva.ductivaWidgets;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.davidsaint.ductiva.ductivaWidgets;
 				PRODUCT_MODULE_NAME = ductivaWidgets;
 				PRODUCT_NAME = ductivaWidgets;
 				SKIP_INSTALL = YES;
@@ -324,7 +328,7 @@
 				CODE_SIGN_ENTITLEMENTS = ductivaWidgets/ductivaWidgets.entitlements;
 				INFOPLIST_FILE = ductivaWidgets/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.saint.ductiva.ductivaWidgets;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.davidsaint.ductiva.ductivaWidgets;
 				PRODUCT_MODULE_NAME = ductivaWidgets;
 				PRODUCT_NAME = ductivaWidgets;
 				SKIP_INSTALL = YES;
