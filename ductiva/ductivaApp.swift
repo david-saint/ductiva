@@ -48,8 +48,16 @@ struct ductivaApp: App {
             Item.self,
             Habit.self,
         ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: inMemoryOnly)
-        return try ModelContainer(for: schema, configurations: [modelConfiguration])
+        
+        if inMemoryOnly {
+            let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
+            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+        } else {
+            let sharedAppGroupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.saint.ductiva")!
+            let databaseURL = sharedAppGroupURL.appendingPathComponent("ductiva.sqlite")
+            let modelConfiguration = ModelConfiguration(schema: schema, url: databaseURL)
+            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+        }
     }
 
     @State private var showWidgets = false

@@ -1,7 +1,7 @@
 # Implementation Plan: macOS Widget Extension (widgets_20260219)
 
 ## Phase 1: Infrastructure and Data Sharing
-- [ ] Task: Create Widget Extension Target
+- [~] Task: Create Widget Extension Target
     - [ ] Create a new "Widget Extension" target in the Xcode project named `ductivaWidgets`.
     - [ ] Configure the `Bundle Identifier` and `Target Membership`.
 - [ ] Task: Configure App Groups for Shared Persistence

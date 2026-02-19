@@ -6,6 +6,16 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		2F0A002CDDC064089FD55ACA /* AppIntents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83540EAD92B732DE07DA4D01 /* AppIntents.framework */; };
+		4D51497A197329C1BC190014 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC03042957F07E9FF1A8AB2 /* SwiftUI.framework */; };
+		4EE12300489FEA7D5F4E185E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C42CFD1A1D9A9AB0DFE965 /* WidgetKit.framework */; };
+		7C7B756B6F548D1AFD36BEC0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0494D722D307F0BF359F7BBC /* Foundation.framework */; };
+		81E992BEFAEC6D943D24D8AB /* ductivaWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 650454426FB169A32581DA70 /* ductivaWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8301CEBBCF1DAA08FD7AE870 /* ductivaWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB200C78B38607C869C9D6 /* ductivaWidgetsBundle.swift */; };
+		F546DABB639BC485C89DB6B1 /* ductivaWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6DD409717A4593EC68C1D1 /* ductivaWidgets.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		A0B1C2DC2F463421004AEA7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -16,9 +26,30 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		45E7C05DFCBD47C389ECAAD8 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				81E992BEFAEC6D943D24D8AB /* ductivaWidgets.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		0494D722D307F0BF359F7BBC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		52C42CFD1A1D9A9AB0DFE965 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = "<group>"; };
+		650454426FB169A32581DA70 /* ductivaWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ductivaWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		83540EAD92B732DE07DA4D01 /* AppIntents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppIntents.framework; path = System/Library/Frameworks/AppIntents.framework; sourceTree = "<group>"; };
 		85D95BA12F463421004AEA7D /* ductiva.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ductiva.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0B1C2D32F463421004AEA7D /* ductivaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ductivaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3EB200C78B38607C869C9D6 /* ductivaWidgetsBundle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ductivaWidgetsBundle.swift; sourceTree = "<group>"; };
+		CA6DD409717A4593EC68C1D1 /* ductivaWidgets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ductivaWidgets.swift; sourceTree = "<group>"; };
+		CCC03042957F07E9FF1A8AB2 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -49,15 +80,45 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CC3CEB866B11B5F1D46E64B1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C7B756B6F548D1AFD36BEC0 /* Foundation.framework in Frameworks */,
+				4EE12300489FEA7D5F4E185E /* WidgetKit.framework in Frameworks */,
+				4D51497A197329C1BC190014 /* SwiftUI.framework in Frameworks */,
+				2F0A002CDDC064089FD55ACA /* AppIntents.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		601DB1B0A9357694E1F4FF6E /* ductivaWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				C3EB200C78B38607C869C9D6 /* ductivaWidgetsBundle.swift */,
+				CA6DD409717A4593EC68C1D1 /* ductivaWidgets.swift */,
+			);
+			path = ductivaWidgets;
+			sourceTree = "<group>";
+		};
+		66CB1B0118225A6CE60224B5 /* OS X */ = {
+			isa = PBXGroup;
+			children = (
+				0494D722D307F0BF359F7BBC /* Foundation.framework */,
+			);
+			name = "OS X";
+			sourceTree = "<group>";
+		};
 		85D95B982F463421004AEA7D = {
 			isa = PBXGroup;
 			children = (
 				85D95BA32F463421004AEA7D /* ductiva */,
 				A0B1C2D42F463421004AEA7D /* ductivaTests */,
 				85D95BA22F463421004AEA7D /* Products */,
+				BAB03941BAE81410F71B49E8 /* Frameworks */,
+				601DB1B0A9357694E1F4FF6E /* ductivaWidgets */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,8 +127,20 @@
 			children = (
 				85D95BA12F463421004AEA7D /* ductiva.app */,
 				A0B1C2D32F463421004AEA7D /* ductivaTests.xctest */,
+				650454426FB169A32581DA70 /* ductivaWidgets.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		BAB03941BAE81410F71B49E8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				66CB1B0118225A6CE60224B5 /* OS X */,
+				52C42CFD1A1D9A9AB0DFE965 /* WidgetKit.framework */,
+				CCC03042957F07E9FF1A8AB2 /* SwiftUI.framework */,
+				83540EAD92B732DE07DA4D01 /* AppIntents.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -80,6 +153,7 @@
 				85D95B9D2F463421004AEA7D /* Sources */,
 				85D95B9E2F463421004AEA7D /* Frameworks */,
 				85D95B9F2F463421004AEA7D /* Resources */,
+				45E7C05DFCBD47C389ECAAD8 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -89,8 +163,6 @@
 				85D95BA32F463421004AEA7D /* ductiva */,
 			);
 			name = ductiva;
-			packageProductDependencies = (
-			);
 			productName = ductiva;
 			productReference = 85D95BA12F463421004AEA7D /* ductiva.app */;
 			productType = "com.apple.product-type.application";
@@ -112,11 +184,26 @@
 				A0B1C2D42F463421004AEA7D /* ductivaTests */,
 			);
 			name = ductivaTests;
-			packageProductDependencies = (
-			);
 			productName = ductivaTests;
 			productReference = A0B1C2D32F463421004AEA7D /* ductivaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D01C6EF3220761E0291544C9 /* ductivaWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15F4BE99104307B43976FA12 /* Build configuration list for PBXNativeTarget "ductivaWidgets" */;
+			buildPhases = (
+				C26A775B8344001F39600FC0 /* Sources */,
+				CC3CEB866B11B5F1D46E64B1 /* Frameworks */,
+				9D6BD27B01A9DE4536C86BDD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ductivaWidgets;
+			productName = ductivaWidgets;
+			productReference = 650454426FB169A32581DA70 /* ductivaWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -153,12 +240,20 @@
 			targets = (
 				85D95BA02F463421004AEA7D /* ductiva */,
 				A0B1C2D82F463421004AEA7D /* ductivaTests */,
+				D01C6EF3220761E0291544C9 /* ductivaWidgets */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		85D95B9F2F463421004AEA7D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D6BD27B01A9DE4536C86BDD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -189,6 +284,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C26A775B8344001F39600FC0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8301CEBBCF1DAA08FD7AE870 /* ductivaWidgetsBundle.swift in Sources */,
+				F546DABB639BC485C89DB6B1 /* ductivaWidgets.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -200,6 +304,34 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		3A96A60B75778336BD40314A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ductivaWidgets/ductivaWidgets.entitlements;
+				INFOPLIST_FILE = ductivaWidgets/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.saint.ductiva.ductivaWidgets;
+				PRODUCT_MODULE_NAME = ductivaWidgets;
+				PRODUCT_NAME = ductivaWidgets;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		68A157B29C20AA91EAD95E7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ductivaWidgets/ductivaWidgets.entitlements;
+				INFOPLIST_FILE = ductivaWidgets/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.saint.ductiva.ductivaWidgets;
+				PRODUCT_MODULE_NAME = ductivaWidgets;
+				PRODUCT_NAME = ductivaWidgets;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		85D95BAC2F463422004AEA7D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -325,6 +457,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ductiva/ductiva.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -357,6 +490,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ductiva/ductiva.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -429,6 +563,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		15F4BE99104307B43976FA12 /* Build configuration list for PBXNativeTarget "ductivaWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68A157B29C20AA91EAD95E7F /* Release */,
+				3A96A60B75778336BD40314A /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		85D95B9C2F463421004AEA7D /* Build configuration list for PBXProject "ductiva" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
