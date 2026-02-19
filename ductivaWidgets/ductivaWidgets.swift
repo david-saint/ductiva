@@ -11,6 +11,7 @@ struct DuctivaWidgets: Widget {
                 .widgetLiquidGlassBackground()
         }
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+        .contentMarginsDisabled()
     }
 }
 
