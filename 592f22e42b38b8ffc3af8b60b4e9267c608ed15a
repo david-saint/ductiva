@@ -1,0 +1,16 @@
+Phase: Phase 1 - Core Logic & Calculations
+
+Automated test command:
+CI=true xcodebuild -quiet -project ductiva.xcodeproj -scheme ductiva -destination 'platform=macOS' -derivedDataPath /tmp/ductiva-derived CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO test
+
+Automated test result:
+PASS (full suite green)
+
+Manual verification steps provided:
+1. Open ductiva in Xcode and run HabitStreakServiceTests.
+2. Confirm daily schedule streak counts consecutive completions and resets on missed scheduled day.
+3. Confirm weekly/specific-days schedules ignore non-scheduled days and respect scheduled-day misses.
+4. Confirm fire threshold activation behavior at >=5 for daily and 3 perfect weeks for non-daily schedules.
+
+User confirmation:
+User indicated this phase is already complete in chat on 2026-02-19 ("We\'ve already done phase 1").
