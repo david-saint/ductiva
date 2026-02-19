@@ -83,7 +83,7 @@ struct HabitTimelineProvider: AppIntentTimelineProvider {
         }
         
         var selectedHabit: WidgetHabitSnapshot? = nil
-        if let configHabitID = configuration.habit?.id, let uuid = UUID(uuidString: configHabitID) {
+        if let configHabitID = configuration.habit?.id, configHabitID != "none", let uuid = UUID(uuidString: configHabitID) {
             selectedHabit = snapshots.first(where: { $0.id == uuid })
         }
         

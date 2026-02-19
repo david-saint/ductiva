@@ -54,8 +54,10 @@ struct HabitQuery: EntityStringQuery {
         let descriptor = FetchDescriptor<Habit>(sortBy: [SortDescriptor(\.createdAt, order: .forward)])
         let habits = try context.fetch(descriptor)
         
-        return habits.map { habit in
+        var entities = [HabitEntity(id: "none", title: "None (2x2 Grid)", iconName: "square.grid.2x2")]
+        entities += habits.map { habit in
             HabitEntity(id: habit.id.uuidString, title: habit.name, iconName: habit.iconName)
         }
+        return entities
     }
 }
