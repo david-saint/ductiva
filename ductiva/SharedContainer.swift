@@ -3,6 +3,7 @@ import Foundation
 
 enum ContainerError: Error {
     case missingAppGroup
+    case missingDatabaseInExtension
 }
 
 @MainActor
@@ -18,10 +19,14 @@ public struct SharedContainer {
         }
         
         let databaseURL = sharedAppGroupURL.appendingPathComponent("ductiva.sqlite")
-        
-        // In widgets, we should be read-only to avoid file lock contention
         let isExtension = Bundle.main.bundlePath.hasSuffix(".appex")
-        let modelConfiguration = ModelConfiguration(schema: schema, url: databaseURL, allowsSave: !isExtension)
+        
+        if isExtension && !FileManager.default.fileExists(atPath: databaseURL.path) {
+            throw ContainerError.missingDatabaseInExtension
+        }
+        
+        // Removed allowsSave: !isExtension because it can cause Error 1 on macOS
+        let modelConfiguration = ModelConfiguration(schema: schema, url: databaseURL)
         
         do {
             return try ModelContainer(for: schema, configurations: [modelConfiguration])
