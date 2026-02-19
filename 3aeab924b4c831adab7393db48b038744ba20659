@@ -1,0 +1,5 @@
+Task: Fix ModelContainer loading error
+Summary: Added error handling to SharedContainer.make() to delete the SQLite store if the schema mismatches.
+Files modified/created:
+- ductiva/SharedContainer.swift
+Why: Adding an 'id' field to Habit changed the schema, causing SwiftData to crash when reading the older database file. Since this is in development, wiping the store is the safest approach.
