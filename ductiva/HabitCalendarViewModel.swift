@@ -27,11 +27,13 @@ final class HabitCalendarViewModel {
 
     init(habit: Habit, calendar: Calendar = .current, now: Date = Date()) {
         self.habit = habit
-        self.calendar = calendar
+        var mondayStartCalendar = calendar
+        mondayStartCalendar.firstWeekday = 2 // Monday
+        self.calendar = mondayStartCalendar
         self.now = now
 
-        let start = calendar.date(from: calendar.dateComponents([.year, .month], from: now))
-        self.displayedMonthStart = start ?? calendar.startOfDay(for: now)
+        let start = mondayStartCalendar.date(from: mondayStartCalendar.dateComponents([.year, .month], from: now))
+        self.displayedMonthStart = start ?? mondayStartCalendar.startOfDay(for: now)
     }
 
     var monthTitle: String {

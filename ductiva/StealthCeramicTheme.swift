@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum StealthCeramicTheme {
-    static let chassisHex = "#141416"
+    static let chassisHex = "#1C1C1E"
     static let glassMaterialToken = "ultraThinMaterial"
     static let surfaceCornerRadius: CGFloat = 8
 

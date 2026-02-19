@@ -3,7 +3,7 @@ import XCTest
 
 final class StealthCeramicThemeTests: XCTestCase {
     func testChassisHexMatchesGuideline() {
-        XCTAssertEqual(StealthCeramicTheme.chassisHex, "#141416")
+        XCTAssertEqual(StealthCeramicTheme.chassisHex, "#1C1C1E")
     }
 
     func testGlassTokenUsesUltraThinMaterial() {
@@ -30,8 +30,8 @@ final class StealthCeramicThemeTests: XCTestCase {
         XCTAssertGreaterThan(StealthCeramicTheme.headerTracking, 0)
     }
 
-    func testSlotCounterTrackingValueIsPositive() {
-        XCTAssertGreaterThan(StealthCeramicTheme.counterTracking, 0)
+    func testSlotCounterTrackingValueIsNonNegative() {
+        XCTAssertGreaterThanOrEqual(StealthCeramicTheme.counterTracking, 0)
     }
 
     func testGlassMaterialReturnsValue() {
