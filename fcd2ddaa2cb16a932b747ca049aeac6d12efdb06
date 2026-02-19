@@ -1,0 +1,6 @@
+Task: Create Widget Extension Target
+Summary: Fixed the Widget Extension bundle identifier and added missing keys to Info.plist
+Files modified/created:
+- ductiva.xcodeproj/project.pbxproj
+- ductivaWidgets/Info.plist
+Why: The main app target could not embed the extension due to mismatched bundle ID prefix and missing Info.plist keys, causing the build to fail.
