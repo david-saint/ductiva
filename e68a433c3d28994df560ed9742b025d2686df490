@@ -1,0 +1,2 @@
+Task: Debug Widget unable to load
+Summary: Updated the widget timeline and view to visually display any errors caught during data fetch, instead of crashing and showing 'Unable to load'. Also removed a force unwrap in SharedContainer.make() when resolving the App Group container URL to handle the case where the App Group capability is not properly registered or returning nil.
