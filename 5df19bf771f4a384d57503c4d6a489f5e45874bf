@@ -1,0 +1,5 @@
+Task: Create Widget Extension Target
+Summary: Added App Sandbox capability to the Widget Extension entitlements.
+Files modified/created:
+- ductivaWidgets/ductivaWidgets.entitlements
+Why: macOS widget kit extensions are required to be sandboxed. Adding this capability resolves the validation and embedding failures, allowing the widget to appear in LaunchServices.
