@@ -1,0 +1,22 @@
+Phase: Phase 3 - UI Implementation
+
+Automated test command:
+CI=true xcodebuild -quiet -project ductiva.xcodeproj -scheme ductiva -destination 'platform=macOS' -derivedDataPath /tmp/ductiva-derived CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO -enableCodeCoverage YES test
+
+Automated test result:
+PASS (full suite green)
+Coverage summary:
+- ductiva.app: 83.00% (1718/2070)
+
+Manual verification plan:
+The automated tests have passed. For manual verification, please follow these steps:
+
+Manual Verification Steps:
+1. Start the app from Xcode by running the `ductiva` scheme (Cmd+R).
+2. In Configuration, click any habit row to open the streak detail sheet.
+3. Confirm that you see: a `HISTORY_LOG_V2.0` header, month title with left/right arrows, weekday initials, and dot-only calendar cells where only scheduled days show dots.
+4. Use the month arrows and confirm that the grid updates to the selected month while preserving scheduled/completed day behavior.
+5. Confirm that you see: a split metrics panel at the bottom with `CURRENT STREAK` and `PERFECT DAYS`, and when streak threshold conditions are met, a flame icon plus warm color/pulse fire visual.
+
+User confirmation:
+User requested to proceed with completion workflow on 2026-02-19 ("proceed").
