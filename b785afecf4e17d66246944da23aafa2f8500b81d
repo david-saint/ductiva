@@ -1,0 +1,13 @@
+Task: Implement Small Focus Widget (Single Habit)
+
+Summary: Implemented SmallFocusWidgetView showing a single focused habit with a large 64pt WidgetCompletionRing, habit icon, uppercase monospaced name, and schedule label. Updated DuctivaWidgetEntryView to route between SmallStandardWidgetView (no selection) and SmallFocusWidgetView (habit selected) for .systemSmall, with placeholders for medium/large.
+
+Files Created:
+- ductiva/SmallFocusWidgetView.swift (SmallFocusWidgetView)
+- ductivaTests/SmallFocusWidgetTests.swift (15 unit tests)
+
+Files Modified:
+- ductivaWidgets/ductivaWidgets.swift (replaced placeholder with family-aware routing)
+- ductiva.xcodeproj/project.pbxproj (added SmallFocusWidgetView to ductivaWidgets target)
+
+Why: Phase 3 requires a focus mode small widget that shows a single habit's status when selected via the widget configuration intent.
