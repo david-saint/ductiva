@@ -13,12 +13,12 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Infrastructure and Data Sharing' (Protocol in workflow.md) 123270f
 
 ## Phase 2: Core Widget Logic and Theming
-- [~] Task: Implement Widget Configuration Intent
-    - [ ] Create `HabitSelectionIntent` (AppIntent) to allow users to select a habit for the Focus widget.
-    - [ ] Implement a query to provide the list of available habits to the intent.
-- [ ] Task: Develop HabitTimelineProvider
-    - [ ] Implement `TimelineProvider` to fetch habit data and generate snapshots/entries.
-    - [ ] Ensure the provider correctly handles "No Habits" or "Empty" states.
+- [x] Task: Implement Widget Configuration Intent 5bd13a2
+    - [x] Create `HabitSelectionIntent` (AppIntent) to allow users to select a habit for the Focus widget.
+    - [x] Implement a query to provide the list of available habits to the intent.
+- [x] Task: Develop HabitTimelineProvider
+    - [x] Implement `TimelineProvider` to fetch habit data and generate snapshots/entries.
+    - [x] Ensure the provider correctly handles "No Habits" or "Empty" states.
 - [ ] Task: Create Shared Widget UI Components
     - [ ] Implement a "Liquid Glass" translucent background modifier/view for widgets.
     - [ ] Adapt `HabitCompletionRingView` for use in the widget environment.

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00DC0C42356E512A02DDCE33 /* HabitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC0ADFD93B0C827C201EDA2 /* HabitStore.swift */; };
+		109D4108173DB5394F39B9B1 /* HabitTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D3047D312D4824B1FEB92B /* HabitTimelineProvider.swift */; };
 		2A669B780D63ACF24C9112DC /* SharedContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6259B3314A1C345558E11E /* SharedContainer.swift */; };
 		2F0A002CDDC064089FD55ACA /* AppIntents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83540EAD92B732DE07DA4D01 /* AppIntents.framework */; };
 		352098F920FB25A417210379 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393C1F19CF4BFA83D18E3A1A /* Item.swift */; };
@@ -56,6 +57,7 @@
 		85D95BA12F463421004AEA7D /* ductiva.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ductiva.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0B1C2D32F463421004AEA7D /* ductivaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ductivaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3EB200C78B38607C869C9D6 /* ductivaWidgetsBundle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ductivaWidgetsBundle.swift; sourceTree = "<group>"; };
+		C4D3047D312D4824B1FEB92B /* HabitTimelineProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; name = HabitTimelineProvider.swift; path = ductivaWidgets/HabitTimelineProvider.swift; sourceTree = "<group>"; };
 		CA6DD409717A4593EC68C1D1 /* ductivaWidgets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ductivaWidgets.swift; sourceTree = "<group>"; };
 		CCC03042957F07E9FF1A8AB2 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = "<group>"; };
 		DE6259B3314A1C345558E11E /* SharedContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; name = SharedContainer.swift; path = ductiva/SharedContainer.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				FAC0ADFD93B0C827C201EDA2 /* HabitStore.swift */,
 				DE6259B3314A1C345558E11E /* SharedContainer.swift */,
 				13999CFE919EB5BC19A11324 /* HabitSelectionIntent.swift */,
+				C4D3047D312D4824B1FEB92B /* HabitTimelineProvider.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -314,6 +317,7 @@
 				00DC0C42356E512A02DDCE33 /* HabitStore.swift in Sources */,
 				2A669B780D63ACF24C9112DC /* SharedContainer.swift in Sources */,
 				E79569714B622F9B149D21CA /* HabitSelectionIntent.swift in Sources */,
+				109D4108173DB5394F39B9B1 /* HabitTimelineProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
