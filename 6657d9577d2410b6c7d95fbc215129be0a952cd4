@@ -1,0 +1,4 @@
+Task: Fix ModelContainer loading error in Widget
+Summary: Removed allowsSave: !isExtension which is known to cause Error 1 in some macOS SwiftData environments, and added a graceful guard for when the db doesn't exist yet.
+Files modified/created:
+- ductiva/SharedContainer.swift
