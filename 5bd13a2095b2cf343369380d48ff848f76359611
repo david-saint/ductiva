@@ -1,0 +1,10 @@
+Task: Implement Widget Configuration Intent
+Summary: Created AppIntent for selecting a Habit and enabled sharing of Core Data / SwiftData models across both targets.
+Files modified/created:
+- ductiva/Habit.swift
+- ductiva/SharedContainer.swift
+- ductiva/ductivaApp.swift
+- ductivaTests/SharedDataTests.swift
+- ductivaWidgets/HabitSelectionIntent.swift
+- project.pbxproj
+Why: The widget needs to be able to fetch and configure which habits to show, which requires exposing the models and AppIntent configurations.
