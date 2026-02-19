@@ -1,6 +1,6 @@
 # Implementation Plan: macOS Widget Extension (widgets_20260219)
 
-## Phase 1: Infrastructure and Data Sharing
+## Phase 1: Infrastructure and Data Sharing [checkpoint: 123270f]
 - [x] Task: Create Widget Extension Target 8d75052
     - [x] Create a new "Widget Extension" target in the Xcode project named `ductivaWidgets`.
     - [x] Configure the `Bundle Identifier` and `Target Membership`.
@@ -10,7 +10,7 @@
     - [x] Update `HabitStore` or the SwiftData container initialization to use the shared App Group URL.
 - [x] Task: Verify Shared Data Access 8d75052
     - [x] Write a test/utility to confirm the widget target can read data from the shared SwiftData container.
-- [~] Task: Conductor - User Manual Verification 'Phase 1: Infrastructure and Data Sharing' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Infrastructure and Data Sharing' (Protocol in workflow.md) 123270f
 
 ## Phase 2: Core Widget Logic and Theming
 - [ ] Task: Implement Widget Configuration Intent
