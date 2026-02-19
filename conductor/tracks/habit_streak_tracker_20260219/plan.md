@@ -1,6 +1,6 @@
 # Implementation Plan: Habit Item Streak Tracker
 
-## Phase 1: Core Logic & Calculations (TDD)
+## Phase 1: Core Logic & Calculations (TDD) [checkpoint: 592f22e]
 Focus on the underlying math for streaks and "Perfect Days" based on schedules.
 
 - [x] Task: Create `HabitStreakServiceTests.swift` and define initial test cases for daily habits. [dc80e91]
@@ -9,7 +9,7 @@ Focus on the underlying math for streaks and "Perfect Days" based on schedules.
 - [x] Task: Update `HabitStreakService` to handle complex schedules and streak resets correctly. [dc80e91]
 - [x] Task: Add tests for "Fire Visual" threshold detection (5+ days or 3+ consecutive weeks). [dc80e91]
 - [x] Task: Implement threshold detection logic in `HabitStreakService`. [dc80e91]
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Core Logic & Calculations' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Core Logic & Calculations' (Protocol in workflow.md). [592f22e]
 
 ## Phase 2: Calendar ViewModel & Monthly Grid
 Develop the logic for the calendar grid, including date calculations and navigation.
