@@ -1,0 +1,12 @@
+Task: Create HabitCalendarViewTests.swift
+
+Summary:
+- Added new functional view test suite for the habit streak UI layer.
+- Introduced creation/render tests for HabitCalendarGridView, HabitMetricsView, and HabitStreakDetailView.
+- Confirmed Red phase by running only HabitCalendarViewTests and observing expected compile failures for missing view types.
+
+Files:
+- ductivaTests/HabitCalendarViewTests.swift
+
+Why:
+Define the expected UI surface before implementation so Phase 3 follows TDD from failing tests to concrete view code.
