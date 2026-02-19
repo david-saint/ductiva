@@ -33,8 +33,8 @@ enum StealthCeramicTheme {
 
     // MARK: - Typography
 
-    static let headerTracking: CGFloat = 4
-    static let counterTracking: CGFloat = 2
+    static let headerTracking: CGFloat = 1
+    static let counterTracking: CGFloat = 0
 
     // MARK: - Materials
 

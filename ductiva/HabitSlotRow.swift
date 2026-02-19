@@ -51,9 +51,14 @@ struct HabitSlotRow: View {
                 .font(.system(size: 16))
                 .foregroundStyle(StealthCeramicTheme.secondaryTextColor)
                 .frame(width: 24)
-            Text(habit.name)
-                .font(.system(size: 13))
-                .foregroundStyle(StealthCeramicTheme.primaryTextColor)
+            VStack(alignment: .leading, spacing: 1) {
+                Text(habit.name)
+                    .font(.system(size: 13))
+                    .foregroundStyle(StealthCeramicTheme.primaryTextColor)
+                Text(habit.schedule.localizedDescription)
+                    .font(.system(size: 10, weight: .medium))
+                    .foregroundStyle(StealthCeramicTheme.secondaryTextColor.opacity(0.8))
+            }
             Spacer()
             Image(systemName: isCompletedToday ? "checkmark.circle.fill" : "circle")
                 .font(.system(size: 15, weight: .semibold))

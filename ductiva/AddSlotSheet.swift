@@ -4,7 +4,9 @@ import SwiftUI
 /// Presents a form with name field, icon picker grid, and schedule picker.
 struct AddSlotSheet: View {
     /// The available SF Symbol icon options for habit slots.
+    /// The available SF Symbol icon options for habit slots.
     static let iconOptions: [String] = [
+        // Existing
         "display",
         "dumbbell",
         "chevron.left.forwardslash.chevron.right",
@@ -13,6 +15,42 @@ struct AddSlotSheet: View {
         "heart",
         "target",
         "pencil",
+        // Health
+        "figure.run",
+        "figure.mind.and.body",
+        "bed.double",
+        "drop",
+        "fork.knife",
+        "pills",
+        "sun.max",
+        // Productivity
+        "briefcase",
+        "graduationcap",
+        "list.bullet.clipboard",
+        "clock",
+        "envelope",
+        "phone",
+        // Creative
+        "paintbrush",
+        "music.note",
+        "camera",
+        "gamecontroller",
+        "tv",
+        // Lifestyle
+        "house",
+        "cart",
+        "car",
+        "pawprint",
+        "leaf",
+        "bubble.left.and.bubble.right",
+        // Finance
+        "banknote",
+        "chart.pie",
+        // Misc
+        "lightbulb",
+        "flame",
+        "star",
+        "bolt"
     ]
 
     /// The name entered by the user.
@@ -66,7 +104,7 @@ struct AddSlotSheet: View {
             }
             .padding(24)
         }
-        .frame(minWidth: 300, idealWidth: 320, minHeight: 420)
+        .frame(minWidth: 320, idealWidth: 360, minHeight: 450)
     }
 
     // MARK: - Header
@@ -109,31 +147,35 @@ struct AddSlotSheet: View {
                 .tracking(StealthCeramicTheme.counterTracking)
                 .foregroundStyle(StealthCeramicTheme.secondaryTextColor)
 
-            LazyVGrid(columns: Array(repeating: GridItem(.fixed(44), spacing: 8), count: 4), spacing: 8) {
-                ForEach(Self.iconOptions, id: \.self) { icon in
-                    Button {
-                        selectedIcon = icon
-                    } label: {
-                        Image(systemName: icon)
-                            .font(.system(size: 18))
-                            .foregroundStyle(
-                                selectedIcon == icon
-                                    ? StealthCeramicTheme.solidButtonForeground
-                                    : StealthCeramicTheme.secondaryTextColor
-                            )
-                            .frame(width: 44, height: 44)
-                            .background {
-                                RoundedRectangle(cornerRadius: 6, style: .continuous)
-                                    .fill(
-                                        selectedIcon == icon
-                                            ? StealthCeramicTheme.solidButtonBackground
-                                            : StealthCeramicTheme.surfaceColor
-                                    )
-                            }
+            ScrollView {
+                LazyVGrid(columns: Array(repeating: GridItem(.fixed(40), spacing: 8), count: 6), spacing: 8) {
+                    ForEach(Self.iconOptions, id: \.self) { icon in
+                        Button {
+                            selectedIcon = icon
+                        } label: {
+                            Image(systemName: icon)
+                                .font(.system(size: 16))
+                                .foregroundStyle(
+                                    selectedIcon == icon
+                                        ? StealthCeramicTheme.solidButtonForeground
+                                        : StealthCeramicTheme.secondaryTextColor
+                                )
+                                .frame(width: 40, height: 40)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 6, style: .continuous)
+                                        .fill(
+                                            selectedIcon == icon
+                                                ? StealthCeramicTheme.solidButtonBackground
+                                                : StealthCeramicTheme.surfaceColor
+                                        )
+                                }
+                        }
+                        .buttonStyle(.plain)
                     }
-                    .buttonStyle(.plain)
                 }
+                .padding(2)
             }
+            .frame(maxHeight: 180)
         }
     }
 

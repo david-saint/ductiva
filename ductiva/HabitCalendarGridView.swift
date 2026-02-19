@@ -23,7 +23,7 @@ struct HabitCalendarGridView: View {
             Button(action: onShowPreviousMonth) {
                 Image(systemName: "chevron.left")
                     .font(.system(size: 12, weight: .semibold))
-                    .foregroundStyle(StealthCeramicTheme.secondaryTextColor)
+                    .foregroundStyle(StealthCeramicTheme.primaryTextColor)
                     .frame(width: 20, height: 20)
             }
             .buttonStyle(.plain)
@@ -32,7 +32,7 @@ struct HabitCalendarGridView: View {
             Spacer()
 
             Text(monthTitle.uppercased())
-                .font(.system(size: 22, weight: .semibold, design: .monospaced))
+                .font(.system(size: 16, weight: .medium, design: .monospaced))
                 .tracking(StealthCeramicTheme.headerTracking)
                 .foregroundStyle(StealthCeramicTheme.primaryTextColor)
 
@@ -41,7 +41,7 @@ struct HabitCalendarGridView: View {
             Button(action: onShowNextMonth) {
                 Image(systemName: "chevron.right")
                     .font(.system(size: 12, weight: .semibold))
-                    .foregroundStyle(StealthCeramicTheme.secondaryTextColor)
+                    .foregroundStyle(StealthCeramicTheme.primaryTextColor)
                     .frame(width: 20, height: 20)
             }
             .buttonStyle(.plain)
@@ -54,7 +54,7 @@ struct HabitCalendarGridView: View {
             ForEach(weekdaySymbols, id: \.self) { symbol in
                 Text(symbol)
                     .font(.system(size: 11, weight: .medium, design: .monospaced))
-                    .foregroundStyle(StealthCeramicTheme.secondaryTextColor.opacity(0.6))
+                    .foregroundStyle(StealthCeramicTheme.secondaryTextColor.opacity(0.45))
                     .frame(maxWidth: .infinity)
             }
         }

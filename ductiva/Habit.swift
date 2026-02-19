@@ -10,6 +10,18 @@ enum HabitWeekday: Int, CaseIterable {
     case thursday = 5
     case friday = 6
     case saturday = 7
+
+    var shortName: String {
+        switch self {
+        case .sunday: return "Su"
+        case .monday: return "M"
+        case .tuesday: return "Tu"
+        case .wednesday: return "W"
+        case .thursday: return "Th"
+        case .friday: return "F"
+        case .saturday: return "Sa"
+        }
+    }
 }
 
 /// Frequency configuration for a habit.
@@ -17,6 +29,22 @@ enum HabitSchedule: Equatable {
     case daily
     case weekly
     case specificDays([HabitWeekday])
+
+    var localizedDescription: String {
+        switch self {
+        case .daily:
+            return "Daily"
+        case .weekly:
+            return "Weekly"
+        case let .specificDays(days):
+            if days.count == 7 {
+                return "Daily"
+            }
+            let sortedDays = days.sorted { $0.rawValue < $1.rawValue }
+            let dayStrings = sortedDays.map(\.shortName).joined(separator: ", ")
+            return "Every \(dayStrings)"
+        }
+    }
 }
 
 @Model

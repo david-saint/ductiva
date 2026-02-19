@@ -7,7 +7,7 @@ final class AddSlotSheetTests: XCTestCase {
     // MARK: - Task 3.1: AddSlotSheet modal
 
     func testIconOptionsContainsExpectedSymbols() {
-        let expectedIcons = ["display", "dumbbell", "chevron.left.forwardslash.chevron.right", "book", "brain.head.profile", "heart", "target", "pencil"]
+        let expectedIcons = ["display", "dumbbell", "chevron.left.forwardslash.chevron.right", "book", "brain.head.profile", "heart", "target", "pencil", "figure.run", "music.note", "house", "banknote"]
         for icon in expectedIcons {
             XCTAssertTrue(
                 AddSlotSheet.iconOptions.contains(icon),
@@ -16,8 +16,8 @@ final class AddSlotSheetTests: XCTestCase {
         }
     }
 
-    func testIconOptionsHasEightEntries() {
-        XCTAssertEqual(AddSlotSheet.iconOptions.count, 8)
+    func testIconOptionsHasExpandedEntries() {
+        XCTAssertEqual(AddSlotSheet.iconOptions.count, 38)
     }
 
     func testValidationRejectsEmptyName() {

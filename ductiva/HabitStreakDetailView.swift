@@ -25,7 +25,7 @@ struct HabitStreakDetailView: View {
                 Text("HISTORY_LOG_V2.0")
                     .font(.system(size: 11, weight: .medium, design: .monospaced))
                     .tracking(StealthCeramicTheme.headerTracking)
-                    .foregroundStyle(StealthCeramicTheme.secondaryTextColor.opacity(0.65))
+                    .foregroundStyle(StealthCeramicTheme.secondaryTextColor.opacity(0.4))
                     .padding(.top, 10)
 
                 Spacer().frame(height: 18)
@@ -36,6 +36,7 @@ struct HabitStreakDetailView: View {
                     onShowPreviousMonth: { calendarViewModel.showPreviousMonth() },
                     onShowNextMonth: { calendarViewModel.showNextMonth() }
                 )
+                .frame(maxWidth: 360)
                 .padding(.horizontal, 24)
                 .padding(.bottom, 28)
 
