@@ -12,7 +12,7 @@
     - [x] Write a test/utility to confirm the widget target can read data from the shared SwiftData container.
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Infrastructure and Data Sharing' (Protocol in workflow.md) 123270f
 
-## Phase 2: Core Widget Logic and Theming
+## Phase 2: Core Widget Logic and Theming [checkpoint: a843401]
 - [x] Task: Implement Widget Configuration Intent 5bd13a2
     - [x] Create `HabitSelectionIntent` (AppIntent) to allow users to select a habit for the Focus widget.
     - [x] Implement a query to provide the list of available habits to the intent.
@@ -22,7 +22,7 @@
 - [x] Task: Create Shared Widget UI Components
     - [x] Implement a "Liquid Glass" translucent background modifier/view for widgets.
     - [x] Adapt `HabitCompletionRingView` for use in the widget environment.
-- [~] Task: Conductor - User Manual Verification 'Phase 2: Core Widget Logic and Theming' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Core Widget Logic and Theming' (Protocol in workflow.md) a843401
 
 ## Phase 3: Small Widget Implementation (Standard & Focus)
 - [ ] Task: Implement Small Standard Widget (2x2 Grid)
