@@ -46,7 +46,7 @@
   - [x] **Green Phase:** Implement the large view (e.g., a focused habit's monthly grid or all-habit summary).
 - [x] Task: Conductor - User Manual Verification 'Phase 4: Medium and Large Widget Implementation' (Protocol in workflow.md) (a2963cf)
 
-## Phase 5: Deep Linking and Final Polishing
+## Phase 5: Deep Linking and Final Polishing [checkpoint: 7f24c6d]
 
 - [x] Task: Implement Deep Linking Support (1413a82)
   - [x] Define a custom URL scheme (e.g., `ductiva://habit/{id}`).
@@ -55,4 +55,4 @@
 - [x] Task: Final UI/UX Refinement (1413a82)
   - [x] Verify translucency and "Liquid Glass" effects against design inspiration.
   - [x] Ensure consistent typography and spacing across all widget sizes.
-- [~] Task: Conductor - User Manual Verification 'Phase 5: Deep Linking and Final Polishing' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 5: Deep Linking and Final Polishing' (Protocol in workflow.md) (7f24c6d)
