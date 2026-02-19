@@ -9,6 +9,7 @@ struct WidgetHabitSnapshot: Identifiable, Hashable, Sendable {
     let iconName: String
     let schedule: HabitSchedule
     let completions: [Date]
+    let currentStreak: Int
 }
 
 /// A 2x2 grid widget view displaying up to 4 habits with their completion rings.

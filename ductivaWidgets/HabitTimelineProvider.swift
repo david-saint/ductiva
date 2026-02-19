@@ -72,13 +72,16 @@ struct HabitTimelineProvider: AppIntentTimelineProvider {
         let context = container.mainContext
         let descriptor = FetchDescriptor<Habit>(sortBy: [SortDescriptor(\.createdAt, order: .forward)])
         let allHabits = try context.fetch(descriptor)
+        let streakService = HabitStreakService(calendar: Calendar.current, now: Date())
         let snapshots = allHabits.map { habit in
-            WidgetHabitSnapshot(
+            let streakSnapshot = streakService.snapshot(for: habit)
+            return WidgetHabitSnapshot(
                 id: habit.id,
                 name: habit.name,
                 iconName: habit.iconName,
                 schedule: habit.schedule,
-                completions: habit.completions
+                completions: habit.completions,
+                currentStreak: streakSnapshot.currentStreak
             )
         }
         

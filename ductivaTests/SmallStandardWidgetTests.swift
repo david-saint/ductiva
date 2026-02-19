@@ -77,7 +77,8 @@ final class SmallStandardWidgetTests: XCTestCase {
             name: "Test",
             iconName: "target",
             schedule: .daily,
-            completions: [calendar.startOfDay(for: today)]
+            completions: [calendar.startOfDay(for: today)],
+            currentStreak: 1
         )
         let view = SmallStandardWidgetView(habits: [habit], currentDate: today)
         XCTAssertTrue(view.isCompleted(habit))
@@ -89,7 +90,8 @@ final class SmallStandardWidgetTests: XCTestCase {
             name: "Test",
             iconName: "target",
             schedule: .daily,
-            completions: []
+            completions: [],
+            currentStreak: 0
         )
         let view = SmallStandardWidgetView(habits: [habit], currentDate: Self.fixedDate)
         XCTAssertFalse(view.isCompleted(habit))
@@ -133,7 +135,8 @@ final class SmallStandardWidgetTests: XCTestCase {
                 name: names[i % names.count],
                 iconName: icons[i % icons.count],
                 schedule: .daily,
-                completions: []
+                completions: [],
+                currentStreak: 0
             )
         }
     }

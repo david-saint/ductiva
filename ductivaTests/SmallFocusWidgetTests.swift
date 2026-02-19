@@ -129,14 +129,16 @@ final class SmallFocusWidgetTests: XCTestCase {
         name: String = "Deep Work",
         iconName: String = "display",
         schedule: HabitSchedule = .daily,
-        completions: [Date] = []
+        completions: [Date] = [],
+        currentStreak: Int = 0
     ) -> WidgetHabitSnapshot {
         WidgetHabitSnapshot(
             id: UUID(),
             name: name,
             iconName: iconName,
             schedule: schedule,
-            completions: completions
+            completions: completions,
+            currentStreak: currentStreak
         )
     }
 }

@@ -47,13 +47,11 @@ struct DuctivaWidgetEntryView: View {
         }
     }
 
-    // MARK: - Medium Widget (placeholder until Phase 4)
+    // MARK: - Medium Widget
 
     @ViewBuilder
     private var mediumWidget: some View {
-        Text("MEDIUM")
-            .font(.system(size: 10, weight: .medium, design: .monospaced))
-            .foregroundStyle(StealthCeramicTheme.secondaryTextColor)
+        MediumSummaryWidgetView(habits: entry.habits, currentDate: entry.date)
     }
 
     // MARK: - Large Widget (placeholder until Phase 4)

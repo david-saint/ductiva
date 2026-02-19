@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		00DC0C42356E512A02DDCE33 /* HabitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC0ADFD93B0C827C201EDA2 /* HabitStore.swift */; };
+		0D46B6713C3C4AE5242001C3 /* HabitStreakService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C382DFE0C85ADA42D66EDF6F /* HabitStreakService.swift */; };
 		109D4108173DB5394F39B9B1 /* HabitTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D3047D312D4824B1FEB92B /* HabitTimelineProvider.swift */; };
+		115F3A2B3D341A69081C2B73 /* MediumSummaryWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766F87DA53E208AF2BBF091 /* MediumSummaryWidgetView.swift */; };
 		2A669B780D63ACF24C9112DC /* SharedContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6259B3314A1C345558E11E /* SharedContainer.swift */; };
 		2F0A002CDDC064089FD55ACA /* AppIntents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83540EAD92B732DE07DA4D01 /* AppIntents.framework */; };
 		352098F920FB25A417210379 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393C1F19CF4BFA83D18E3A1A /* Item.swift */; };
@@ -59,11 +61,13 @@
 		52C42CFD1A1D9A9AB0DFE965 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = "<group>"; };
 		650454426FB169A32581DA70 /* ductivaWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ductivaWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		70BABFD22FF199987257FDC2 /* Habit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Habit.swift; path = ductiva/Habit.swift; sourceTree = "<group>"; };
+		7766F87DA53E208AF2BBF091 /* MediumSummaryWidgetView.swift */ = {isa = PBXFileReference; includeInIndex = 1; name = MediumSummaryWidgetView.swift; path = ductiva/MediumSummaryWidgetView.swift; sourceTree = "<group>"; };
 		83540EAD92B732DE07DA4D01 /* AppIntents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppIntents.framework; path = System/Library/Frameworks/AppIntents.framework; sourceTree = "<group>"; };
 		85D95BA12F463421004AEA7D /* ductiva.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ductiva.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0B1C2D32F463421004AEA7D /* ductivaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ductivaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B2C3D4E5F60718A9B0C1D3 /* SmallStandardWidgetView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SmallStandardWidgetView.swift; path = ductiva/SmallStandardWidgetView.swift; sourceTree = "<group>"; };
 		B2C3D4E5F6071829A0B1C2D4 /* SmallFocusWidgetView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SmallFocusWidgetView.swift; path = ductiva/SmallFocusWidgetView.swift; sourceTree = "<group>"; };
+		C382DFE0C85ADA42D66EDF6F /* HabitStreakService.swift */ = {isa = PBXFileReference; includeInIndex = 1; name = HabitStreakService.swift; path = ductiva/HabitStreakService.swift; sourceTree = "<group>"; };
 		C3EB200C78B38607C869C9D6 /* ductivaWidgetsBundle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ductivaWidgetsBundle.swift; sourceTree = "<group>"; };
 		C4D3047D312D4824B1FEB92B /* HabitTimelineProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HabitTimelineProvider.swift; path = ductivaWidgets/HabitTimelineProvider.swift; sourceTree = "<group>"; };
 		CA6DD409717A4593EC68C1D1 /* ductivaWidgets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ductivaWidgets.swift; sourceTree = "<group>"; };
@@ -77,11 +81,15 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		85D95BA32F463421004AEA7D /* ductiva */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = ductiva;
 			sourceTree = "<group>";
 		};
 		A0B1C2D42F463421004AEA7D /* ductivaTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = ductivaTests;
 			sourceTree = "<group>";
 		};
@@ -152,6 +160,8 @@
 				A1B2C3D4E5F60718A9B0C1D3 /* SmallStandardWidgetView.swift */,
 				B2C3D4E5F6071829A0B1C2D4 /* SmallFocusWidgetView.swift */,
 				1EA6336E14499D5C86D27E3A /* WidgetLiquidGlassModifier.swift */,
+				7766F87DA53E208AF2BBF091 /* MediumSummaryWidgetView.swift */,
+				C382DFE0C85ADA42D66EDF6F /* HabitStreakService.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -334,6 +344,8 @@
 				A1B2C3D4E5F60718A9B0C1D2 /* SmallStandardWidgetView.swift in Sources */,
 				B2C3D4E5F6071829A0B1C2D3 /* SmallFocusWidgetView.swift in Sources */,
 				634F3C137B3D55AA3F1C09C7 /* WidgetLiquidGlassModifier.swift in Sources */,
+				115F3A2B3D341A69081C2B73 /* MediumSummaryWidgetView.swift in Sources */,
+				0D46B6713C3C4AE5242001C3 /* HabitStreakService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
