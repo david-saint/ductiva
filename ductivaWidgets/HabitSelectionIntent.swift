@@ -34,21 +34,17 @@ struct HabitEntity: AppEntity, Identifiable, Hashable {
 
 struct HabitQuery: EntityStringQuery {
     func entities(for identifiers: [HabitEntity.ID]) async throws -> [HabitEntity] {
-        let allHabits = try await fetchHabits()
+        let allHabits = (try? await fetchHabits()) ?? []
         return allHabits.filter { identifiers.contains($0.id) }
     }
     
     func entities(matching string: String) async throws -> [HabitEntity] {
-        let allHabits = try await fetchHabits()
+        let allHabits = (try? await fetchHabits()) ?? []
         return allHabits.filter { $0.title.localizedCaseInsensitiveContains(string) }
     }
     
     func suggestedEntities() async throws -> [HabitEntity] {
-        try await fetchHabits()
-    }
-    
-    func defaultResult() async -> HabitEntity? {
-        try? await fetchHabits().first
+        (try? await fetchHabits()) ?? []
     }
     
     @MainActor

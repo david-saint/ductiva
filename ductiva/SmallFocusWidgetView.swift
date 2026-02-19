@@ -8,7 +8,7 @@ import SwiftUI
 /// centered large ring with the habit icon inside, habit name in uppercase
 /// monospaced below, and a subtle schedule descriptor.
 struct SmallFocusWidgetView: View {
-    let habit: Habit?
+    let habit: WidgetHabitSnapshot?
     let currentDate: Date
 
     // MARK: - Computed Properties
@@ -50,7 +50,7 @@ struct SmallFocusWidgetView: View {
     // MARK: - Focus Content
 
     @ViewBuilder
-    private func focusContent(_ habit: Habit) -> some View {
+    private func focusContent(_ habit: WidgetHabitSnapshot) -> some View {
         VStack(spacing: 8) {
             ZStack {
                 WidgetCompletionRing(
@@ -63,22 +63,22 @@ struct SmallFocusWidgetView: View {
                     .font(.system(size: 22, weight: .medium))
                     .foregroundStyle(
                         isHabitCompleted
-                            ? Color(red: 0.95, green: 0.99, blue: 1.0)
-                            : StealthCeramicTheme.primaryTextColor
+                            ? Color.white
+                            : Color.white.opacity(0.85)
                     )
             }
 
             VStack(spacing: 2) {
                 Text(habit.name.uppercased())
                     .font(.system(size: 11, weight: .bold, design: .monospaced))
-                    .tracking(StealthCeramicTheme.headerTracking)
-                    .foregroundStyle(StealthCeramicTheme.primaryTextColor)
+                    .tracking(1)
+                    .foregroundStyle(Color.white.opacity(0.92))
                     .lineLimit(1)
 
                 if let scheduleLabel {
                     Text(scheduleLabel)
                         .font(.system(size: 9, weight: .medium))
-                        .foregroundStyle(StealthCeramicTheme.secondaryTextColor)
+                        .foregroundStyle(Color.white.opacity(0.5))
                 }
             }
         }
@@ -93,11 +93,11 @@ struct SmallFocusWidgetView: View {
         VStack(spacing: 6) {
             Image(systemName: "target")
                 .font(.system(size: 28, weight: .light))
-                .foregroundStyle(StealthCeramicTheme.secondaryTextColor.opacity(0.5))
+                .foregroundStyle(Color.white.opacity(0.35))
             Text("SELECT HABIT")
                 .font(.system(size: 9, weight: .medium, design: .monospaced))
-                .tracking(StealthCeramicTheme.headerTracking)
-                .foregroundStyle(StealthCeramicTheme.secondaryTextColor.opacity(0.5))
+                .tracking(1)
+                .foregroundStyle(Color.white.opacity(0.35))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }

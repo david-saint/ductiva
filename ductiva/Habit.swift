@@ -2,7 +2,7 @@ import Foundation
 import SwiftData
 
 /// The days of the week used by specific-day schedules.
-enum HabitWeekday: Int, CaseIterable {
+enum HabitWeekday: Int, CaseIterable, Codable, Hashable, Sendable {
     case sunday = 1
     case monday = 2
     case tuesday = 3
@@ -25,7 +25,7 @@ enum HabitWeekday: Int, CaseIterable {
 }
 
 /// Frequency configuration for a habit.
-enum HabitSchedule: Equatable {
+enum HabitSchedule: Equatable, Codable, Hashable, Sendable {
     case daily
     case weekly
     case specificDays([HabitWeekday])

@@ -22,8 +22,7 @@ struct SmallStandardWidgetView: View {
 
     let habits: [WidgetHabitSnapshot]
     let currentDate: Date
-    private let ringSize: CGFloat = 52
-    private let targetInset: CGFloat = 8
+    private let ringSize: CGFloat = 60
 
     /// The habits actually rendered (capped at 4).
     var displayedHabits: [WidgetHabitSnapshot] {
@@ -79,10 +78,9 @@ struct SmallStandardWidgetView: View {
         let slots = habitSlots
         return HStack(spacing: 0) {
             slotCell(slots[0])
-            Spacer(minLength: 0)
             slotCell(slots[1])
         }
-        .padding(contentPadding)
+        .padding(4)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
@@ -91,29 +89,16 @@ struct SmallStandardWidgetView: View {
         return VStack(spacing: 0) {
             HStack(spacing: 0) {
                 slotCell(slots[0])
-                Spacer(minLength: 0)
                 slotCell(slots[1])
             }
 
-            Spacer(minLength: 0)
-
             HStack(spacing: 0) {
                 slotCell(slots[2])
-                Spacer(minLength: 0)
                 slotCell(slots[3])
             }
         }
-        .padding(contentPadding)
+        .padding(4)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-
-    private var contentPadding: EdgeInsets {
-        EdgeInsets(
-            top: targetInset - widgetContentMargins.top,
-            leading: targetInset - widgetContentMargins.leading,
-            bottom: targetInset - widgetContentMargins.bottom,
-            trailing: targetInset - widgetContentMargins.trailing
-        )
     }
 
     @ViewBuilder
@@ -122,7 +107,7 @@ struct SmallStandardWidgetView: View {
             habitCell(habit)
         } else {
             Color.clear
-                .frame(width: ringSize, height: ringSize)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .accessibilityHidden(true)
         }
     }
@@ -144,7 +129,7 @@ struct SmallStandardWidgetView: View {
 
             // Habit icon
             Image(systemName: habit.iconName)
-                .font(.system(size: 19, weight: .medium))
+                .font(.system(size: 22, weight: .medium))
                 .foregroundStyle(
                     completed
                         ? Color.white
@@ -181,6 +166,7 @@ struct WidgetCompletionRing: View {
     let progress: Double
     let isCompleted: Bool
     var ringSize: CGFloat = 44
+    var lineWidth: CGFloat = 4.5
 
     private var urgency: RingUrgency {
         RingUrgency(progress: progress)
@@ -191,19 +177,19 @@ struct WidgetCompletionRing: View {
             if !isCompleted {
                 // Background track — visible on dark backgrounds
                 Circle()
-                    .stroke(Color.white.opacity(0.15), lineWidth: 2)
+                    .stroke(Color.white.opacity(0.15), lineWidth: lineWidth)
 
                 // Progress arc — boosted opacity for widget readability
                 Circle()
                     .trim(from: 0, to: progress)
-                    .stroke(style: StrokeStyle(lineWidth: 2.5, lineCap: .round))
+                    .stroke(style: StrokeStyle(lineWidth: lineWidth + 0.5, lineCap: .round))
                     .foregroundStyle(widgetRingColor)
                     .rotationEffect(.degrees(-90))
                     .shadow(color: widgetGlowColor, radius: urgency.glowRadius)
             } else {
                 // Completed: bright check ring
                 Circle()
-                    .stroke(Color.white.opacity(0.4), lineWidth: 2)
+                    .stroke(Color.white.opacity(0.4), lineWidth: lineWidth)
             }
         }
         .frame(width: ringSize, height: ringSize)

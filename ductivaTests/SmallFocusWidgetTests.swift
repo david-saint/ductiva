@@ -1,5 +1,4 @@
 import SwiftUI
-import SwiftData
 import XCTest
 @testable import ductiva
 
@@ -131,8 +130,9 @@ final class SmallFocusWidgetTests: XCTestCase {
         iconName: String = "display",
         schedule: HabitSchedule = .daily,
         completions: [Date] = []
-    ) -> Habit {
-        Habit(
+    ) -> WidgetHabitSnapshot {
+        WidgetHabitSnapshot(
+            id: UUID(),
             name: name,
             iconName: iconName,
             schedule: schedule,

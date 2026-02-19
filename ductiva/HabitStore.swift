@@ -1,8 +1,12 @@
 import Foundation
 import SwiftData
+#if canImport(WidgetKit)
+import WidgetKit
+#endif
 
 struct HabitStore {
     let modelContext: ModelContext
+    private let widgetKind = "ductivaWidgets"
 
     func createHabit(
         name: String,
@@ -20,6 +24,7 @@ struct HabitStore {
         )
         modelContext.insert(habit)
         try modelContext.save()
+        reloadWidgetTimelines()
         return habit
     }
 
@@ -38,11 +43,13 @@ struct HabitStore {
         }
 
         try modelContext.save()
+        reloadWidgetTimelines()
     }
 
     func deleteHabit(_ habit: Habit) throws {
         modelContext.delete(habit)
         try modelContext.save()
+        reloadWidgetTimelines()
     }
 
     func isCompleted(_ habit: Habit, on date: Date = Date(), calendar: Calendar = .current) -> Bool {
@@ -59,11 +66,19 @@ struct HabitStore {
         if let index = habit.completions.firstIndex(where: { calendar.isDate($0, inSameDayAs: targetDay) }) {
             habit.completions.remove(at: index)
             try modelContext.save()
+            reloadWidgetTimelines()
             return false
         }
 
         habit.completions.append(targetDay)
         try modelContext.save()
+        reloadWidgetTimelines()
         return true
+    }
+
+    private func reloadWidgetTimelines() {
+        #if canImport(WidgetKit)
+        WidgetCenter.shared.reloadTimelines(ofKind: widgetKind)
+        #endif
     }
 }

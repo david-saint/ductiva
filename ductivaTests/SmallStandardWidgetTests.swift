@@ -1,5 +1,4 @@
 import SwiftUI
-import SwiftData
 import XCTest
 @testable import ductiva
 
@@ -73,7 +72,8 @@ final class SmallStandardWidgetTests: XCTestCase {
     func testSmallStandardWidgetDetectsCompletedHabit() {
         let calendar = Self.gregorianCalendar
         let today = Self.fixedDate
-        let habit = Habit(
+        let habit = WidgetHabitSnapshot(
+            id: UUID(),
             name: "Test",
             iconName: "target",
             schedule: .daily,
@@ -84,7 +84,8 @@ final class SmallStandardWidgetTests: XCTestCase {
     }
 
     func testSmallStandardWidgetDetectsIncompleteHabit() {
-        let habit = Habit(
+        let habit = WidgetHabitSnapshot(
+            id: UUID(),
             name: "Test",
             iconName: "target",
             schedule: .daily,
@@ -123,14 +124,16 @@ final class SmallStandardWidgetTests: XCTestCase {
         return cal.date(from: DateComponents(year: 2026, month: 2, day: 19, hour: 12))!
     }()
 
-    private func makeHabits(count: Int) -> [Habit] {
+    private func makeHabits(count: Int) -> [WidgetHabitSnapshot] {
         let icons = ["display", "dumbbell", "book", "brain.head.profile", "heart", "target"]
         let names = ["Deep Work", "Exercise", "Reading", "Meditate", "Cardio", "Focus"]
         return (0..<count).map { i in
-            Habit(
+            WidgetHabitSnapshot(
+                id: UUID(),
                 name: names[i % names.count],
                 iconName: icons[i % icons.count],
-                schedule: .daily
+                schedule: .daily,
+                completions: []
             )
         }
     }
