@@ -1,0 +1,23 @@
+Task group: Phase 4 integration and refinement
+
+Summary:
+- Added HabitStore completion-day helpers (isCompleted/toggleCompletion) and wired ConfigurationViewModel methods to toggle and query today's completion.
+- Updated main Configuration row rendering to display completion state and expose completion toggling in the row context menu.
+- Added tests validating completion toggling behavior and immediate streak snapshot updates.
+- Audited and refined streak UI typography/spacing to align with Stealth Ceramic style (tracking emphasis, monospaced display typography).
+- Completed accessibility pass for streak detail and row controls (labels/hints for calendar navigation, day dots, metrics, and row completion status).
+
+Files:
+- ductiva/HabitStore.swift
+- ductiva/ConfigurationViewModel.swift
+- ductiva/ConfigurationView.swift
+- ductiva/HabitSlotRow.swift
+- ductiva/HabitCalendarGridView.swift
+- ductiva/HabitMetricsView.swift
+- ductiva/HabitStreakDetailView.swift
+- ductivaTests/ConfigurationViewModelTests.swift
+- ductivaTests/HabitSlotRowTests.swift
+- ductivaTests/HabitStoreCRUDTests.swift
+
+Why:
+Ensure streak data and UI stay in sync with daily completion toggles while finalizing design and accessibility quality for the completed streak tracker feature.
