@@ -1,5 +1,6 @@
 import AppIntents
 import SwiftData
+import SwiftUI
 
 struct HabitSelectionIntent: WidgetConfigurationIntent {
     static var title: LocalizedStringResource = "Select Habit"
@@ -18,13 +19,16 @@ struct HabitSelectionIntent: WidgetConfigurationIntent {
 struct HabitEntity: AppEntity, Identifiable, Hashable {
     var id: String
     var title: String
-    var emoji: String
+    var iconName: String
     
     static var typeDisplayRepresentation: TypeDisplayRepresentation = "Habit"
     static var defaultQuery = HabitQuery()
     
     var displayRepresentation: DisplayRepresentation {
-        DisplayRepresentation(title: "\(emoji) \(title)")
+        DisplayRepresentation(
+            title: LocalizedStringResource(stringLiteral: title),
+            image: DisplayRepresentation.Image(systemName: iconName)
+        )
     }
 }
 
@@ -55,7 +59,7 @@ struct HabitQuery: EntityStringQuery {
         let habits = try context.fetch(descriptor)
         
         return habits.map { habit in
-            HabitEntity(id: habit.id.uuidString, title: habit.name, emoji: habit.iconName)
+            HabitEntity(id: habit.id.uuidString, title: habit.name, iconName: habit.iconName)
         }
     }
 }
