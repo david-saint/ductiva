@@ -158,17 +158,22 @@ extension ConfigurationViewModel {
 }
 
 #Preview {
-    let container = try! SharedContainer.make()
-    let context = ModelContext(container)
-    let store = HabitStore(modelContext: context)
+    struct PreviewWrapper: View {
+        var body: some View {
+            let container = try! SharedContainer.make()
+            let context = ModelContext(container)
+            let store = HabitStore(modelContext: context)
 
-    // Seed preview data
-    _ = try! store.createHabit(name: "Deep Work", iconName: "display", schedule: .daily)
-    _ = try! store.createHabit(name: "Strength Training", iconName: "dumbbell", schedule: .daily)
-    _ = try! store.createHabit(name: "Side Project", iconName: "chevron.left.forwardslash.chevron.right", schedule: .weekly)
+            // Seed preview data
+            _ = try? store.createHabit(name: "Deep Work", iconName: "display", schedule: .daily)
+            _ = try? store.createHabit(name: "Strength Training", iconName: "dumbbell", schedule: .daily)
+            _ = try? store.createHabit(name: "Side Project", iconName: "chevron.left.forwardslash.chevron.right", schedule: .weekly)
 
-    let viewModel = ConfigurationViewModel(habitStore: store)
-    viewModel.loadHabits()
-
-    ConfigurationView(viewModel: viewModel)
+            let viewModel = ConfigurationViewModel(habitStore: store)
+            
+            return ConfigurationView(viewModel: viewModel)
+                .onAppear { viewModel.loadHabits() }
+        }
+    }
+    return PreviewWrapper()
 }

@@ -14,11 +14,11 @@ struct HabitTimelineProvider: AppIntentTimelineProvider {
     }
 
     func snapshot(for configuration: HabitSelectionIntent, in context: Context) async -> HabitTimelineEntry {
-        let (allHabits, selected) = try? await fetchWidgetData(for: configuration)
+        let (allHabits, selected) = (try? await fetchWidgetData(for: configuration)) ?? ([], nil)
         return HabitTimelineEntry(
             date: Date(),
             configuration: configuration,
-            habits: allHabits ?? [],
+            habits: allHabits,
             selectedHabit: selected
         )
     }
