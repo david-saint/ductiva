@@ -7,25 +7,73 @@ struct DuctivaWidgets: Widget {
 
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: HabitSelectionIntent.self, provider: HabitTimelineProvider()) { entry in
-            ductivaWidgetsEntryView(entry: entry)
+            DuctivaWidgetEntryView(entry: entry)
                 .widgetLiquidGlassBackground()
         }
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }
 
-struct ductivaWidgetsEntryView : View {
+struct DuctivaWidgetEntryView: View {
+    @Environment(\.widgetFamily) var family
     var entry: HabitTimelineProvider.Entry
 
     var body: some View {
-        VStack {
-            if let error = entry.errorMessage {
-                Text("Error: \(error)").font(.caption).foregroundColor(.red)
-            } else if let habit = entry.selectedHabit {
-                Text("Focused on: \(habit.name)")
-            } else {
-                Text("All Habits (\(entry.habits.count))")
+        if let error = entry.errorMessage {
+            errorView(error)
+        } else {
+            switch family {
+            case .systemSmall:
+                smallWidget
+            case .systemMedium:
+                mediumWidget
+            case .systemLarge:
+                largeWidget
+            default:
+                smallWidget
             }
+        }
+    }
+
+    // MARK: - Small Widget
+
+    @ViewBuilder
+    private var smallWidget: some View {
+        if let habit = entry.selectedHabit {
+            SmallFocusWidgetView(habit: habit, currentDate: entry.date)
+        } else {
+            SmallStandardWidgetView(habits: entry.habits, currentDate: entry.date)
+        }
+    }
+
+    // MARK: - Medium Widget (placeholder until Phase 4)
+
+    @ViewBuilder
+    private var mediumWidget: some View {
+        Text("MEDIUM")
+            .font(.system(size: 10, weight: .medium, design: .monospaced))
+            .foregroundStyle(StealthCeramicTheme.secondaryTextColor)
+    }
+
+    // MARK: - Large Widget (placeholder until Phase 4)
+
+    @ViewBuilder
+    private var largeWidget: some View {
+        Text("LARGE")
+            .font(.system(size: 10, weight: .medium, design: .monospaced))
+            .foregroundStyle(StealthCeramicTheme.secondaryTextColor)
+    }
+
+    // MARK: - Error
+
+    private func errorView(_ message: String) -> some View {
+        VStack(spacing: 4) {
+            Image(systemName: "exclamationmark.triangle")
+                .font(.system(size: 20))
+                .foregroundStyle(StealthCeramicTheme.secondaryTextColor.opacity(0.5))
+            Text("ERROR")
+                .font(.system(size: 9, weight: .medium, design: .monospaced))
+                .foregroundStyle(StealthCeramicTheme.secondaryTextColor.opacity(0.5))
         }
     }
 }
