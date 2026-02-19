@@ -25,9 +25,9 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Core Widget Logic and Theming' (Protocol in workflow.md) a843401
 
 ## Phase 3: Small Widget Implementation (Standard & Focus)
-- [ ] Task: Implement Small Standard Widget (2x2 Grid)
-    - [ ] **Red Phase:** Write failing tests for the 2x2 grid layout and data mapping.
-    - [ ] **Green Phase:** Implement the 2x2 grid view displaying up to 4 habits.
+- [x] Task: Implement Small Standard Widget (2x2 Grid) c0314b4
+    - [x] **Red Phase:** Write failing tests for the 2x2 grid layout and data mapping.
+    - [x] **Green Phase:** Implement the 2x2 grid view displaying up to 4 habits.
 - [ ] Task: Implement Small Focus Widget (Single Habit)
     - [ ] **Red Phase:** Write failing tests for the Focus widget view with intent-based configuration.
     - [ ] **Green Phase:** Implement the Focus view showing a single habit's ring and name.
