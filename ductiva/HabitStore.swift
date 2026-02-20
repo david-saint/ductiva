@@ -6,7 +6,7 @@ import WidgetKit
 
 struct HabitStore {
     let modelContext: ModelContext
-    private let widgetKind = "ductivaWidgets"
+    private let widgetKind = AppConfiguration.widgetKind
 
     func createHabit(
         name: String,

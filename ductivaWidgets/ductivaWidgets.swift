@@ -3,7 +3,7 @@ import SwiftUI
 import AppIntents
 
 struct DuctivaWidgets: Widget {
-    let kind: String = "ductivaWidgets"
+    let kind: String = AppConfiguration.widgetKind
 
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: HabitSelectionIntent.self, provider: HabitTimelineProvider()) { entry in

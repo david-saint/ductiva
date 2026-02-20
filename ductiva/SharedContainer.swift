@@ -14,7 +14,7 @@ public struct SharedContainer {
             Habit.self,
         ])
         
-        guard let sharedAppGroupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "62LTV4PK7X.group.com.saint.ductiva") else {
+        guard let sharedAppGroupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppConfiguration.appGroupID) else {
             throw ContainerError.missingAppGroup
         }
         

@@ -11,11 +11,13 @@
 		0D46B6713C3C4AE5242001C3 /* HabitStreakService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C382DFE0C85ADA42D66EDF6F /* HabitStreakService.swift */; };
 		109D4108173DB5394F39B9B1 /* HabitTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D3047D312D4824B1FEB92B /* HabitTimelineProvider.swift */; };
 		115F3A2B3D341A69081C2B73 /* MediumSummaryWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766F87DA53E208AF2BBF091 /* MediumSummaryWidgetView.swift */; };
+		12765EF5CCB73BA41C355351 /* WidgetSharedComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407E4A06D9AAD872D0BAFE4E /* WidgetSharedComponents.swift */; };
 		2A669B780D63ACF24C9112DC /* SharedContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6259B3314A1C345558E11E /* SharedContainer.swift */; };
 		2F0A002CDDC064089FD55ACA /* AppIntents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83540EAD92B732DE07DA4D01 /* AppIntents.framework */; };
 		352098F920FB25A417210379 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393C1F19CF4BFA83D18E3A1A /* Item.swift */; };
 		4D51497A197329C1BC190014 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC03042957F07E9FF1A8AB2 /* SwiftUI.framework */; };
 		4EE12300489FEA7D5F4E185E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C42CFD1A1D9A9AB0DFE965 /* WidgetKit.framework */; };
+		52E567A979A592EC004758A7 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D33EBEA009D1F4AD80AA02 /* AppConfiguration.swift */; };
 		634F3C137B3D55AA3F1C09C7 /* WidgetLiquidGlassModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA6336E14499D5C86D27E3A /* WidgetLiquidGlassModifier.swift */; };
 		63BD65016682DBE0206DC80B /* LargeStandardWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08091191BE2F66ACD05C0750 /* LargeStandardWidgetView.swift */; };
 		74D233A3DE4ED1697002C40D /* HabitCalendarDayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334CE0BB5E8CD0B687F3EF90 /* HabitCalendarDayState.swift */; };
@@ -30,6 +32,8 @@
 		B2C3D4E5F6071829A0B1C2D3 /* SmallFocusWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C3D4E5F6071829A0B1C2D4 /* SmallFocusWidgetView.swift */; };
 		D3A73109C326FC0650D1EB6F /* LargeFocusWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4154805447DC9E1E7FEDBB /* LargeFocusWidgetView.swift */; };
 		E79569714B622F9B149D21CA /* HabitSelectionIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13999CFE919EB5BC19A11324 /* HabitSelectionIntent.swift */; };
+		E826D2053745431B71FE1B72 /* WidgetSharedComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407E4A06D9AAD872D0BAFE4E /* WidgetSharedComponents.swift */; };
+		E8CD63ABD6ADDBE3FE902DAF /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D33EBEA009D1F4AD80AA02 /* AppConfiguration.swift */; };
 		F546DABB639BC485C89DB6B1 /* ductivaWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6DD409717A4593EC68C1D1 /* ductivaWidgets.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,7 +68,9 @@
 		1EA6336E14499D5C86D27E3A /* WidgetLiquidGlassModifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetLiquidGlassModifier.swift; path = ductivaWidgets/WidgetLiquidGlassModifier.swift; sourceTree = "<group>"; };
 		334CE0BB5E8CD0B687F3EF90 /* HabitCalendarDayState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HabitCalendarDayState.swift; path = ductiva/HabitCalendarDayState.swift; sourceTree = "<group>"; };
 		393C1F19CF4BFA83D18E3A1A /* Item.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Item.swift; path = ductiva/Item.swift; sourceTree = "<group>"; };
+		407E4A06D9AAD872D0BAFE4E /* WidgetSharedComponents.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetSharedComponents.swift; path = ductiva/WidgetSharedComponents.swift; sourceTree = "<group>"; };
 		52C42CFD1A1D9A9AB0DFE965 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = "<group>"; };
+		55D33EBEA009D1F4AD80AA02 /* AppConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppConfiguration.swift; path = ductiva/AppConfiguration.swift; sourceTree = "<group>"; };
 		650454426FB169A32581DA70 /* ductivaWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ductivaWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		70BABFD22FF199987257FDC2 /* Habit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Habit.swift; path = ductiva/Habit.swift; sourceTree = "<group>"; };
 		7766F87DA53E208AF2BBF091 /* MediumSummaryWidgetView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediumSummaryWidgetView.swift; path = ductiva/MediumSummaryWidgetView.swift; sourceTree = "<group>"; };
@@ -89,11 +95,15 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		85D95BA32F463421004AEA7D /* ductiva */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = ductiva;
 			sourceTree = "<group>";
 		};
 		A0B1C2D42F463421004AEA7D /* ductivaTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = ductivaTests;
 			sourceTree = "<group>";
 		};
@@ -170,6 +180,8 @@
 				DB4154805447DC9E1E7FEDBB /* LargeFocusWidgetView.swift */,
 				08091191BE2F66ACD05C0750 /* LargeStandardWidgetView.swift */,
 				9B58D81545777C55FF547B51 /* HabitCalendarGridView.swift */,
+				55D33EBEA009D1F4AD80AA02 /* AppConfiguration.swift */,
+				407E4A06D9AAD872D0BAFE4E /* WidgetSharedComponents.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -325,6 +337,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8CD63ABD6ADDBE3FE902DAF /* AppConfiguration.swift in Sources */,
+				E826D2053745431B71FE1B72 /* WidgetSharedComponents.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +372,8 @@
 				D3A73109C326FC0650D1EB6F /* LargeFocusWidgetView.swift in Sources */,
 				63BD65016682DBE0206DC80B /* LargeStandardWidgetView.swift in Sources */,
 				993B77ACC4757AAA2396E5AC /* HabitCalendarGridView.swift in Sources */,
+				52E567A979A592EC004758A7 /* AppConfiguration.swift in Sources */,
+				12765EF5CCB73BA41C355351 /* WidgetSharedComponents.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
