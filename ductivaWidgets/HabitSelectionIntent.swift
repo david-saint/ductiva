@@ -40,7 +40,7 @@ struct HabitQuery: EntityStringQuery {
     
     func entities(matching string: String) async throws -> [HabitEntity] {
         let allHabits = (try? await fetchHabits()) ?? []
-        return allHabits.filter { $0.title.localizedCaseInsensitiveContains(string) }
+        return allHabits.filter { $0.title.localizedStandardContains(string) }
     }
     
     func suggestedEntities() async throws -> [HabitEntity] {

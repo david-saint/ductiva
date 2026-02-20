@@ -28,11 +28,7 @@ struct SmallStandardWidgetView: View {
 
     /// Whether a habit has a completion logged for `currentDate`.
     func isCompleted(_ habit: WidgetHabitSnapshot) -> Bool {
-        let calendar = Calendar.current
-        let targetDay = calendar.startOfDay(for: currentDate)
-        return habit.completions.contains { completion in
-            calendar.isDate(completion, inSameDayAs: targetDay)
-        }
+        habit.isCompleted(on: currentDate)
     }
 
     // MARK: - Body
@@ -94,7 +90,11 @@ struct SmallStandardWidgetView: View {
     @ViewBuilder
     private func slotCell(_ habit: WidgetHabitSnapshot?) -> some View {
         if let habit {
-            Link(destination: URL(string: "ductiva://habit/\(habit.id.uuidString)")!) {
+            if let url = WidgetDeepLink.habitURL(for: habit.id) {
+                Link(destination: url) {
+                    habitCell(habit)
+                }
+            } else {
                 habitCell(habit)
             }
         } else {

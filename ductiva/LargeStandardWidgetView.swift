@@ -14,11 +14,7 @@ struct LargeStandardWidgetView: View {
     }
     
     func isCompleted(_ habit: WidgetHabitSnapshot) -> Bool {
-        let calendar = Calendar.current
-        let targetDay = calendar.startOfDay(for: currentDate)
-        return habit.completions.contains { completion in
-            calendar.isDate(completion, inSameDayAs: targetDay)
-        }
+        habit.isCompleted(on: currentDate)
     }
     
     var body: some View {
@@ -27,10 +23,14 @@ struct LargeStandardWidgetView: View {
         } else {
             VStack(spacing: 0) {
                 ForEach(displayedHabits) { habit in
-                    Link(destination: URL(string: "ductiva://habit/\(habit.id.uuidString)")!) {
+                    if let url = WidgetDeepLink.habitURL(for: habit.id) {
+                        Link(destination: url) {
+                            habitRow(habit)
+                        }
+                        .buttonStyle(.plain)
+                    } else {
                         habitRow(habit)
                     }
-                    .buttonStyle(.plain)
                     
                     if habit.id != displayedHabits.last?.id {
                         Divider()
@@ -60,7 +60,7 @@ struct LargeStandardWidgetView: View {
                     .lineLimit(1)
                 
                 let scheduleStr = habit.schedule.localizedDescription
-                let timeOrStatus = habit.isScheduled(on: currentDate) ? (completed ? "Done" : timeLeft(from: currentDate)) : (completed ? "Done" : "Off Today")
+                let timeOrStatus = habit.statusText(on: currentDate)
                 Text("\(habit.currentStreak) \((habit.currentStreak == 1) ? "day" : "days") streak • \(scheduleStr) • \(timeOrStatus)")
                     .font(.system(size: 10, weight: .regular))
                     .foregroundStyle(.white.opacity(0.5))
@@ -74,24 +74,6 @@ struct LargeStandardWidgetView: View {
             )
         }
         .padding(.vertical, 12)
-    }
-    
-    // MARK: - Helpers
-    
-    private func timeLeft(from date: Date) -> String {
-        let calendar = Calendar.current
-        guard let endOfDay = calendar.date(bySettingHour: 23, minute: 59, second: 0, of: date) else {
-            return ""
-        }
-        let components = calendar.dateComponents([.hour, .minute], from: date, to: endOfDay)
-        let hours = components.hour ?? 0
-        let minutes = components.minute ?? 0
-        
-        if hours > 0 {
-            return "\(hours)hr, \(minutes)m"
-        } else {
-            return "\(minutes)m"
-        }
     }
 
     private var emptyState: some View {

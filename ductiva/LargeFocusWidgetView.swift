@@ -27,10 +27,7 @@ struct LargeFocusWidgetView: View {
                             .lineLimit(1)
                         
                         let scheduleStr = habit.schedule.localizedDescription
-                        let completed = habit.completions.contains { completion in
-                            Calendar.current.isDate(completion, inSameDayAs: Calendar.current.startOfDay(for: currentDate))
-                        }
-                        let timeOrStatus = habit.isScheduled(on: currentDate) ? (completed ? "Done" : timeLeft(from: currentDate)) : (completed ? "Done" : "Off Today")
+                        let timeOrStatus = habit.statusText(on: currentDate)
                         Text("\(habit.currentStreak) \((habit.currentStreak == 1) ? "day" : "days") streak • \(scheduleStr) • \(timeOrStatus)")
                             .font(.system(size: 12, weight: .regular))
                             .foregroundStyle(.white.opacity(0.6))
@@ -57,27 +54,9 @@ struct LargeFocusWidgetView: View {
                 Spacer(minLength: 0)
             }
             .padding(12)
-            .widgetURL(URL(string: "ductiva://habit/\(habit.id.uuidString)"))
+            .widgetURL(WidgetDeepLink.habitURL(for: habit.id))
         } else {
             emptyState
-        }
-    }
-    
-    // MARK: - Helpers
-    
-    private func timeLeft(from date: Date) -> String {
-        let calendar = Calendar.current
-        guard let endOfDay = calendar.date(bySettingHour: 23, minute: 59, second: 0, of: date) else {
-            return ""
-        }
-        let components = calendar.dateComponents([.hour, .minute], from: date, to: endOfDay)
-        let hours = components.hour ?? 0
-        let minutes = components.minute ?? 0
-        
-        if hours > 0 {
-            return "\(hours)hr, \(minutes)m"
-        } else {
-            return "\(minutes)m"
         }
     }
 

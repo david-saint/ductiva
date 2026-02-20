@@ -17,11 +17,7 @@ struct MediumSummaryWidgetView: View {
     
     /// Whether a habit has a completion logged for `currentDate`.
     func isCompleted(_ habit: WidgetHabitSnapshot) -> Bool {
-        let calendar = Calendar.current
-        let targetDay = calendar.startOfDay(for: currentDate)
-        return habit.completions.contains { completion in
-            calendar.isDate(completion, inSameDayAs: targetDay)
-        }
+        habit.isCompleted(on: currentDate)
     }
     
     // MARK: - Body
@@ -53,7 +49,11 @@ struct MediumSummaryWidgetView: View {
     @ViewBuilder
     private func slotCell(_ habit: WidgetHabitSnapshot?) -> some View {
         if let habit {
-            Link(destination: URL(string: "ductiva://habit/\(habit.id.uuidString)")!) {
+            if let url = WidgetDeepLink.habitURL(for: habit.id) {
+                Link(destination: url) {
+                    habitCell(habit)
+                }
+            } else {
                 habitCell(habit)
             }
         } else {
@@ -89,8 +89,7 @@ struct MediumSummaryWidgetView: View {
                     )
             }
             
-            let timeOrStatus = habit.isScheduled(on: currentDate) ? (completed ? "Done" : timeLeft(from: currentDate)) : (completed ? "Done" : "Off Today")
-            Text(timeOrStatus)
+            Text(habit.statusText(on: currentDate))
                 .font(.system(size: 10, weight: .regular))
                 .foregroundStyle(Color.white.opacity(0.5))
         }
@@ -98,25 +97,7 @@ struct MediumSummaryWidgetView: View {
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("\(habit.name), \(completed ? "completed" : "not completed")")
     }
-    
-    // MARK: - Helpers
-    
-    private func timeLeft(from date: Date) -> String {
-        let calendar = Calendar.current
-        guard let endOfDay = calendar.date(bySettingHour: 23, minute: 59, second: 0, of: date) else {
-            return ""
-        }
-        let components = calendar.dateComponents([.hour, .minute], from: date, to: endOfDay)
-        let hours = components.hour ?? 0
-        let minutes = components.minute ?? 0
-        
-        if hours > 0 {
-            return "\(hours)hr, \(minutes)m"
-        } else {
-            return "\(minutes)m"
-        }
-    }
-    
+
     // MARK: - Empty State
     
     private var emptyState: some View {

@@ -13,14 +13,56 @@ struct WidgetHabitSnapshot: Identifiable, Hashable, Sendable {
 }
 
 extension WidgetHabitSnapshot {
-    func isScheduled(on date: Date) -> Bool {
+    func isScheduled(on date: Date, calendar: Calendar = .current) -> Bool {
         switch schedule {
         case .daily, .weekly:
             return true
         case .specificDays(let days):
-            let weekday = Calendar.current.component(.weekday, from: date)
+            let weekday = calendar.component(.weekday, from: date)
             return days.contains { $0.rawValue == weekday }
         }
+    }
+
+    func isCompleted(on date: Date, calendar: Calendar = .current) -> Bool {
+        completions.contains { completion in
+            calendar.isDate(completion, inSameDayAs: date)
+        }
+    }
+
+    func statusText(on date: Date, calendar: Calendar = .current) -> String {
+        let completed = isCompleted(on: date, calendar: calendar)
+        if completed {
+            return "Done"
+        }
+        return isScheduled(on: date, calendar: calendar)
+            ? WidgetDateFormatting.timeLeftInDay(from: date, calendar: calendar)
+            : "Off Today"
+    }
+}
+
+enum WidgetDeepLink {
+    static func habitURL(for habitID: UUID) -> URL? {
+        var components = URLComponents()
+        components.scheme = "ductiva"
+        components.host = "habit"
+        components.path = "/\(habitID.uuidString)"
+        return components.url
+    }
+}
+
+enum WidgetDateFormatting {
+    static func timeLeftInDay(from date: Date, calendar: Calendar = .current) -> String {
+        guard let endOfDay = calendar.date(bySettingHour: 23, minute: 59, second: 0, of: date) else {
+            return ""
+        }
+        let components = calendar.dateComponents([.hour, .minute], from: date, to: endOfDay)
+        let hours = components.hour ?? 0
+        let minutes = components.minute ?? 0
+
+        if hours > 0 {
+            return "\(hours)hr, \(minutes)m"
+        }
+        return "\(minutes)m"
     }
 }
 

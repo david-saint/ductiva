@@ -84,7 +84,7 @@ struct SmallFocusWidgetView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .widgetURL(URL(string: "ductiva://habit/\(habit.id.uuidString)"))
+        .widgetURL(WidgetDeepLink.habitURL(for: habit.id))
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("\(habit.name), \(isHabitCompleted ? "completed" : "not completed")")
     }

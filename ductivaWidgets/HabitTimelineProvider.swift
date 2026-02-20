@@ -26,7 +26,7 @@ struct HabitTimelineProvider: AppIntentTimelineProvider {
         
         let calendar = Calendar.current
         // Update every 15 minutes to keep the time left relatively fresh
-        let nextUpdate = calendar.date(byAdding: .minute, value: 15, to: Date()) ?? calendar.startOfDay(for: calendar.date(byAdding: .day, value: 1, to: Date())!)
+        let nextUpdate = calendar.date(byAdding: .minute, value: 15, to: Date()) ?? Date().addingTimeInterval(15 * 60)
         
         return Timeline(entries: [entry], policy: .after(nextUpdate))
     }
@@ -108,6 +108,8 @@ struct HabitTimelineProvider: AppIntentTimelineProvider {
                 mondayStartCalendar.firstWeekday = 2 // Monday
                 let start = mondayStartCalendar.date(from: mondayStartCalendar.dateComponents([.year, .month], from: now)) ?? mondayStartCalendar.startOfDay(for: now)
                 monthTitle = start.formatted(.dateTime.month(.wide).year())
+                let schedule = realHabit.schedule
+                let normalizedDays = streakService.normalizedCompletionDays(for: realHabit)
                 
                 if let monthInterval = mondayStartCalendar.dateInterval(of: .month, for: start),
                    let firstGridDate = mondayStartCalendar.dateInterval(of: .weekOfYear, for: monthInterval.start)?.start {
@@ -121,8 +123,8 @@ struct HabitTimelineProvider: AppIntentTimelineProvider {
                         return HabitCalendarDayState(
                             date: dayDay,
                             isInDisplayedMonth: currentMonth == dayMonth && currentYear == dayYear,
-                            isScheduled: streakService.isScheduled(on: dayDay, for: realHabit),
-                            isCompleted: streakService.isCompleted(on: dayDay, for: realHabit),
+                            isScheduled: streakService.isScheduled(on: dayDay, schedule: schedule),
+                            isCompleted: streakService.isCompleted(on: dayDay, completionDays: normalizedDays),
                             isToday: mondayStartCalendar.isDate(dayDay, inSameDayAs: now)
                         )
                     }
