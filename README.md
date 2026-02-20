@@ -13,7 +13,7 @@ Ductiva is designed for developers, designers, and focus-driven professionals wh
 ## Features
 
 - **Minimal Habit Tracking:** Track 1-4 essential habits without overwhelming complexity
-- **Flexible Scheduling:** Set custom schedules (daily, weekly, monthly) for each habit
+- **Flexible Scheduling:** Set custom schedules (daily, weekly, or specific weekdays) for each habit
 - **Streak Visualization:** Simple calendar view to highlight streaks and completion history
 - **System Integration:** 
   - Menu bar integration for quick access

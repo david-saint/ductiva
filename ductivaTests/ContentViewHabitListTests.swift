@@ -21,8 +21,8 @@ final class ContentViewHabitListTests: XCTestCase {
     }
 
     func testScheduleDescriptionForSpecificDays() {
-        let description = ConfigurationViewModel.scheduleDescription(for: .specificDays([.monday, .wednesday, .friday]))
+        let description = HabitSchedule.specificDays([.monday, .wednesday, .friday]).localizedDescription
 
-        XCTAssertEqual(description, "Mon, Wed, Fri")
+        XCTAssertEqual(description, "Every M, W, F")
     }
 }

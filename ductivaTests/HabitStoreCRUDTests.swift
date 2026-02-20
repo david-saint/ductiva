@@ -73,6 +73,42 @@ final class HabitStoreCRUDTests: XCTestCase {
         XCTAssertTrue(store.isCompleted(habit, on: sameDayLater, calendar: calendar))
     }
 
+    func testIsCompletedHandlesLegacyNonNormalizedCompletionDate() throws {
+        let calendar = Self.gregorianCalendar
+        let completion = Self.date(year: 2026, month: 2, day: 19, hour: 18)
+        let habit = try store.createHabit(
+            name: "Legacy",
+            schedule: .daily,
+            completions: [completion]
+        )
+
+        XCTAssertTrue(
+            store.isCompleted(
+                habit,
+                on: Self.date(year: 2026, month: 2, day: 19, hour: 7),
+                calendar: calendar
+            )
+        )
+    }
+
+    func testToggleCompletionRemovesLegacyNonNormalizedCompletionDate() throws {
+        let calendar = Self.gregorianCalendar
+        let completion = Self.date(year: 2026, month: 2, day: 19, hour: 18)
+        let habit = try store.createHabit(
+            name: "Legacy Toggle",
+            schedule: .daily,
+            completions: [completion]
+        )
+
+        let markedComplete = try store.toggleCompletion(
+            habit,
+            on: Self.date(year: 2026, month: 2, day: 19, hour: 7),
+            calendar: calendar
+        )
+        XCTAssertFalse(markedComplete)
+        XCTAssertTrue(habit.completions.isEmpty)
+    }
+
     private static var gregorianCalendar: Calendar {
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = TimeZone(secondsFromGMT: 0)!

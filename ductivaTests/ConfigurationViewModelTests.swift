@@ -134,28 +134,28 @@ final class ConfigurationViewModelTests: XCTestCase {
     }
 
     func testScheduleDescriptionForDaily() {
-        let description = ConfigurationViewModel.scheduleDescription(for: .daily)
+        let description = HabitSchedule.daily.localizedDescription
         XCTAssertEqual(description, "Daily")
     }
 
     func testScheduleDescriptionForWeekly() {
-        let description = ConfigurationViewModel.scheduleDescription(for: .weekly)
+        let description = HabitSchedule.weekly.localizedDescription
         XCTAssertEqual(description, "Weekly")
     }
 
     func testScheduleDescriptionForEmptySpecificDays() {
-        let description = ConfigurationViewModel.scheduleDescription(for: .specificDays([]))
+        let description = HabitSchedule.specificDays([]).localizedDescription
         XCTAssertEqual(description, "Specific Days")
     }
 
     func testWeekdayAbbreviations() {
-        XCTAssertEqual(ConfigurationViewModel.weekdayAbbreviation(for: .sunday), "Sun")
-        XCTAssertEqual(ConfigurationViewModel.weekdayAbbreviation(for: .monday), "Mon")
-        XCTAssertEqual(ConfigurationViewModel.weekdayAbbreviation(for: .tuesday), "Tue")
-        XCTAssertEqual(ConfigurationViewModel.weekdayAbbreviation(for: .wednesday), "Wed")
-        XCTAssertEqual(ConfigurationViewModel.weekdayAbbreviation(for: .thursday), "Thu")
-        XCTAssertEqual(ConfigurationViewModel.weekdayAbbreviation(for: .friday), "Fri")
-        XCTAssertEqual(ConfigurationViewModel.weekdayAbbreviation(for: .saturday), "Sat")
+        XCTAssertEqual(HabitWeekday.sunday.shortName, "Su")
+        XCTAssertEqual(HabitWeekday.monday.shortName, "M")
+        XCTAssertEqual(HabitWeekday.tuesday.shortName, "Tu")
+        XCTAssertEqual(HabitWeekday.wednesday.shortName, "W")
+        XCTAssertEqual(HabitWeekday.thursday.shortName, "Th")
+        XCTAssertEqual(HabitWeekday.friday.shortName, "F")
+        XCTAssertEqual(HabitWeekday.saturday.shortName, "Sa")
     }
 
     // MARK: - Task 3.3: Add/Remove integration

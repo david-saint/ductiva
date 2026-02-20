@@ -100,6 +100,44 @@ final class HabitCalendarViewModelTests: XCTestCase {
         XCTAssertFalse(state.isInDisplayedMonth)
     }
 
+    func testSnapshotUpdatesWhenScheduleChangesWithoutCompletionCountChange() {
+        let calendar = Self.gregorianCalendar
+        let now = Self.date(year: 2026, month: 2, day: 20)
+        let completions = [
+            Self.date(year: 2026, month: 2, day: 19),
+            Self.date(year: 2026, month: 2, day: 20),
+        ]
+        let habit = Habit(
+            name: "Read",
+            createdAt: Self.date(year: 2026, month: 2, day: 1),
+            schedule: .daily,
+            completions: completions
+        )
+        let viewModel = HabitCalendarViewModel(habit: habit, calendar: calendar, now: now)
+
+        XCTAssertEqual(viewModel.snapshot.currentStreak, 2)
+
+        habit.schedule = .weekly
+        XCTAssertEqual(viewModel.snapshot.currentStreak, 1)
+    }
+
+    func testSnapshotUpdatesWhenCompletionContentChangesWithSameCount() {
+        let calendar = Self.gregorianCalendar
+        let now = Self.date(year: 2026, month: 2, day: 20)
+        let habit = Habit(
+            name: "Read",
+            createdAt: Self.date(year: 2026, month: 2, day: 1),
+            schedule: .daily,
+            completions: [Self.date(year: 2026, month: 2, day: 19)]
+        )
+        let viewModel = HabitCalendarViewModel(habit: habit, calendar: calendar, now: now)
+
+        XCTAssertEqual(viewModel.snapshot.currentStreak, 1)
+
+        habit.completions = [Self.date(year: 2026, month: 2, day: 18)]
+        XCTAssertEqual(viewModel.snapshot.currentStreak, 0)
+    }
+
     private static var gregorianCalendar: Calendar {
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = TimeZone(secondsFromGMT: 0)!
