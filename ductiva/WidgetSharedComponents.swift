@@ -53,7 +53,7 @@ enum WidgetDeepLink {
 enum WidgetDateFormatting {
     static func timeLeftInDay(from date: Date, calendar: Calendar = .current) -> String {
         guard let endOfDay = calendar.date(bySettingHour: 23, minute: 59, second: 0, of: date) else {
-            return ""
+            return "--"
         }
         let components = calendar.dateComponents([.hour, .minute], from: date, to: endOfDay)
         let hours = components.hour ?? 0

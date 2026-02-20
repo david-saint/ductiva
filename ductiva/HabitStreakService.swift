@@ -42,15 +42,6 @@ struct HabitStreakService {
         }
     }
     
-    // Legacy method for compatibility if needed, but we should prefer passing `schedule`
-    func isScheduled(on date: Date, for habit: Habit) -> Bool {
-        isScheduled(on: date, schedule: habit.schedule)
-    }
-
-    func isCompleted(on date: Date, for habit: Habit) -> Bool {
-        normalizedCompletionDays(for: habit).contains(calendar.startOfDay(for: date))
-    }
-    
     func isCompleted(on date: Date, completionDays: Set<Date>) -> Bool {
         completionDays.contains(calendar.startOfDay(for: date))
     }

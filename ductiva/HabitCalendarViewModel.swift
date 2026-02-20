@@ -24,9 +24,10 @@ final class HabitCalendarViewModel {
     // Initialize streak service once
     private let streakService: HabitStreakService
 
-    // Cache the snapshot to avoid recalculating on every access.
-    private var cachedSnapshot: HabitStreakSnapshot?
-    private var cachedSnapshotKey: SnapshotCacheKey?
+    // Cache fields are excluded from observation — they are implementation details,
+    // not observable state. Writing to them must not trigger view re-renders.
+    @ObservationIgnored private var cachedSnapshot: HabitStreakSnapshot?
+    @ObservationIgnored private var cachedSnapshotKey: SnapshotCacheKey?
 
     deinit {}
 
@@ -52,7 +53,7 @@ final class HabitCalendarViewModel {
             cachedSnapshot = streakService.snapshot(for: habit)
             cachedSnapshotKey = key
         }
-        return cachedSnapshot ?? streakService.snapshot(for: habit)
+        return cachedSnapshot! // non-nil: assigned above when key changed or on first access
     }
 
     var dayStates: [HabitCalendarDayState] {

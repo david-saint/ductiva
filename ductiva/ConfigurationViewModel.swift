@@ -57,7 +57,6 @@ final class ConfigurationViewModel {
     func saveChanges() {
         UserDefaults.standard.set(launchAtLogin, forKey: "launchAtLogin")
         UserDefaults.standard.set(showInMenuBar, forKey: "showInMenuBar")
-        clearError()
     }
 
     /// Reverts in-memory settings to their persisted UserDefaults values and reloads habits.

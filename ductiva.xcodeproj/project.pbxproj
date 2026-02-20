@@ -14,7 +14,6 @@
 		12765EF5CCB73BA41C355351 /* WidgetSharedComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407E4A06D9AAD872D0BAFE4E /* WidgetSharedComponents.swift */; };
 		2A669B780D63ACF24C9112DC /* SharedContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6259B3314A1C345558E11E /* SharedContainer.swift */; };
 		2F0A002CDDC064089FD55ACA /* AppIntents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83540EAD92B732DE07DA4D01 /* AppIntents.framework */; };
-		352098F920FB25A417210379 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393C1F19CF4BFA83D18E3A1A /* Item.swift */; };
 		4D51497A197329C1BC190014 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC03042957F07E9FF1A8AB2 /* SwiftUI.framework */; };
 		4EE12300489FEA7D5F4E185E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C42CFD1A1D9A9AB0DFE965 /* WidgetKit.framework */; };
 		52E567A979A592EC004758A7 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D33EBEA009D1F4AD80AA02 /* AppConfiguration.swift */; };
@@ -65,7 +64,6 @@
 		13999CFE919EB5BC19A11324 /* HabitSelectionIntent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HabitSelectionIntent.swift; path = ductivaWidgets/HabitSelectionIntent.swift; sourceTree = "<group>"; };
 		1EA6336E14499D5C86D27E3A /* WidgetLiquidGlassModifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetLiquidGlassModifier.swift; path = ductivaWidgets/WidgetLiquidGlassModifier.swift; sourceTree = "<group>"; };
 		334CE0BB5E8CD0B687F3EF90 /* HabitCalendarDayState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HabitCalendarDayState.swift; path = ductiva/HabitCalendarDayState.swift; sourceTree = "<group>"; };
-		393C1F19CF4BFA83D18E3A1A /* Item.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Item.swift; path = ductiva/Item.swift; sourceTree = "<group>"; };
 		407E4A06D9AAD872D0BAFE4E /* WidgetSharedComponents.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetSharedComponents.swift; path = ductiva/WidgetSharedComponents.swift; sourceTree = "<group>"; };
 		52C42CFD1A1D9A9AB0DFE965 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = "<group>"; };
 		55D33EBEA009D1F4AD80AA02 /* AppConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppConfiguration.swift; path = ductiva/AppConfiguration.swift; sourceTree = "<group>"; };
@@ -162,7 +160,6 @@
 				BAB03941BAE81410F71B49E8 /* Frameworks */,
 				601DB1B0A9357694E1F4FF6E /* ductivaWidgets */,
 				70BABFD22FF199987257FDC2 /* Habit.swift */,
-				393C1F19CF4BFA83D18E3A1A /* Item.swift */,
 				FAC0ADFD93B0C827C201EDA2 /* HabitStore.swift */,
 				DE6259B3314A1C345558E11E /* SharedContainer.swift */,
 				13999CFE919EB5BC19A11324 /* HabitSelectionIntent.swift */,
@@ -352,7 +349,6 @@
 				8301CEBBCF1DAA08FD7AE870 /* ductivaWidgetsBundle.swift in Sources */,
 				F546DABB639BC485C89DB6B1 /* ductivaWidgets.swift in Sources */,
 				779696B259FFDE96F48C3979 /* Habit.swift in Sources */,
-				352098F920FB25A417210379 /* Item.swift in Sources */,
 				00DC0C42356E512A02DDCE33 /* HabitStore.swift in Sources */,
 				2A669B780D63ACF24C9112DC /* SharedContainer.swift in Sources */,
 				E79569714B622F9B149D21CA /* HabitSelectionIntent.swift in Sources */,
