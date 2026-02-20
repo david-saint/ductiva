@@ -1,0 +1,1 @@
+Removed duplicate build files from Compile Sources build phase. They are already automatically included via File System Synchronized Groups.
