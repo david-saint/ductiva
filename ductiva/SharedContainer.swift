@@ -4,11 +4,18 @@ import Foundation
 enum ContainerError: Error {
     case missingAppGroup
     case missingDatabaseInExtension
+    case modelContainerInitializationFailed(underlying: Error)
 }
 
 @MainActor
 public struct SharedContainer {
+    private static var cachedPersistentContainer: ModelContainer?
+
     public static func make() throws -> ModelContainer {
+        if let cachedPersistentContainer {
+            return cachedPersistentContainer
+        }
+
         let schema = Schema([
             Item.self,
             Habit.self,
@@ -25,19 +32,14 @@ public struct SharedContainer {
             throw ContainerError.missingDatabaseInExtension
         }
         
-        // Removed allowsSave: !isExtension because it can cause Error 1 on macOS
         let modelConfiguration = ModelConfiguration(schema: schema, url: databaseURL)
         
         do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+            let container = try ModelContainer(for: schema, configurations: [modelConfiguration])
+            cachedPersistentContainer = container
+            return container
         } catch {
-            print("Failed to load ModelContainer, deleting old store: \(error)")
-            if !isExtension {
-                try? FileManager.default.removeItem(at: databaseURL)
-                try? FileManager.default.removeItem(at: databaseURL.deletingPathExtension().appendingPathExtension("sqlite-shm"))
-                try? FileManager.default.removeItem(at: databaseURL.deletingPathExtension().appendingPathExtension("sqlite-wal"))
-            }
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+            throw ContainerError.modelContainerInitializationFailed(underlying: error)
         }
     }
     

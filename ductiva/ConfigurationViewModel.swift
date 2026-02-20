@@ -8,6 +8,7 @@ final class ConfigurationViewModel {
     var habits: [Habit] = []
     var launchAtLogin: Bool
     var showInMenuBar: Bool
+    private(set) var errorMessage: String?
 
     var activeSlotCount: Int { habits.count }
     var canAddSlot: Bool { habits.count < Self.maxSlots }
@@ -33,19 +34,22 @@ final class ConfigurationViewModel {
     func loadHabits() {
         do {
             habits = try habitStore.fetchHabits()
+            clearError()
         } catch {
             habits = []
+            setError(prefix: "Loading habits", error: error)
         }
     }
 
-    /// Adds a new habit slot if under the maximum. Creates via HabitStore and reloads.
+    /// Adds a new habit slot if under the maximum.
     func addHabit(name: String, iconName: String, schedule: HabitSchedule) {
         guard canAddSlot else { return }
         do {
-            _ = try habitStore.createHabit(name: name, iconName: iconName, schedule: schedule)
-            loadHabits()
+            let habit = try habitStore.createHabit(name: name, iconName: iconName, schedule: schedule)
+            insertHabitInOrder(habit)
+            clearError()
         } catch {
-            // Creation failed — habits array unchanged
+            setError(prefix: "Adding habit", error: error)
         }
     }
 
@@ -53,6 +57,7 @@ final class ConfigurationViewModel {
     func saveChanges() {
         UserDefaults.standard.set(launchAtLogin, forKey: "launchAtLogin")
         UserDefaults.standard.set(showInMenuBar, forKey: "showInMenuBar")
+        clearError()
     }
 
     /// Reverts in-memory settings to their persisted UserDefaults values and reloads habits.
@@ -62,13 +67,14 @@ final class ConfigurationViewModel {
         loadHabits()
     }
 
-    /// Removes a habit slot. Deletes via HabitStore and reloads.
+    /// Removes a habit slot.
     func removeHabit(_ habit: Habit) {
         do {
             try habitStore.deleteHabit(habit)
-            loadHabits()
+            habits.removeAll { $0.id == habit.id }
+            clearError()
         } catch {
-            // Deletion failed — habits array unchanged
+            setError(prefix: "Removing habit", error: error)
         }
     }
 
@@ -82,10 +88,27 @@ final class ConfigurationViewModel {
     func toggleCompletionToday(for habit: Habit, now: Date = Date(), calendar: Calendar = .current) {
         do {
             _ = try habitStore.toggleCompletion(habit, on: now, calendar: calendar)
-            // Removed loadHabits() since the object updates in-place via SwiftData.
+            clearError()
         } catch {
-            // Toggle failed
+            setError(prefix: "Updating completion", error: error)
         }
+    }
+
+    func habit(withID id: UUID) -> Habit? {
+        habits.first(where: { $0.id == id })
+    }
+
+    private func insertHabitInOrder(_ habit: Habit) {
+        habits.append(habit)
+        habits.sort { $0.createdAt > $1.createdAt }
+    }
+
+    private func clearError() {
+        errorMessage = nil
+    }
+
+    private func setError(prefix: String, error: Error) {
+        errorMessage = "\(prefix) failed. \(error.localizedDescription)"
     }
 
     #if DEBUG

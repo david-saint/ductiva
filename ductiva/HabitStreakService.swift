@@ -38,8 +38,7 @@ struct HabitStreakService {
         case .weekly:
             return true
         case let .specificDays(days):
-            let allowed = Set(days.map(\.rawValue))
-            return allowed.contains(weekday)
+            return days.contains { $0.rawValue == weekday }
         }
     }
     

@@ -3,6 +3,18 @@ import Observation
 
 @Observable
 final class HabitCalendarViewModel {
+    private struct SnapshotCacheKey: Equatable {
+        let schedule: HabitSchedule
+        let completionDayTimestamps: [TimeInterval]
+
+        init(habit: Habit, calendar: Calendar) {
+            self.schedule = habit.schedule
+            self.completionDayTimestamps = Set(habit.completions.map { calendar.startOfDay(for: $0) })
+                .map(\.timeIntervalSinceReferenceDate)
+                .sorted()
+        }
+    }
+
     let habit: Habit
     let calendar: Calendar
     let now: Date
@@ -12,9 +24,9 @@ final class HabitCalendarViewModel {
     // Initialize streak service once
     private let streakService: HabitStreakService
 
-    // Cache the snapshot to avoid recalculating on every access
+    // Cache the snapshot to avoid recalculating on every access.
     private var cachedSnapshot: HabitStreakSnapshot?
-    private var lastCompletionsCount: Int = -1
+    private var cachedSnapshotKey: SnapshotCacheKey?
 
     deinit {}
 
@@ -35,11 +47,12 @@ final class HabitCalendarViewModel {
     }
 
     var snapshot: HabitStreakSnapshot {
-        if habit.completions.count != lastCompletionsCount || cachedSnapshot == nil {
-            lastCompletionsCount = habit.completions.count
+        let key = SnapshotCacheKey(habit: habit, calendar: calendar)
+        if cachedSnapshotKey != key || cachedSnapshot == nil {
             cachedSnapshot = streakService.snapshot(for: habit)
+            cachedSnapshotKey = key
         }
-        return cachedSnapshot!
+        return cachedSnapshot ?? streakService.snapshot(for: habit)
     }
 
     var dayStates: [HabitCalendarDayState] {
@@ -59,16 +72,17 @@ final class HabitCalendarViewModel {
             guard let day = calendar.date(byAdding: .day, value: offset, to: firstGridDate) else {
                 return nil
             }
+            let dayStart = calendar.startOfDay(for: day)
             
-            let dayMonth = calendar.component(.month, from: day)
-            let dayYear = calendar.component(.year, from: day)
+            let dayMonth = calendar.component(.month, from: dayStart)
+            let dayYear = calendar.component(.year, from: dayStart)
             
             return HabitCalendarDayState(
-                date: day,
+                date: dayStart,
                 isInDisplayedMonth: currentMonth == dayMonth && currentYear == dayYear,
-                isScheduled: streakService.isScheduled(on: day, schedule: schedule),
-                isCompleted: streakService.isCompleted(on: day, completionDays: normalizedDays),
-                isToday: calendar.isDate(day, inSameDayAs: now)
+                isScheduled: streakService.isScheduled(on: dayStart, schedule: schedule),
+                isCompleted: streakService.isCompleted(on: dayStart, completionDays: normalizedDays),
+                isToday: calendar.isDate(dayStart, inSameDayAs: now)
             )
         }
     }

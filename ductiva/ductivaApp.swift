@@ -52,15 +52,24 @@ extension View {
 
 @main
 struct ductivaApp: App {
+    private struct WidgetsSheetToken: Identifiable {
+        let id = UUID()
+    }
+
     var sharedModelContainer: ModelContainer = {
         do {
             return try SharedContainer.make()
         } catch {
-            fatalError("Could not create ModelContainer: \(error)")
+            assertionFailure("Could not create persistent ModelContainer: \(error)")
+            do {
+                return try SharedContainer.makeInMemory()
+            } catch {
+                preconditionFailure("Could not create fallback in-memory ModelContainer: \(error)")
+            }
         }
     }()
 
-    @State private var showWidgets = false
+    @State private var widgetsSheetToken: WidgetsSheetToken?
 
     @State private var viewModel: ConfigurationViewModel?
 
@@ -69,7 +78,7 @@ struct ductivaApp: App {
             Group {
                 if let viewModel {
                     ConfigurationView(viewModel: viewModel)
-                        .sheet(isPresented: $showWidgets) {
+                        .sheet(item: $widgetsSheetToken) { _ in
                             WidgetsPlaceholderView()
                                 .frame(minWidth: 360, minHeight: 400)
                         }
@@ -96,7 +105,7 @@ struct ductivaApp: App {
         .commands {
             CommandGroup(after: .appInfo) {
                 Button("Widgets...") {
-                    showWidgets = true
+                    widgetsSheetToken = WidgetsSheetToken()
                 }
                 .keyboardShortcut("w", modifiers: [.command, .shift])
             }

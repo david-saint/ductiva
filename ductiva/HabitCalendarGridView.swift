@@ -51,7 +51,7 @@ struct HabitCalendarGridView: View {
 
     private var weekdayLegend: some View {
         HStack(spacing: 0) {
-            ForEach(weekdaySymbols, id: \.self) { symbol in
+            ForEach(Array(weekdaySymbols.enumerated()), id: \.offset) { _, symbol in
                 Text(symbol)
                     .font(.system(size: 11, weight: .medium, design: .monospaced))
                     .foregroundStyle(StealthCeramicTheme.secondaryTextColor.opacity(0.45))

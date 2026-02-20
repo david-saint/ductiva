@@ -37,10 +37,14 @@ enum HabitSchedule: Equatable, Codable, Hashable, Sendable {
         case .weekly:
             return "Weekly"
         case let .specificDays(days):
-            if days.count == 7 {
+            let uniqueDays = Set(days)
+            if uniqueDays.isEmpty {
+                return "Specific Days"
+            }
+            if uniqueDays.count == 7 {
                 return "Daily"
             }
-            let sortedDays = days.sorted { $0.rawValue < $1.rawValue }
+            let sortedDays = uniqueDays.sorted { $0.rawValue < $1.rawValue }
             let dayStrings = sortedDays.map(\.shortName).joined(separator: ", ")
             return "Every \(dayStrings)"
         }

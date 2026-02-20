@@ -2,9 +2,14 @@ import SwiftUI
 import SwiftData
 
 struct ConfigurationView: View {
+    private struct AddSlotSheetToken: Identifiable {
+        let id = UUID()
+    }
+
     @State var viewModel: ConfigurationViewModel
     @State private var selectedHabit: Habit?
-    @State private var showAddSlotSheet = false
+    @State private var addSlotSheetToken: AddSlotSheetToken?
+    @State private var pendingDeepLinkHabitID: UUID?
 
     var body: some View {
         ZStack {
@@ -25,6 +30,13 @@ struct ConfigurationView: View {
                 Spacer().frame(height: 16)
                 settingsSection
                 Spacer()
+                if let errorMessage = viewModel.errorMessage {
+                    Text(errorMessage)
+                        .font(.caption2)
+                        .foregroundStyle(.red.opacity(0.85))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.bottom, 8)
+                }
                 actionBar
             }
             .padding(.horizontal, 24)
@@ -35,7 +47,7 @@ struct ConfigurationView: View {
             HabitStreakDetailView(habit: habit)
                 .frame(minWidth: 360, minHeight: 400)
         }
-        .sheet(isPresented: $showAddSlotSheet) {
+        .sheet(item: $addSlotSheetToken) { _ in
             AddSlotSheet { name, iconName, schedule in
                 withAnimation(.easeInOut(duration: 0.25)) {
                     viewModel.addHabit(name: name, iconName: iconName, schedule: schedule)
@@ -44,17 +56,21 @@ struct ConfigurationView: View {
         }
         .onAppear {
             viewModel.loadHabits()
+            resolvePendingDeepLink()
         }
         .onOpenURL { url in
-            if let route = HabitAppRoute(url: url) {
-                switch route {
-                case .habitDetail(let id):
-                    // Ensure habits are loaded, though they should be by the time this is called
-                    if let habit = viewModel.habits.first(where: { $0.id == id }) {
-                        selectedHabit = habit
-                    }
+            guard let route = HabitAppRoute(url: url) else { return }
+            switch route {
+            case .habitDetail(let id):
+                pendingDeepLinkHabitID = id
+                if viewModel.habits.isEmpty {
+                    viewModel.loadHabits()
                 }
+                resolvePendingDeepLink()
             }
+        }
+        .onChange(of: viewModel.habits.map(\.id)) { _, _ in
+            resolvePendingDeepLink()
         }
     }
 
@@ -103,7 +119,7 @@ struct ConfigurationView: View {
 
             if viewModel.canAddSlot {
                 AddSlotButton {
-                    showAddSlotSheet = true
+                    addSlotSheetToken = AddSlotSheetToken()
                 }
                 .padding(.top, 8)
                 .transition(.opacity)
@@ -136,54 +152,37 @@ struct ConfigurationView: View {
             isDisabled: !viewModel.hasUnsavedChanges
         )
     }
-}
 
-// MARK: - Schedule Description Helpers (migrated from ContentView)
+    private func resolvePendingDeepLink() {
+        guard let pendingDeepLinkHabitID else { return }
+        guard let habit = viewModel.habit(withID: pendingDeepLinkHabitID) else { return }
 
-extension ConfigurationViewModel {
-    nonisolated static func scheduleDescription(for schedule: HabitSchedule) -> String {
-        switch schedule {
-        case .daily:
-            return "Daily"
-        case .weekly:
-            return "Weekly"
-        case let .specificDays(days):
-            if days.isEmpty {
-                return "Specific Days"
-            }
-            return days.map(weekdayAbbreviation).joined(separator: ", ")
-        }
-    }
-
-    nonisolated static func weekdayAbbreviation(for day: HabitWeekday) -> String {
-        switch day {
-        case .sunday: return "Sun"
-        case .monday: return "Mon"
-        case .tuesday: return "Tue"
-        case .wednesday: return "Wed"
-        case .thursday: return "Thu"
-        case .friday: return "Fri"
-        case .saturday: return "Sat"
-        }
+        selectedHabit = habit
+        self.pendingDeepLinkHabitID = nil
     }
 }
 
 #Preview {
     struct PreviewWrapper: View {
         var body: some View {
-            let container = try! SharedContainer.make()
+            if let container = try? SharedContainer.makeInMemory() {
+                let store = Self.makeSeededStore(container: container)
+                let viewModel = ConfigurationViewModel(habitStore: store)
+                ConfigurationView(viewModel: viewModel)
+                    .onAppear { viewModel.loadHabits() }
+            } else {
+                Text("Preview unavailable")
+                    .padding()
+            }
+        }
+
+        private static func makeSeededStore(container: ModelContainer) -> HabitStore {
             let context = ModelContext(container)
             let store = HabitStore(modelContext: context)
-
-            // Seed preview data
             _ = try? store.createHabit(name: "Deep Work", iconName: "display", schedule: .daily)
             _ = try? store.createHabit(name: "Strength Training", iconName: "dumbbell", schedule: .daily)
             _ = try? store.createHabit(name: "Side Project", iconName: "chevron.left.forwardslash.chevron.right", schedule: .weekly)
-
-            let viewModel = ConfigurationViewModel(habitStore: store)
-            
-            return ConfigurationView(viewModel: viewModel)
-                .onAppear { viewModel.loadHabits() }
+            return store
         }
     }
     return PreviewWrapper()
