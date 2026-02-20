@@ -28,22 +28,18 @@ This file provides instructional context for Gemini CLI when working on the **Du
 - **Clean Build Folder:** `Command + Shift + K`
 
 ### Automation Scripts (Ruby)
-The project uses several Ruby scripts in `.agent/scripts/` to manage the `.xcodeproj` file programmatically. This ensures consistency when adding files or targets.
-- `.agent/scripts/add_swift_file.rb`: Adds a Swift file to the project and targets.
-- `.agent/scripts/add_test_file.rb`: Adds a test file to the project and test target.
-- `.agent/scripts/add_widget_target.rb`: Configures the widget extension target.
-- `.agent/scripts/share_models.rb`: Handles linking models between the app and its extensions.
-- `.agent/scripts/fix_bundle_id.rb`: Corrects bundle identifiers across targets.
+The `ductiva` and `ductivaTests` targets use **directory-based file discovery** — any `.swift` file added to those folders is automatically compiled. No project registration is needed for main app or test files.
+
+The `ductivaWidgets` target uses traditional explicit file registration. Two Ruby scripts remain as reference patterns for widget target work:
+- `.agent/scripts/add_swift_file.rb`: Pattern for adding a Swift file to the widget target.
+- `.agent/scripts/add_test_file.rb`: Pattern for adding a test file to the tests target.
 
 **When to Use:**
-- After creating any new `.swift` file (main app or tests).
-- When configuring new targets or sharing resources across extensions.
+- Only when adding files to the `ductivaWidgets` target, which requires explicit registration in `project.pbxproj`.
 
 **When to Add New Scripts:**
-- If you find yourself performing a repetitive manual task in the `.xcodeproj` (e.g., adding a new framework to multiple targets, configuring a new build phase).
+- If you find yourself performing a repetitive manual task in the `.xcodeproj` (e.g., adding a new framework to the widget target).
 - Always use the `xcodeproj` Ruby gem for these scripts to maintain project integrity.
-
-*Note: Always use these scripts or verify project membership after adding files manually.*
 
 ---
 
@@ -98,5 +94,5 @@ The project follows a strict **Research -> Strategy -> Execution** lifecycle, ma
 - **Plan First:** Before modifying any code, check the active `plan.md` in `conductor/tracks/`.
 - **No Gamification:** When suggesting features, avoid streaks, badges, or "leveling up." Focus on "cockpit" metrics and ambient awareness.
 - **Testing:** If you add a file to `ductiva/`, you **must** add a corresponding test in `ductivaTests/`.
-- **Project Membership:** After creating a file, remember to run the appropriate Ruby script (e.g., `ruby .agent/scripts/add_swift_file.rb ductiva/Path/To/File.swift`) to ensure it is added to the Xcode project.
-- **Automation First:** If a repetitive task involving `.xcodeproj` configuration appears, consider creating a new Ruby script in `.agent/scripts/` to automate it.
+- **Project Membership:** Files in `ductiva/` and `ductivaTests/` are auto-discovered — no registration needed. Files added to `ductivaWidgets/` must be registered in `project.pbxproj` using the `xcodeproj` gem (see `.agent/scripts/` for reference patterns).
+- **Automation First:** If a repetitive task involving `.xcodeproj` configuration appears (widget target only), consider creating a new Ruby script in `.agent/scripts/` to automate it.
