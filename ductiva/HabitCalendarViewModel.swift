@@ -1,7 +1,6 @@
 import Foundation
 import Observation
 
-
 @Observable
 final class HabitCalendarViewModel {
     let habit: Habit
@@ -10,9 +9,12 @@ final class HabitCalendarViewModel {
 
     private(set) var displayedMonthStart: Date
 
-    private var streakService: HabitStreakService {
-        HabitStreakService(calendar: calendar, now: now)
-    }
+    // Initialize streak service once
+    private let streakService: HabitStreakService
+
+    // Cache the snapshot to avoid recalculating on every access
+    private var cachedSnapshot: HabitStreakSnapshot?
+    private var lastCompletionsCount: Int = -1
 
     deinit {}
 
@@ -22,6 +24,7 @@ final class HabitCalendarViewModel {
         mondayStartCalendar.firstWeekday = 2 // Monday
         self.calendar = mondayStartCalendar
         self.now = now
+        self.streakService = HabitStreakService(calendar: mondayStartCalendar, now: now)
 
         let start = mondayStartCalendar.date(from: mondayStartCalendar.dateComponents([.year, .month], from: now))
         self.displayedMonthStart = start ?? mondayStartCalendar.startOfDay(for: now)
@@ -29,6 +32,14 @@ final class HabitCalendarViewModel {
 
     var monthTitle: String {
         displayedMonthStart.formatted(.dateTime.month(.wide).year())
+    }
+
+    var snapshot: HabitStreakSnapshot {
+        if habit.completions.count != lastCompletionsCount || cachedSnapshot == nil {
+            lastCompletionsCount = habit.completions.count
+            cachedSnapshot = streakService.snapshot(for: habit)
+        }
+        return cachedSnapshot!
     }
 
     var dayStates: [HabitCalendarDayState] {
@@ -39,11 +50,26 @@ final class HabitCalendarViewModel {
             return []
         }
 
+        let schedule = habit.schedule
+        let normalizedDays = streakService.normalizedCompletionDays(for: habit)
+        let currentMonth = calendar.component(.month, from: displayedMonthStart)
+        let currentYear = calendar.component(.year, from: displayedMonthStart)
+
         return (0..<42).compactMap { offset in
             guard let day = calendar.date(byAdding: .day, value: offset, to: firstGridDate) else {
                 return nil
             }
-            return state(for: day)
+            
+            let dayMonth = calendar.component(.month, from: day)
+            let dayYear = calendar.component(.year, from: day)
+            
+            return HabitCalendarDayState(
+                date: day,
+                isInDisplayedMonth: currentMonth == dayMonth && currentYear == dayYear,
+                isScheduled: streakService.isScheduled(on: day, schedule: schedule),
+                isCompleted: streakService.isCompleted(on: day, completionDays: normalizedDays),
+                isToday: calendar.isDate(day, inSameDayAs: now)
+            )
         }
     }
 
@@ -56,6 +82,8 @@ final class HabitCalendarViewModel {
     }
 
     func state(for date: Date) -> HabitCalendarDayState {
+        let schedule = habit.schedule
+        let normalizedDays = streakService.normalizedCompletionDays(for: habit)
         let day = calendar.startOfDay(for: date)
         let currentMonth = calendar.component(.month, from: displayedMonthStart)
         let currentYear = calendar.component(.year, from: displayedMonthStart)
@@ -65,8 +93,8 @@ final class HabitCalendarViewModel {
         return HabitCalendarDayState(
             date: day,
             isInDisplayedMonth: currentMonth == dayMonth && currentYear == dayYear,
-            isScheduled: streakService.isScheduled(on: day, for: habit),
-            isCompleted: streakService.isCompleted(on: day, for: habit),
+            isScheduled: streakService.isScheduled(on: day, schedule: schedule),
+            isCompleted: streakService.isCompleted(on: day, completionDays: normalizedDays),
             isToday: calendar.isDate(day, inSameDayAs: now)
         )
     }

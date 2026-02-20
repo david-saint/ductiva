@@ -54,16 +54,14 @@ struct HabitStore {
 
     func isCompleted(_ habit: Habit, on date: Date = Date(), calendar: Calendar = .current) -> Bool {
         let targetDay = calendar.startOfDay(for: date)
-        return habit.completions.contains { completionDate in
-            calendar.isDate(completionDate, inSameDayAs: targetDay)
-        }
+        return habit.completions.contains(targetDay)
     }
 
     @discardableResult
     func toggleCompletion(_ habit: Habit, on date: Date = Date(), calendar: Calendar = .current) throws -> Bool {
         let targetDay = calendar.startOfDay(for: date)
 
-        if let index = habit.completions.firstIndex(where: { calendar.isDate($0, inSameDayAs: targetDay) }) {
+        if let index = habit.completions.firstIndex(of: targetDay) {
             habit.completions.remove(at: index)
             try modelContext.save()
             reloadWidgetTimelines()

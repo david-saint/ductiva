@@ -107,8 +107,9 @@ struct HabitCompletionRingView: View {
     ) -> Double {
         switch schedule {
         case .daily, .specificDays:
-            let elapsed = now.timeIntervalSince(calendar.startOfDay(for: now))
-            return max(0, min(1, 1.0 - elapsed / 86_400.0))
+            guard let interval = calendar.dateInterval(of: .day, for: now) else { return 1.0 }
+            let elapsed = now.timeIntervalSince(interval.start)
+            return max(0, min(1, 1.0 - elapsed / interval.duration))
         case .weekly:
             guard let interval = calendar.dateInterval(of: .weekOfYear, for: now) else { return 1.0 }
             let elapsed = now.timeIntervalSince(interval.start)

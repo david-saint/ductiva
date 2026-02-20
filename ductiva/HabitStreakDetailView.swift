@@ -44,16 +44,12 @@ struct HabitStreakDetailView: View {
                     .fill(StealthCeramicTheme.dividerColor)
                     .frame(height: 1)
 
-                HabitMetricsView(snapshot: snapshot)
+                HabitMetricsView(snapshot: calendarViewModel.snapshot)
             }
             .padding(.bottom, 0)
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel("\(habit.name) streak details")
         .accessibilityHint("Shows monthly scheduled-day completion history and streak metrics")
-    }
-
-    private var snapshot: HabitStreakSnapshot {
-        HabitStreakService(calendar: calendar, now: now).snapshot(for: habit)
     }
 }

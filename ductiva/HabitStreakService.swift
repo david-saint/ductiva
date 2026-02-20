@@ -16,10 +16,11 @@ struct HabitStreakService {
     }
 
     func snapshot(for habit: Habit) -> HabitStreakSnapshot {
+        let schedule = habit.schedule
         let completionDays = normalizedCompletionDays(for: habit)
-        let currentStreak = calculateCurrentStreak(for: habit, completionDays: completionDays)
+        let currentStreak = calculateCurrentStreak(for: habit, schedule: schedule, completionDays: completionDays)
         let perfectDays = completionDays.count
-        let fireVisualActive = isFireVisualActive(for: habit, currentStreak: currentStreak)
+        let fireVisualActive = isFireVisualActive(schedule: schedule, currentStreak: currentStreak)
 
         return HabitStreakSnapshot(
             currentStreak: currentStreak,
@@ -28,10 +29,10 @@ struct HabitStreakService {
         )
     }
 
-    func isScheduled(on date: Date, for habit: Habit) -> Bool {
+    func isScheduled(on date: Date, schedule: HabitSchedule) -> Bool {
         let weekday = calendar.component(.weekday, from: date)
 
-        switch habit.schedule {
+        switch schedule {
         case .daily:
             return true
         case .weekly:
@@ -41,17 +42,26 @@ struct HabitStreakService {
             return allowed.contains(weekday)
         }
     }
+    
+    // Legacy method for compatibility if needed, but we should prefer passing `schedule`
+    func isScheduled(on date: Date, for habit: Habit) -> Bool {
+        isScheduled(on: date, schedule: habit.schedule)
+    }
 
     func isCompleted(on date: Date, for habit: Habit) -> Bool {
         normalizedCompletionDays(for: habit).contains(calendar.startOfDay(for: date))
     }
+    
+    func isCompleted(on date: Date, completionDays: Set<Date>) -> Bool {
+        completionDays.contains(calendar.startOfDay(for: date))
+    }
 
-    private func normalizedCompletionDays(for habit: Habit) -> Set<Date> {
+    func normalizedCompletionDays(for habit: Habit) -> Set<Date> {
         Set(habit.completions.map { calendar.startOfDay(for: $0) })
     }
 
-    private func calculateCurrentStreak(for habit: Habit, completionDays: Set<Date>) -> Int {
-        if case .weekly = habit.schedule {
+    private func calculateCurrentStreak(for habit: Habit, schedule: HabitSchedule, completionDays: Set<Date>) -> Int {
+        if case .weekly = schedule {
             return calculateWeeklyStreak(for: habit, completionDays: completionDays)
         }
 
@@ -61,7 +71,7 @@ struct HabitStreakService {
         var streak = 0
         var cursor = today
 
-        if isScheduled(on: cursor, for: habit), completionDays.contains(cursor) {
+        if isScheduled(on: cursor, schedule: schedule), completionDays.contains(cursor) {
             streak += 1
         }
 
@@ -70,7 +80,7 @@ struct HabitStreakService {
         }
 
         while cursor >= createdDay {
-            if isScheduled(on: cursor, for: habit) {
+            if isScheduled(on: cursor, schedule: schedule) {
                 if completionDays.contains(cursor) {
                     streak += 1
                 } else {
@@ -128,8 +138,8 @@ struct HabitStreakService {
         }
     }
 
-    private func isFireVisualActive(for habit: Habit, currentStreak: Int) -> Bool {
-        switch habit.schedule {
+    private func isFireVisualActive(schedule: HabitSchedule, currentStreak: Int) -> Bool {
+        switch schedule {
         case .daily:
             return currentStreak >= 5
         case .weekly:

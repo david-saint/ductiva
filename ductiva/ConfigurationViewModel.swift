@@ -77,13 +77,14 @@ final class ConfigurationViewModel {
         habitStore.isCompleted(habit, on: now, calendar: calendar)
     }
 
-    /// Toggles a completion entry for the provided habit on the supplied day and reloads the list.
+    /// Toggles a completion entry for the provided habit on the supplied day.
+    /// UI is naturally updated because habits is tracked via SwiftData / @Observable.
     func toggleCompletionToday(for habit: Habit, now: Date = Date(), calendar: Calendar = .current) {
         do {
             _ = try habitStore.toggleCompletion(habit, on: now, calendar: calendar)
-            loadHabits()
+            // Removed loadHabits() since the object updates in-place via SwiftData.
         } catch {
-            // Toggle failed — habits array unchanged
+            // Toggle failed
         }
     }
 
