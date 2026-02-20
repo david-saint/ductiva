@@ -32,8 +32,6 @@
 		B2C3D4E5F6071829A0B1C2D3 /* SmallFocusWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C3D4E5F6071829A0B1C2D4 /* SmallFocusWidgetView.swift */; };
 		D3A73109C326FC0650D1EB6F /* LargeFocusWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4154805447DC9E1E7FEDBB /* LargeFocusWidgetView.swift */; };
 		E79569714B622F9B149D21CA /* HabitSelectionIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13999CFE919EB5BC19A11324 /* HabitSelectionIntent.swift */; };
-		E826D2053745431B71FE1B72 /* WidgetSharedComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407E4A06D9AAD872D0BAFE4E /* WidgetSharedComponents.swift */; };
-		E8CD63ABD6ADDBE3FE902DAF /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D33EBEA009D1F4AD80AA02 /* AppConfiguration.swift */; };
 		F546DABB639BC485C89DB6B1 /* ductivaWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6DD409717A4593EC68C1D1 /* ductivaWidgets.swift */; };
 /* End PBXBuildFile section */
 
@@ -337,8 +335,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8CD63ABD6ADDBE3FE902DAF /* AppConfiguration.swift in Sources */,
-				E826D2053745431B71FE1B72 /* WidgetSharedComponents.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
